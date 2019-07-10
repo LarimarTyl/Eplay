@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
+    <script src="../../dist/js/jquery-3.4.1.js"></script>
+    <script src="../../dist/js/bootstrap.js"></script>
+</head>
+<style>
+ html,body,.main,.left_navbar,a,p{
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        overflow: hidden;
+        background-color: #FDE1CB;
+    }
+    .left_navbar{
+        width: 10%;
+        background-color: #F86D5A;
+        color: white;
+        font-size: 1vw;
+        float: left;
+    }
+    /* 顶部高度对齐 */
+    .top_logo, .nav_right{
+        height: 10%;
+        padding-left:0;
+    }
+    .top_logo{
+        text-align: center;
+    }
+    .nav_right nav, .nav_right ul li{
+        height: 100%;
+    }
+    .admin{
+        height: 40%;
+    }
+    .admin .nav_title{
+        height: 15%;
+        /* line-height: 15%; */
+    }
+    .admin .nav_item{
+        height: 10%;
+        /* line-height: 10%; */
+    } 
+    .QR_code{
+        height: 20%;
+    }
+    .person_setting{
+        height: 30%;
+    }
+    .nav_title{
+        font-size: 100%;
+        text-indent:10%;
+        color: white;
+        border: 0px;
+    }
+    .left_navbar .nav_item{
+        text-indent: 20%;
+    }
+    .left_navbar .nav_item a {
+        color: white;
+    }
+    .QR_code{
+        text-align: center;
+    }
+    .nav_right{
+        width: 90%;
+        float:right;
+        margin: 0;
+        padding: 0;
+    }
+    .nav_right nav{
+        background-color: rgb(247, 207, 207);
+    }
+    .nav_right ul{
+        height: 100%;
+    }
+    .nav_right .nav_item{
+        height: 100%;
+        margin:0px 10px;
+    }
+    .nav_right .nav_item a{
+        padding-top:30px; 
+        height: 100%;
+        font-size: 1vw;
+    }
+    .admin ul>li{
+        background-color: #F86D5A;
+    }
+    .nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color:#F75842;
+    }
+</style>
+<script src="../../dist/js/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+        $(".nav_right").find(".nav_item").mouseenter(function(){
+            $(this).children("a").css("color","#F86D5A")
+        }).mouseleave(function(){
+            $(this).children("a").css("color","")
+        });
+        $(".left_navbar .nav_item").on("click",function(){
+            $(this).children("a").css("margin-left",10).css("background-color","#F75842").parent()
+            .siblings(".nav_item").css("background-color","").children("a").css("margin-left",0).css("background-color","#F86D5A")
+            $(this).css("background-color","red").siblings().css("background-color","")
+        });
+        // ******************没解决moseenter方法*********************
+        $(".left_navbar .nav_item").mouseenter(function(){
+            $(this).find("a").css("background-color","#F75842").siblings().css("background-color","").parent().siblings().css("background-color","")
+        }).mouseleave(function(){
+            $(this).find("a").css("background-color","");
+            
+        })
+    });
+</script>
+<body>
+
+<div class="main">
+        <!-- 左侧导航 -->
+        <div class="left_navbar" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked top_logo">
+            <li  class="navbar-brand"> <span><a href="#"><img src="../../img/Logo/Logo_small.png" alt="" width="65%"></a></span> </li>
+            </ul>
+            <ul class="nav  nav-stacked admin" id="myNav">
+                <!-- <li><a href="#"><span class="glyphicon glyphicon-icon" aria-hidden="true"></span>Eplay</a></li> -->
+                <li class="navbar-brand  nav_title">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp; 管理
+                </li>
+                <li class="nav_item"><a href="#">我的订单</a></li>
+                <li class="nav_item"><a href="#">我的收入</a></li>
+                <li class="nav_item"><a href="#">我的游戏</a></li>
+                <li class="nav_item"><a href="#">我的消息</a></li>
+                <li class="nav_item"><a href="#">我的关注</a></li>
+                <li class="nav_item"><a href="#">我的黑名单</a></li>
+                <li class="nav_item"><a href="#">余额充值</a></li>
+            </ul>
+            <ul class="nav nav-stacked person_setting">
+                <li class="navbar-brand nav_title">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; 设置
+                </li>
+                <li class="nav_item"><a href="#">个人资料</a></li>
+                <li class="nav_item"><a href="#">安全中心</a></li>
+                <li class="nav_item"><a href="#">游戏偏好</a></li>
+                <li class="nav_item"><a href="#">申请入驻</a></li>
+            </ul>
+            <ul class="nav  nav-stacked QR_code">
+                    <li class="navbar-brand">
+                        <span><img src="../../img/qr_code/qr_code.png" alt="" width="60%"></span>
+                        <p><span style="font-size: 5px;">扫描二维码下载</span></p>
+                        <p><span style="font-size: 5px;">Eplay 一起来玩</span></p>
+                    </li>
+            </ul>
+        </div>
+        <!-- 主要部分 -->
+        <div class="main_navbar nav_right">
+            <nav class="navbar navbar-default navbar-static-top">
+                <!-- <a class="navbar-brand" href="#">Title</a> -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav_item">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-envelope"></span> 消息
+                        </a>
+                    </li>
+                    <li class="nav_item"> 
+                        <a href="#">
+                            <span class="glyphicon glyphicon-headphones"></span> 客服</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#">
+
+                            <span class="glyphicon glyphicon-user"></span> UID:2120049</a>
+                    </li>
+                    <li> <a href="">
+                            <span> <img src="" alt=""></span>
+                        </a>
+                    </li>
+                    <li class="nav_item"> <a href="">
+                            <span>普通用户</span>
+                            <p>Larimar</p>
+                        </a>
+                    </li>
+                    <li class="nav_item"> <a href="">
+                            <span>退出</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
