@@ -37,7 +37,6 @@
     .admin .nav_item{
         height: 70px;
         text-indent: 25%;
-       
     }
     .admin .nav_item a{
         color: white;
@@ -67,7 +66,7 @@
     .nav_right .nav_item{
         height: 100%;
         margin:0px 10px;
-        padding: 0px 5px;
+        padding: 15px 5px;
     }
     .nav_right .nav_item a{
         line-height: 60px;
