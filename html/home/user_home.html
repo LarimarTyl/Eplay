@@ -21,9 +21,9 @@
             $(this).addClass("left_active").siblings(".nav_item").removeClass("left_active");
         });
         $(".left_navbar .nav_item").mouseenter(function(){
-            $(this).find("a").css("background-color","#F75842").siblings().css("background-color","").parent().siblings().css("background-color","")
+            $(this).find("a").addClass("left_selected").siblings().removeClass("left_selected").parent().siblings().removeClass("left_selected")
         }).mouseleave(function(){
-            $(this).find("a").css("background-color","");
+            $(this).find("a").removeClass("left_selected");
         })
     });
 </script>
