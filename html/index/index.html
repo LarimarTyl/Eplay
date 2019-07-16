@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eplay</title>
+    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../dist/css/bootstrap.css.map">
+    <script src="../../dist/js/jquery-3.4.1.js"></script>
+    <script src="../../dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+
+<body>
+    <!-- 头部导航 -->
+    <nav class="navbar navbar-default navbar-static-top top-item" role="navigation">
+        <a class="navbar-brand logo" href="#">
+            <div style="float:left"><img src="../../img/Logo/ep-logo-l.png" alt="" width="70px"></div>
+            <div class="font" style="float: right"><span class="title">Eplay</span>
+                <p style="margin-top: 5px;">一起娱乐一起交友</p>
+            </div>
+        </a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item actived">
+                <a href="#">主页</a>
+            </li>
+            <li class="nav-item">
+                <a href="#">约陪玩</a>
+            </li>
+            <li class="nav-item">
+                <a href="#">开黑大厅</a>
+            </li>
+            <li class="nav-item">
+                <a href="#">充值</a>
+            </li>
+            <li class="nav-item">
+                <a href="#">APP下载</a>
+            </li>
+            <li class="nav-item">
+                <form class="navbar-form search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索昵称">
+
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item  top-right">
+                <a href="#">
+                    <span class="glyphicon glyphicon-headphones" aria-hidden="true">
+                        <p class="font">客服</p>
+                    </span>
+                </a>
+            </li>
+            <li class="mar">|</li>
+            <li class="nav-item top-right">
+                <a href="#">
+                    <span class="glyphicon glyphicon-tasks" aria-hidden="true">
+                        <p class="font">消息</p>
+                    </span>
+                </a>
+            </li>
+            <li class="mar">|</li>
+            <li class="nav-item top-right">
+                <a href="#">
+                    <span class="glyphicon glyphicon-flag" aria-hidden="true">
+                        <p class="font">入驻</p>
+                    </span>
+                </a>
+            </li>
+            <li class="mar">|</li>
+            <li class="nav_item userinfo">
+                <a href="">
+                    <div class="img"><img src="../../img/user/user.JPEG" alt="" width="60px" style="border-radius:50% ">
+                    </div>
+                    <div class="info"><span class="leve">普通用户</span>
+                        <p class="name">Larimar</p>
+                    </div>
+                </a>
+            </li>
+            <li class="nav_item">
+                <a href="">退出</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="slider">
+        <!-- 大广告轮播图 -->
+        <div class="container container-top">
+            <div id="carousel-item" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-item" data-slide-to="0" class=""></li>
+                    <li data-target="#carousel-item" data-slide-to="1" class=""></li>
+                    <li data-target="#carousel-item" data-slide-to="2" class=""></li>
+                    <li data-target="#mycarousel" data-slide-to="3" class="active"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item" style="background: #223240">
+                        <a href="#"><img src="../../img/big-picture/1.png" alt=""></a>
+                    </div>
+                    <div class="item " style="background: #223240">
+                        <a href="#"><img src="../../img/big-picture/2.jpg" alt=""></a>
+                    </div>
+                    <div class="item" style="background: #223240">
+                        <a href="#"><img src="../../img/big-picture/3.jpg" alt=""></a>
+                    </div>
+                    <div class="item active" style="background: #223240">
+                        <a href="#"><img src="../../img/big-picture/4.jpg" alt=""></a>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-item" data-slide="prev"><span
+                        class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="right carousel-control" href="#carousel-item" data-slide="next"><span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+
+        </div>
+        <!-- 主体信息 -->
+        <div class="container">
+            <!-- 陪玩信息 -->
+            <div class="item player">
+                <!-- 陪玩菜单 -->
+                <nav class="navbar  navbar-top navbar-default player-top" role="navigation">
+                    <a class="navbar-brand">
+                        <span class="glyphicon"><img src="../../img/picture/686589.png" alt="" width="55px">
+                            游戏陪玩</span></a>
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="#">
+                                <span class="label label-default">英雄联盟</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <span class="label label-default">绝地求生</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <span class="label label-default">DOTA2自走棋</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <span class="label label-default">王者荣耀</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <span class="label label-default">CS：GO</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- 陪玩详细信息 -->
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10015.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">狂野傲娇小萝莉</h4>
+                            <p class="dec">
+                                <p class="game"><span>王者荣耀</span></p>
+                                <h3 class="price">35元/小时</h3>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10013.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">可爱丸子</h4>
+                            <p class="dec">
+                                <p class="game"><span>英雄联盟</span></p>
+                                <h3 class="price">30元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10023.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">皮皮猪</h4>
+                            <p class="dec">
+                                <p class="game"><span>CS：GO</span></p>
+                                <h3 class="price">20元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10097.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">柯基的绿毛龟</h4>
+                            <p class="dec">
+                                <p class="game"><span>王者荣耀</span></p>
+                                <h3 class="price">35元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10096.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">小仙女@锦梨</h4>
+                            <p class="dec">
+                                <p class="game"><span>绝地求生</span></p>
+                                <h3 class="price">18元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10095.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">狂野小狸猫</h4>
+                            <p class="dec">
+                                <p class="game"><span>第五人格</span></p>
+                                <h3 class="price">15元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10012.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">可爱鬼*-*</h4>
+                            <p class="dec">
+                                <p class="game"><span>绝地求生</span></p>
+                                <h3 class="price">30元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/user-big/ia_10014.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">小甜心</h4>
+                            <p class="dec">
+                                <p class="game"><span>英雄联盟</span></p>
+                                <h3 class="price">28元/小时</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 开黑信息 -->
+            <div class="item together">
+                <nav class="nav navbar-default" role="navigation">
+                    <li><a class="navbar-brand ">
+                            <span class="glyphicon"><img src="../../img/picture/686589.png" alt="" width="55px">
+                                游戏开黑大厅</span></a></li>
+                </nav>
+                <!-- 开黑信息详细 -->
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10031.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">LOL上分厅</h4>
+                            <p class="dec">
+                                <p class="admin"><span class="glyphicon">
+                                        <img src="../../img/user/ia_10068.jpg" alt="">迷人的微笑</p>
+                                <p class="number">65人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10032.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">LOL开黑二厅</h4>
+                            <p class="dec">
+                                <p class="admin"><span class="glyphicon">
+                                <img src="../../img/user/ia_10047.jpg" alt="">小迷糊</p>
+                                <p class="number">32人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10033.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">LOL开黑一厅</h4>
+                            <p class="dec">
+                                <p class="admin"><span class="glyphicon">
+                                        <img src="../../img/user/ia_10065.jpg" alt="">大鼻子露^(*￣(oo)￣)</p>
+                                <p class="number">76人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10034.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">LOL自由开黑厅</h4>
+                            <p class="dec">
+                                    <p class="admin"><span class="glyphicon">
+                                            <img src="../../img/user/ia_10075.jpg" alt="">怼怼o(=•ェ•=)o</p>
+                                    <p class="number">45人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10035.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">绝地求生开黑厅</h4>
+                            <p class="dec">
+                                    <p class="admin"><span class="glyphicon">
+                                            <img src="../../img/user/ia_10065.jpg" alt="">寒王</p>
+                                    <p class="number">86人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10036.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">DNF跨4A打团厅</h4>
+                            <p class="dec">
+                                    <p class="admin"><span class="glyphicon">
+                                            <img src="../../img/user/ia_10047.jpg" alt="">苏然染</p>
+                                    <p class="number">45人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10105.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">自走棋开黑厅</h4>
+                            <p class="dec">
+                                    <p class="admin"><span class="glyphicon">
+                                            <img src="../../img/user/ia_10118.jpg" alt="">棋菜·没有子</p>
+                                    <p class="number">62人</p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a class="pull-top" href="#">
+                            <img class="img" src="../../img/game-picture/ia_10037.jpg" alt="Image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">和平精英开黑厅</h4>
+                            <p class="dec">
+                                    <p class="admin"><span class="glyphicon">
+                                            <img src="../../img/user/user.JPEG" alt="">超级伏地魔</p>
+                                    <p class="number">105人</p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    $("#my-carousel").carousel({
+        interval: 2000,
+    });
+</script>
+
+</html>

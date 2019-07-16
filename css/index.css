@@ -1,0 +1,200 @@
+a,div,p{
+    padding: 0;
+    margin: 0;
+}
+body{
+ background-color: #E9ECF3;
+}
+.top-item{
+    height: 80px;
+}
+.logo{
+    padding-left: 80px;
+    padding-top:10px;
+}
+.top-item .font{
+    padding-top: 10px;
+}
+.title{
+    font-size: 35px;
+}
+.font{
+    font-size: 15px;
+}
+/* 导航区域 */
+
+.navbar-nav{
+    font-size: 20px;
+}
+.nav-item a{
+    height: 60px;
+    padding: 0;
+    margin: 0 20px;
+}
+
+/* 更改初始设置 */
+.navbar-nav li>a{
+    line-height: 60px;
+    padding:0 10px;
+    margin: 10px;
+}
+.navbar-default .navbar-nav > .actived > a, .navbar-default .navbar-nav > .actived > a:hover, .navbar-default .navbar-nav > .actived > a:focus {
+    color:salmon;
+    border-bottom: 5px solid salmon; 
+}
+.actived a{
+    color: salmon;
+    border-bottom: 5px solid salmon; 
+}
+/* 更改初始设置 */
+.search{
+    line-height: 60px;
+}
+.navbar-form,.navbar-form .form-control {
+    width: 350px;
+}
+.form-group,.form-group input{
+    width: 100%;
+    place-content: center;
+}
+.form-control{
+    border-radius: 34px;
+}
+.top-right{
+    line-height: 60px; 
+    text-align: center;
+    padding-top: 10px;
+    font-size: 25px;
+}
+.top-right .font{
+    font-size: 15px;
+    padding: 5px;
+}
+.mar {
+    font-size: 25px;
+    font-weight: lighter;
+    padding-top: 25px;
+    color: #969494f5;
+}
+/* 用户信息样式 */
+.userinfo{
+    padding-left: 20px;
+}
+.userinfo .img{
+    float: left;
+    padding-right: 10px;
+}
+.userinfo .info{
+    float: right;
+    padding-left:10px; 
+    line-height: 30px  
+}
+.userinfo .leve{
+    font-size: 20px;
+}
+.userinfo .name{
+    font-size: 20px;
+}
+.top-item{
+    margin-bottom:0px; 
+}
+/* 轮播图样式 */
+.slider{
+    padding: 40px;
+    height: 500px;
+    background-image: url(../img/bg/bg-slider.jpg)
+}
+.carousel-inner img{
+    width:1140px; 
+}
+.carousel-control {
+    position: absolute;
+    top: 90px;
+    bottom: 0;
+    width: 25px;
+    height: 100px;
+    font-size: 10px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0);
+}
+.carousel .left{
+    left: -40px;
+}
+.carousel .right{
+    right: -40px;
+}
+/* 主要内容样式 */
+.player{
+    margin-top:200px; 
+
+}
+.navbar-default{
+ background-color: #E9ECF3
+}
+/* 陪玩信息 */
+/* 二级菜单 */
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #363636;;
+    background-color:#E9ECF3; 
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border: #363636 1px solid;
+    border-radius: 1em;
+}
+.player-top{
+    margin: 0;
+}
+/* 玩家信息样式 */
+.thumbnail{
+    background-color: #E9ECF3;
+}
+.player-info .thumbnail .media-body{
+    padding:20px 10px;
+}
+.player-info .thumbnail .media-body .dec{
+    padding-top:5px; 
+}
+.player-info .thumbnail .media-body .game{
+    margin-top:5px; 
+    font-size: 15px;
+    color: #969494f5;
+    float: left;
+}
+.player-info .thumbnail .media-body .price{
+    float: right;
+    margin: 0px;
+    color: salmon;
+}
+/* 开黑信息 样式 */
+.together .nav li a{
+    margin-bottom: 25px;
+}
+.together .thumbnail .media-body{
+    padding: 20px 10px 5px;
+}
+.together .thumbnail .media-body .admin{
+    margin-top:5px; 
+    font-size: 15px;
+    color: #969494f5;
+    float: left;
+}
+.together .thumbnail .media-body  img{
+    width: 30px;
+    margin-right:5px; 
+    border-radius: 30px;
+}
+.together .thumbnail .media-body .number{
+    float: right;
+    margin-top:10px; 
+    font-size: 15px;
+    color: #969494f5;
+    
+}
