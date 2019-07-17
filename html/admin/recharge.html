@@ -13,5 +13,138 @@
 </head>
 <body>
     <h1>充值管理</h1>
+    <br>
+    <div class="panel panel-default">
+		<!-- 搜索部分 -->
+			<div class="panel-body">
+				<form class="form-inline" method="get" action="">
+					<div class="form-group">
+						<label for="">用户名</label> 
+						<input type="text" class="form-control" id="" value="" name="">
+					</div>
+					<button type="submit" class="btn btn-primary">查询</button>
+				</form>
+			</div>
+		</div>
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>用户名</th>
+                <th>金额</th>
+                <th>充值时间</th>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <th>用户名</th>
+                <th>金额</th>
+                <th>充值时间</th>
+                <td>
+                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#rechargeEditDialog" onclick="editrecharge(1)">修改</a>
+                        <a href="#" class="btn btn-danger btn-xs" onclick="deleterecherge(1)">删除</a>
+               </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <th>用户名</th>
+                <th>金额</th>
+                <th>充值时间</th>
+                <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#rechargeEditDialog" onclick="editrecharge(2)">修改</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="deleterecherge(2)">删除</a>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- 修改充值模态框 -->
+    <div class="modal fade" id="rechargeEditDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="edit_recharge_form">
+                        <input type="hidden" id="edit_id" name="id">
+                        <div class="form-group">
+                            <label for="edit_userName" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="edit_userName" placeholder="用户名" name="loginname">
+                            </div>
+                            <label for="edit_price" class="col-sm-2 control-label">金钱</label>
+                            <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="edit_price" placeholder="金钱" name="price">
+                            </div>
+                        </div>   
+
+                        <div class="form-group">
+                                <label for="edit_pricetime" class="col-sm-2 control-label">充钱时间</label>
+                                <div class="col-sm-4">
+                                    <input type="datetime-local" class="form-control" id="edit_pricetime" placeholder="充钱时间" name="pricetime">
+                                </div>
+                        </div>   
+                    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="updaterecharge()">保存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+            // 通过id获取修改的充值信息
+            function editrecharge(id) {
+                $.ajax({
+                    type:"get",
+                    url:"recharge/getrechargeById.action",
+                    data:{"id":id},
+                    success:function(data) {
+                        $("#edit_id").val(data.id);
+                        $("#edit_loginname").val(data.lgoinname);
+                        $("#edit_price").val(data.price);
+                        $("#edit_pricetime").val(data.pricetime);
+                        
+                    
+                    }
+                });
+            }
+            // 执行修改充值操作
+            function updaterecharge() {
+                $.post("recharge/update.action",
+                  $("#edit_recharge_form").serialize(),
+                  function(data){
+                    if(data =="OK"){
+                        alert("充值信息更新成功！");
+                        window.location.reload();
+                    }else{
+                        alert("充值信息更新失败！");
+                        window.location.reload();
+                    }
+                });
+            }
+            // 删除充值信息
+            function deleterecherge(id) {
+                if(confirm('确实要删除该充值信息吗?')) {
+                $.post("recharge/delete.action",{"id":id},
+                function(data){
+                        if(data =="OK"){
+                            alert("删除成功！");
+                            window.location.reload();
+                        }else{
+                            alert("删除失败！");
+                            window.location.reload();
+                        }
+                    });
+                }
+            }
+        </script>   
+</body>
 </body>
 </html>
