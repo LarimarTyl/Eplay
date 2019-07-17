@@ -5,8 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
+    <script src="../../dist/js/jquery-3.4.1.js"></script>
+    <script src="../../dist/js/bootstrap.js"></script>
+    <style>
+        table {
+            font-size: 20px;
+            margin-top: -18px;
+        }
+
+        h1 {
+            padding-left: 50px;
+            border-left: 16px solid #F86D5A;
+        }
+
+        .back {
+            background-color: white;
+            margin-left: 30px;
+        }
+
+        td {
+            height: 60px;
+        }
+
+        .mycheck {
+            width: 25px;
+            margin: 20px 100px;
+            position: relative;
+        }
+
+        .mycheck a {
+            text-decoration: none;
+        }
+
+        .mycheck input[type=checkbox] {
+            visibility: hidden;
+        }
+
+        .mycheck label {
+            cursor: pointer;
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: 0;
+            left: 0;
+            background: #fff;
+            border: 2px solid #ccc;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .mycheck label:after {
+            opacity: 0;
+            content: '';
+            position: absolute;
+            width: 9px;
+            height: 5px;
+            background: transparent;
+            top: 6px;
+            left: 6px;
+            border: 4px solid #fff;
+            border-top: none;
+            border-right: none;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        .mycheck input[type=checkbox]:checked + label {
+            background: #f40;
+            border: 2px solid #f40;
+        }
+
+        .mycheck input[type=checkbox]:checked + label:after {
+            opacity: 1;
+            background: #f40;
+        }
+
+        label {
+            margin-top: 14px;
+            margin-left: 10px;
+        }
+
+        .mycheck button {
+            margin-left: 20px;
+            height: 40px;
+            width: 80px;
+        }
+
+        .second {
+            margin-left: 180px;
+        }
+
+        .last {
+            margin-left: 30px;
+        }
+
+        .reader {
+            background-color: #ed5565;
+            padding: 0 5px;
+            border-radius: 10px;
+            color: #FFF;
+            font-size: 20px;
+        }
+
+    </style>
 </head>
-<body>
-    <h1>我的消息</h1>
+<body class="back">
+<h1>我的消息 <span class="reader">2</span></h1>
+<hr>
+<table border="1" cellspacing="0" rules="rows" frame="void" width="100%">
+    <tr class="message icon">
+        <td width="14%" class="mycheck"><a href="messagedisplay.html"><input type="checkbox" value="1" id="checkbox1"
+                                                                             name=""
+                                                                             class="message"
+                                                                             onclick="">
+            <label for="checkbox1" class="one"></label><span class="reader second">未读</span></a>
+        </td>
+        <td width="16%"><span>[系统消息]</span></td>
+        <td width="50%">eplay的小姐姐小哥哥都在等着你们哦~</td>
+        <td width="20%">789</td>
+    </tr>
+    <tfoot>
+    <tr>
+        <td colspan="3" width="30%" class="mycheck"><input type="checkbox" value="1" id="checkboxlast" name=""
+                                                           class="message"
+                                                           onclick="test()">
+            <label for="checkboxlast" class="one"></label><span class="last">全部</span>
+            <button>删除</button>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<script>
+    $(function () {
+        $(".message").mouseover(function () {
+            $(this).css("backgroundColor", "#fafafa");
+        })
+        $(".message").mouseout(function () {
+            $(this).css("backgroundColor", "white");
+        })
+        $(".icon").click(function () {
+            // console.log($(this).find(".reader").css("display")=="inline");
+            if ($(this).find(".reader").css("display") == "inline") {
+                $(this).find(".reader").hide();
+                $(this).removeClass("icon");
+                $(".reader").eq(0).text();
+                var i = parseInt($(".reader").eq(0).text());
+                if (i > 1) {
+                    $(".reader").eq(0).text(i - 1);
+                } else {
+                    $(".reader").eq(0).hide();
+                }
+            }
+        })
+    })
+</script>
 </body>
 </html>
