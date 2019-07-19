@@ -97,7 +97,7 @@
         }
 
         .second {
-            margin-left: 130px;
+            margin-left: 100px;
         }
 
         .last {
@@ -119,47 +119,106 @@
 <hr>
 <table border="1" cellspacing="0" rules="rows" frame="void" width="100%">
     <tr class="message icon">
-        <td width="14%" class="mycheck"><a href="messagedisplay.html"><input type="checkbox" value="1" id="checkbox1"
-                                                                             name=""
-                                                                             class="message"
-                                                                             onclick="">
-            <label for="checkbox1" class="one"></label><span class="reader second">未读</span></a>
+        <td width="4%" class="mycheck"><a href="messagedisplay.html"><input type="checkbox" value="1" id="checkbox1"
+                                                                            name=""
+                                                                            class="hook"
+                                                                            onclick="">
+            <label for="checkbox1" class="one"></label></a>
         </td>
+        <td width="10%" class="noReader"><span class="reader second">未读</span></td>
         <td width="16%"><span>[系统消息]</span></td>
         <td width="50%">eplay的小姐姐小哥哥都在等着你们哦~</td>
-        <td width="20%">789</td>
+        <td width="20%">2019-7-19</td>
+    </tr>
+    <tr class="message icon">
+        <td width="4%" class="mycheck"><a href="#"><input type="checkbox" value="1" id="checkbox2"
+                                                          name=""
+                                                          class="hook"
+                                                          onclick="">
+            <label for="checkbox2" class="one"></label></a>
+        </td>
+        <td width="10%" class="noReader"><span class="reader second">未读</span></td>
+        <td width="16%"><span>[系统消息]</span></td>
+        <td width="50%">杰普发来战帖，叫你们最厉害的上场</td>
+        <td width="20%">2019-7-18</td>
     </tr>
     <tfoot>
     <tr>
         <td colspan="3" width="30%" class="mycheck"><input type="checkbox" value="1" id="checkboxlast" name=""
-                                                           class="message"
-                                                           onclick="test()">
-            <label for="checkboxlast" class="one"></label><span class="last">全部</span>
-            <button>删除</button>
+                                                           class="">
+            <label for="checkboxlast" class="one" id="All"></label><span class="last">全部</span>
+            <button id="delete">删除</button>
         </td>
     </tr>
     </tfoot>
 </table>
 <script>
     $(function () {
+        if ($(".message").length == 0) {
+            $("tfoot").hide();
+        }
         $(".message").mouseover(function () {
             $(this).css("backgroundColor", "#fafafa");
         })
         $(".message").mouseout(function () {
             $(this).css("backgroundColor", "white");
         })
-        $(".icon").click(function () {
-            // console.log($(this).find(".reader").css("display")=="inline");
-            if ($(this).find(".reader").css("display") == "inline") {
-                $(this).find(".reader").hide();
-                $(this).removeClass("icon");
-                $(".reader").eq(0).text();
-                var i = parseInt($(".reader").eq(0).text());
-                if (i > 1) {
-                    $(".reader").eq(0).text(i - 1);
-                } else {
-                    $(".reader").eq(0).hide();
+
+
+        //未读标志和未读数量
+        $(".icon").find(".mycheck").siblings().click(function () {
+            // console.log($(this).hasClass("noReader"));
+            if ($(this).hasClass("noReader")) {
+                if ($(this).find(".second").css("display") == "inline") {
+                    $(this).find(".second").hide();
+                    var i = parseInt($(".reader").eq(0).text());
+                    if (i > 1) {
+                        $(".reader").eq(0).text(i - 1);
+                    } else {
+                        $(".reader").eq(0).hide();
+                    }
                 }
+            } else {
+                console.log($(this).siblings(".noReader"));
+                if ($(this).siblings(".noReader").find(".second").css("display") == "inline") {
+                    $(this).siblings(".noReader").find(".second").hide();
+                    var i = parseInt($(".reader").eq(0).text());
+                    if (i > 1) {
+                        $(".reader").eq(0).text(i - 1);
+                    } else {
+                        $(".reader").eq(0).hide();
+                    }
+                }
+            }
+        })
+
+//全选
+        $("#All").click(function () {
+            if ($("#All").prev("#checkboxlast").prop("checked")) {
+                console.log("取消全选");
+                $(".hook").prop("checked", false);
+            } else {
+                console.log("全选");
+                $(".hook").prop("checked", true);
+            }
+        })
+
+        //删除选中的信息
+        $("#delete").click(function () {
+            $(".hook").each(function () {
+                if ($(this).prop("checked")) {
+                    $(this).parents(".message").remove();
+                    var i = parseInt($(".reader").eq(0).text());
+                    if (i > 1) {
+                        $(".reader").eq(0).text(i - 1);
+                    } else {
+                        $(".reader").eq(0).hide();
+                    }
+                }
+            })
+            if ($(".message").length == 0) {
+                $("tfoot").hide();
+                $(".reader").eq(0).hide();
             }
         })
     })
