@@ -4,9 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>我的游戏</title>
+    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
+    <script src="../../dist/js/jquery-3.4.1.js"></script>
+    <script src="../../dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../css/myhome.css">
+    <title>Document</title>
+    <style>
+        h1 {
+            padding-left: 50px;
+            border-left: 16px solid #F86D5A;
+        }
+
+        .back {
+            background-color: white;
+            margin-left: 30px;
+        }
+
+        .brand_name {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .brand_hot {
+            text-align: center;
+            margin-top: 20px;
+            margin-left: -12px;
+            margin-bottom: 30px;
+        }
+
+        .brand_hot span {
+            margin-left: 8px;
+        }
+
+        .div span {
+            color: black;
+        }
+
+        .div {
+            transition: all 0.2s ease 0s;
+        }
+
+        /* transition 别放hover里，放到img里，这样移入移出一样缓慢，不然只对hover移上去有缓慢效果 */
+        .div:hover {
+            transform: scale(1.1);
+            /*transition: all 2s ease-in-out 0s;*/
+        }
+        a:-webkit-any-link{
+            text-decoration: none;
+        }
+    </style>
 </head>
-<body>
-    <h1>我的游戏</h1>
+<body class="back">
+<h1>我的游戏</h1>
+<hr>
+<div class="container3">
+    <div class="row">
+        <div class="col-md-2 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img src="../../img/gameimg/lol.jpg" alt="lol" class="img-rounded">
+                <div class="brand_name"><span>英雄联盟</span></div>
+                <div class="brand_hot"><span class="glyphicon glyphicon-fire"></span><span>588.7万</span></div>
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img src="../../img/gameimg/cj.jpg" alt="绝地求生" class="img-rounded">
+                <div class="brand_name"><span>绝地求生</span></div>
+                <div class="brand_hot"><span class="glyphicon glyphicon-fire"></span><span>399.7万</span></div>
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img src="../../img/gameimg/csgo.jpg" alt="vsgo" class="img-rounded">
+                <div class="brand_name"><span>CSGO</span></div>
+                <div class="brand_hot"><span class="glyphicon glyphicon-fire"></span><span>666.7万</span></div>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".div").mouseover(function () {
+            $(this).find("span").css("color", "#ff5d23");
+        })
+        $(".div").mouseleave(function () {
+            $(this).find("span").css("color", "");
+        })
+    })
+</script>
 </body>
 </html>
