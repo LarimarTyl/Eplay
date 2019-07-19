@@ -12,6 +12,275 @@
     <link rel="stylesheet" href="../../css/user.css">
 </head>
 <body>
-    <h1><a href="" class="nav"></a></h1>
+    <h1>用户管理</h1><br>
+    <div class="panel panel-default">
+		<!-- 搜索部分 -->
+			<div class="panel-body">
+				<form class="form-inline" method="get" action="">
+					<div class="form-group">
+						<label for="">用户名称</label> 
+						<input type="text" class="form-control" id="" value="" name="">
+					</div>
+					 
+					<button type="submit" class="btn btn-primary">查询</button>
+				</form>
+			</div>
+		</div>
+		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#newUserDialog" onclick="clearstudent()">新建</a>
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>游戏爱好</th>
+                <th>余额</th>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>游戏爱好</th>
+                <th>余额</th>
+                <td>
+                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
+                </td>
+               </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>游戏爱好</th>
+                <th>余额</th>
+                <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
+                    </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>游戏爱好</th>
+                <th>余额</th>
+                <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
+                    </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>游戏爱好</th>
+                <th>余额</th>
+                <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>游戏爱好</th>
+                <th>余额</th>
+                <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+ <!-- 创建用户模态框 -->
+<div class="modal fade" id="newUserDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">新建用户信息</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" id="new_user_form">
+					<div class="form-group">
+						<label for="new_name" class="col-sm-2 control-label">用户名</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="new_name" placeholder="用户名" name="loginname">
+						</div>
+						<label for="new_gender" class="col-sm-2 control-label">
+						 性别</label>
+						<div class="col-sm-4"> 
+							<select class="form-control" id="new_gender" name="gender">
+								<option value="女">女</option>
+								<option value="男"">男</option>
+							</select>
+						</div>
+					</div>  
+                    
+                    <div class="form-group">
+						<label for="new_telephone" class="col-sm-2 control-label">电话号码</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="new_telephone" placeholder="电话号码" name="telephone">
+                        </div>
+                        <label for="new_love" class="col-sm-2 control-label">游戏爱好</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="new_love" placeholder="游戏爱好" name="love">
+                        </div>
+                    </div>   
+                    <div class="form-group">
+						<label for="new_status" class="col-sm-2 control-label">电话号码</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="new_status" name="status">
+								<option value="1">用户</option>
+                                <option value="3">陪玩人员</option>
+								<option value="4">管理员</option>
+							</select>
+                        </div>
+                    </div> 
+                    
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary" onclick="createuser()">创建用户</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 修改用户模态框 -->
+<div class="modal fade" id="userEditDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" id="edit_user_form">
+                    <input type="hidden" id="edit_id" name="id">
+					<div class="form-group">
+						<label for="edit_userName" class="col-sm-2 control-label">用户名</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="edit_userName" placeholder="用户名" name="loginname">
+                        </div>
+                        <label for="edit_gender" class="col-sm-2 control-label">性别</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="edit_gender" name="gender">
+								<option value="女">女</option>
+								<option value="男">男</option>
+							</select>
+                        </div>
+                    </div>   
+                    
+                    <div class="form-group">
+						<label for="edit_telephone" class="col-sm-2 control-label">电话号码</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="edit_telephone" placeholder="电话号码" name="telephone">
+                        </div>
+                        <label for="edit_love" class="col-sm-2 control-label">游戏爱好</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="edit_love" placeholder="游戏爱好" name="love">
+                        </div>
+                    </div>   
+                    <div class="form-group">
+						<label for="edit_status" class="col-sm-2 control-label">电话号码</label>
+						<div class="col-sm-5">
+							<select class="form-control" id="edit_status" name="status">
+								<option value="1">用户</option>
+                                <option value="3">陪玩人员</option>
+								<option value="4">管理员</option>
+							</select>
+                        </div>
+                    </div>   
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary" onclick="updateuser()">保存修改</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    //清空新建用户窗口中的数据
+        function clearstudent() {
+            $("#new_name").val("");
+            $("#new_gender").val("");
+            $("#new_telephone").val("");
+            $("#new_love").val("");
+            $("#new_status").val("");
+        }
+        // 创建用户
+        function createuser() {
+            $.post("user/create.action",
+            $("#new_user_form").serialize(),
+            function(data){
+                if(data =="OK"){
+                    alert("用户创建成功！");
+                    window.location.reload();
+                }else{
+                    alert("用户创建失败！");
+                    window.location.reload();
+                }
+            });
+        }
+        // 通过id获取修改的用户信息
+        function edituser(id) {
+            $.ajax({
+                type:"get",
+                url:"student/getuserById.action",
+                data:{"id":id},
+                success:function(data) {
+                    $("#edit_id").val(data.id);
+                    $("#edit_name").val(data.name);
+                    $("#edit_gender").val(data.gender);
+                    $("#edit_telephone").val(data.telephone);
+                    $("#edit_love").val(data.love);
+                    $("#edit_status").val(data.status);
+                
+                }
+            });
+        }
+        // 执行修改用户操作
+        function updateuser() {
+            $.post("user/update.action",
+              $("#edit_user_form").serialize(),
+              function(data){
+                if(data =="OK"){
+                    alert("用户信息更新成功！");
+                    window.location.reload();
+                }else{
+                    alert("用户信息更新失败！");
+                    window.location.reload();
+                }
+            });
+        }
+        // 删除用户
+        function deleteuser(id) {
+            if(confirm('确实要删除该用户吗?')) {
+            $.post("user/delete.action",{"id":id},
+            function(data){
+                    if(data =="OK"){
+                        alert("用户删除成功！");
+                        window.location.reload();
+                    }else{
+                        alert("删除用户失败！");
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    </script>   
 </body>
 </html>
