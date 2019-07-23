@@ -5,8 +5,12 @@ a,div,p{
 body{
  background-color: #E9ECF3;
 }
+.top .navbar-default{
+    background-color: #FFFFFF;
+}
 .top-item{
     height: 80px;
+
 }
 .logo{
     padding-left: 80px;
