@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 24/07/2019 13:59:43
+ Date: 24/07/2019 18:04:32
 */
 
 SET NAMES utf8mb4;
@@ -22,19 +22,24 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `gamelist`;
 CREATE TABLE `gamelist`  (
-  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '游戏id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '游戏id',
   `gameName` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '游戏名',
-  PRIMARY KEY (`ID`) USING BTREE
+  `gameLogo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '游戏logo路径',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id`(`id`) USING BTREE,
+  INDEX `id_2`(`id`) USING BTREE,
+  INDEX `id_3`(`id`) USING BTREE,
+  INDEX `id_4`(`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gamelist
 -- ----------------------------
-INSERT INTO `gamelist` VALUES (1, '王者荣耀');
-INSERT INTO `gamelist` VALUES (2, '英雄联盟');
-INSERT INTO `gamelist` VALUES (3, '绝地求生');
-INSERT INTO `gamelist` VALUES (4, '守望先锋');
-INSERT INTO `gamelist` VALUES (5, 'DOTA2自走棋');
+INSERT INTO `gamelist` VALUES (1, '王者荣耀', NULL);
+INSERT INTO `gamelist` VALUES (2, '英雄联盟', NULL);
+INSERT INTO `gamelist` VALUES (3, '绝地求生', NULL);
+INSERT INTO `gamelist` VALUES (4, '守望先锋', NULL);
+INSERT INTO `gamelist` VALUES (5, 'DOTA2自走棋', NULL);
 
 -- ----------------------------
 -- Table structure for level
@@ -42,11 +47,11 @@ INSERT INTO `gamelist` VALUES (5, 'DOTA2自走棋');
 DROP TABLE IF EXISTS `level`;
 CREATE TABLE `level`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '段位表id',
-  `gameid` int(11) NULL DEFAULT NULL COMMENT '游戏id',
+  `gameID` int(11) NULL DEFAULT NULL COMMENT '游戏id',
   `gameLeve` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '游戏段位',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FK-GAME`(`gameid`) USING BTREE,
-  CONSTRAINT `FK-GAME` FOREIGN KEY (`gameid`) REFERENCES `gamelist` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `FK-GAME`(`gameID`) USING BTREE,
+  CONSTRAINT `FK-GAME` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -81,8 +86,8 @@ CREATE TABLE `lovegame`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK-Love`(`userID`) USING BTREE,
   INDEX `FK-lovegame`(`gameID`) USING BTREE,
-  CONSTRAINT `FK-Love` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK-lovegame` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `FK-Love` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK-lovegame` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -97,14 +102,14 @@ INSERT INTO `lovegame` VALUES (2, 2, 1);
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '消息列表id',
-  `userid` int(11) NULL DEFAULT NULL COMMENT '用户id',
+  `userID` int(11) NULL DEFAULT NULL COMMENT '用户id',
   `message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息内容',
   `statu` int(255) NULL DEFAULT 0 COMMENT '消息状态：0未读，1已读',
   `type` int(255) NULL DEFAULT 0 COMMENT '消息类型：0系统消息，1',
   `time` datetime(0) NULL DEFAULT NULL COMMENT '消息时间',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `user`(`userid`) USING BTREE,
-  CONSTRAINT `user` FOREIGN KEY (`userid`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `user`(`userID`) USING BTREE,
+  CONSTRAINT `user` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -117,7 +122,7 @@ INSERT INTO `message` VALUES (1, 1, '您有新的约3玩，请注意查收', 0, 
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`  (
-  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单编号',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单id',
   `gameID` int(11) NOT NULL COMMENT '游戏id',
   `userID` int(11) NOT NULL COMMENT '用户id',
   `playerID` int(11) NULL DEFAULT NULL COMMENT '玩家id',
@@ -125,16 +130,16 @@ CREATE TABLE `order`  (
   `starttime` datetime(0) NOT NULL COMMENT '开始时间',
   `endtime` datetime(0) NOT NULL COMMENT '结束时间',
   `payway` smallint(6) NOT NULL DEFAULT 1 COMMENT '付款方式（1直接付款，2余额付款）',
-  `price` int(11) NOT NULL COMMENT '订单总价',
+  `price` double(11, 0) NOT NULL COMMENT '订单总价',
   `poitns` smallint(6) NOT NULL DEFAULT 6 COMMENT '订单评分',
   `appraise` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户评价',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`ID`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_ID2`(`gameID`) USING BTREE,
   INDEX `FK_ID3`(`userID`) USING BTREE,
   INDEX `FK_ID4`(`playerID`) USING BTREE,
-  CONSTRAINT `FK_ID2` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK_ID3` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_ID2` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_ID3` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`playerID`) REFERENCES `player` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -149,27 +154,28 @@ INSERT INTO `order` VALUES (3, 1, 3, 1, '46545457', '2019-07-24 13:52:17', '2019
 -- ----------------------------
 DROP TABLE IF EXISTS `player`;
 CREATE TABLE `player`  (
-  `id` int(11) NOT NULL COMMENT '玩家表编号',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '玩家表编号',
   `playerID` int(11) NULL DEFAULT NULL COMMENT '玩家id',
   `gameID` int(11) NOT NULL COMMENT '游戏id',
   `level` int(11) NULL DEFAULT NULL COMMENT '游戏段位',
+  `picPath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '游戏介绍图片',
   `orderNum` int(11) NULL DEFAULT NULL COMMENT '订单量',
   `money` double(11, 2) NULL DEFAULT NULL COMMENT '总收益',
   `introduce` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '个人介绍',
   `status` int(6) NOT NULL DEFAULT 0 COMMENT '玩家状态（0可接单，1待接单，2已接单）',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `playerID`(`playerID`) USING BTREE,
   INDEX `level`(`level`) USING BTREE,
   INDEX `gameID`(`gameID`) USING BTREE,
+  INDEX `playerID`(`playerID`) USING BTREE,
   CONSTRAINT `player_ibfk_2` FOREIGN KEY (`level`) REFERENCES `level` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `player_ibfk_3` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `player_ibfk_4` FOREIGN KEY (`playerID`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `player_ibfk_3` FOREIGN KEY (`gameID`) REFERENCES `gamelist` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `player_ibfk_4` FOREIGN KEY (`playerID`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of player
 -- ----------------------------
-INSERT INTO `player` VALUES (1, 2, 1, 3, 12, 30.00, '30/小时', 0);
+INSERT INTO `player` VALUES (1, 2, 1, 3, NULL, 12, 30.00, '30/小时', 0);
 
 -- ----------------------------
 -- Table structure for recharge
@@ -179,16 +185,17 @@ CREATE TABLE `recharge`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '充值表id',
   `userID` int(11) NULL DEFAULT NULL COMMENT '用户id',
   `money` double(11, 2) NULL DEFAULT NULL COMMENT '充值金额',
+  `type` int(6) NULL DEFAULT 0 COMMENT '充值方式 1：支付宝 2：微信',
   `time` datetime(0) NULL DEFAULT NULL COMMENT '充值时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `rk`(`userID`) USING BTREE,
-  CONSTRAINT `rk` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `rk` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of recharge
 -- ----------------------------
-INSERT INTO `recharge` VALUES (1, 1, 50.00, '2019-07-24 13:53:28');
+INSERT INTO `recharge` VALUES (1, 1, 50.00, 0, '2019-07-24 13:53:28');
 
 -- ----------------------------
 -- Table structure for relationship
@@ -196,13 +203,13 @@ INSERT INTO `recharge` VALUES (1, 1, 50.00, '2019-07-24 13:53:28');
 DROP TABLE IF EXISTS `relationship`;
 CREATE TABLE `relationship`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '关系表id',
-  `userId` int(11) NULL DEFAULT NULL COMMENT '用户id',
+  `userID` int(11) NULL DEFAULT NULL COMMENT '用户id',
   `playerID` int(11) NULL DEFAULT NULL COMMENT '玩家id',
   `status` int(6) NULL DEFAULT 0 COMMENT '关系状态 0关注1黑名单',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `userId`(`userId`) USING BTREE,
+  INDEX `userId`(`userID`) USING BTREE,
   INDEX `playerID`(`playerID`) USING BTREE,
-  CONSTRAINT `relationship_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `relationship_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `relationship_ibfk_2` FOREIGN KEY (`playerID`) REFERENCES `player` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -217,7 +224,7 @@ INSERT INTO `relationship` VALUES (2, 2, 1, 1);
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `loginName` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户登录名',
   `loginPwd` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户密码',
   `staffNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户编号（唯一约束）',
@@ -227,14 +234,14 @@ CREATE TABLE `user`  (
   `email` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '邮箱',
   `telephone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '电话',
   `picturePath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '头像路径',
-  `price` int(11) NULL DEFAULT NULL COMMENT '消费总额',
+  `price` double(11, 0) NULL DEFAULT NULL COMMENT '消费总额',
   `QQ` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'QQ号码',
   `registerTime` datetime(0) NOT NULL COMMENT '注册时间',
   `registerStatus` int(255) NOT NULL DEFAULT 0 COMMENT '注册状态：0未激活 1已激活',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '验证码',
   `status` int(6) NOT NULL DEFAULT 1 COMMENT '用户状态（1用户，2待审核用户，3玩家，0管理员）',
   `money` double(11, 2) NULL DEFAULT 0.00 COMMENT '余额',
-  PRIMARY KEY (`ID`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `staffNumber`(`staffNumber`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
