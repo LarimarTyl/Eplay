@@ -6,7 +6,10 @@ package bean;
  */
 public class PlayerBean {
     private int id;//玩家表id
+    private int playerID;//玩家用户id
     private String  staffName;//根据用户id拿到的用户名
+    private int gameID;//游戏id
+    private String level;//游戏等级
     private String gameName;//根据游戏id拿到的游戏名
     private String photoPath;//根据玩家id拿到的头像路径
     private String gender;//根据用户id拿到的性别
@@ -23,6 +26,22 @@ public class PlayerBean {
     public PlayerBean(int id, String staffName, String gameName, String photoPath, String gender, String picPath, String gameLeve, int orderNum, double money, String introduce, int status) {
         this.id = id;
         this.staffName = staffName;
+        this.gameName = gameName;
+        this.photoPath = photoPath;
+        this.gender = gender;
+        this.picPath = picPath;
+        this.gameLeve = gameLeve;
+        this.orderNum = orderNum;
+        this.money = money;
+        this.introduce = introduce;
+        this.status = status;
+    }
+
+    public PlayerBean(int id, int playerID, String staffName, int gameID, String gameName, String photoPath, String gender, String picPath, String gameLeve, int orderNum, double money, String introduce, int status) {
+        this.id = id;
+        this.playerID = playerID;
+        this.staffName = staffName;
+        this.gameID = gameID;
         this.gameName = gameName;
         this.photoPath = photoPath;
         this.gender = gender;
@@ -122,6 +141,21 @@ public class PlayerBean {
         this.status = status;
     }
 
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
 
     @Override
     public String toString() {

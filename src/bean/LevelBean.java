@@ -6,6 +6,7 @@ package bean;
  */
 public class LevelBean {
     private int id;//游戏等级id
+    private int gameID;//游戏id
     private String gameName;//游戏名称
     private String gameLeve;//游戏段位
 

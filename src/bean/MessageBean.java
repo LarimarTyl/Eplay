@@ -8,6 +8,8 @@ import java.util.Date;
  */
 public class MessageBean {
     private int id; //消息id
+    private int userID;//用户id
+    private String staffName;//用户名
     private String message; //消息内容
     private int status;//消息状态 0未读  1已读
     private int type;//消息类型 0系统消息 1用户消息
