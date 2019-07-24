@@ -11,10 +11,23 @@
     <script src="../../dist/js/jquery-3.4.1.js"></script>
     <script src="../../dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../../css/index.css">
+    <script>
+        $(function(){
+            $(".games").mouseenter(function(){
+                $(this).children(".label").toggleClass("select-game");
+            })
+        })
+    </script>
+    <script>
+        $("#my-carousel").carousel({
+            interval: 2000,
+        });
+    </script>
 </head>
 
 <body>
     <!-- 头部导航 -->
+    <div class="top">
     <nav class="navbar navbar-default navbar-static-top top-item" role="navigation">
         <a class="navbar-brand logo" href="#">
             <div style="float:left"><img src="../../img/Logo/ep-logo-l.png" alt="" width="70px"></div>
@@ -84,7 +97,7 @@
             </li>
         </ul>
     </nav>
-
+</div>
     <div class="slider">
         <!-- 大广告轮播图 -->
         <div class="container container-top">
@@ -126,29 +139,44 @@
                         <span class="glyphicon"><img src="../../img/picture/686589.png" alt="" width="55px">
                             游戏陪玩</span></a>
                     <ul class="nav navbar-nav">
-                        <li class="">
+                        <li class="games">
                             <a href="#">
                                 <span class="label label-default">英雄联盟</span>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="games">
                             <a href="#">
                                 <span class="label label-default">绝地求生</span>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="games">
                             <a href="#">
                                 <span class="label label-default">DOTA2自走棋</span>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="games">
+                            <a href="#">
+                                <span class="label label-default">守望先锋</span>
+                            </a>
+                        </li>
+                        <li class="games">
+                            <a href="#">
+                                <span class="label label-default">地下城</span>
+                            </a>
+                        </li>
+                        <li class="games">
                             <a href="#">
                                 <span class="label label-default">王者荣耀</span>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="games">
                             <a href="#">
                                 <span class="label label-default">CS：GO</span>
+                            </a>
+                        </li>
+                        <li class="games reflash">
+                            <a href="#">
+                                换一批&nbsp;<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                             </a>
                         </li>
                     </ul>
@@ -382,14 +410,10 @@
                     </div>
                 </div>
             </div>
+            div.
         </div>
-
     </div>
 </body>
-<script>
-    $("#my-carousel").carousel({
-        interval: 2000,
-    });
-</script>
+
 
 </html>
