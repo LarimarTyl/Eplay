@@ -102,6 +102,7 @@ body{
 .top-item{
     margin-bottom:0px; 
 }
+
 /* 轮播图样式 */
 .slider{
     padding: 40px;
@@ -141,7 +142,7 @@ body{
 /* 二级菜单 */
 .label {
     display: inline;
-    padding: .2em .6em .3em;
+    padding: .3em .6em .3em;
     font-size: 75%;
     font-weight: bold;
     line-height: 1;
@@ -153,12 +154,31 @@ body{
     border: #363636 1px solid;
     border-radius: 1em;
 }
+.select-game{
+    color: salmon;
+    border: salmon 1px solid;
+}
+.player .reflash{
+    font-size: 15px;
+    position: absolute;
+    right: 5px;
+    padding-top: 3px;
+}
 .player-top{
     margin: 0;
 }
 /* 玩家信息样式 */
 .thumbnail{
     background-color: #E9ECF3;
+}
+.player-info .thumbnail {
+    transition: all 0.2s ease 0s;
+}
+
+/* transition 别放hover里，放到img里，这样移入移出一样缓慢，不然只对hover移上去有缓慢效果 */
+.player-info .thumbnail:hover {
+    transform: scale(1.1);
+    /*transition: all 2s ease-in-out 0s;*/
 }
 .player-info .thumbnail .media-body{
     padding:20px 10px;
@@ -180,6 +200,15 @@ body{
 /* 开黑信息 样式 */
 .together .nav li a{
     margin-bottom: 25px;
+}
+.together .thumbnail {
+    transition: all 0.3s ease 0s;
+}
+
+/* transition 别放hover里，放到img里，这样移入移出一样缓慢，不然只对hover移上去有缓慢效果 */
+.together .thumbnail:hover {
+    transform: scale(1.1);
+    /*transition: all 2s ease-in-out 0s;*/
 }
 .together .thumbnail .media-body{
     padding: 20px 10px 5px;
