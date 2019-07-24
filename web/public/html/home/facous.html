@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
+    <script src="../../dist/js/jquery-3.4.1.js"></script>
+    <script src="../../dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../css/myhome.css">
+    <title>Document</title>
+    <style>
+        h1 {
+            padding-left: 50px;
+            border-left: 16px solid #F86D5A;
+        }
+
+        .back {
+            background-color: white;
+            margin-left: 30px;
+        }
+
+        .div span {
+            color: black;
+            margin-left: 20px;
+        }
+
+        .div {
+            transition: all 0.2s ease 0s;
+        }
+
+        /* transition 别放hover里，放到img里，这样移入移出一样缓慢，不然只对hover移上去有缓慢效果 */
+        .div:hover {
+            transform: scale(1.1);
+            /*transition: all 2s ease-in-out 0s;*/
+        }
+
+        a:-webkit-any-link {
+            text-decoration: none;
+        }
+
+        .img {
+            margin-bottom: 6px;
+        }
+
+        .one {
+            display: inline-block;
+            width: 72%;
+            font-size: 20px;
+            position: relative;
+            top: 12px;
+            margin-left: -6px;
+        }
+
+        .bottom {
+            margin: 6px 0px;
+        }
+
+        .down {
+            position: relative;
+            top: 8px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0px;
+        }
+
+
+        ul li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .right {
+            float: right;
+            margin-right: -10px;
+        }
+    </style>
+</head>
+<body class="back">
+<h1>我的关注</h1>
+<hr>
+<!--<nav class="navbar navbar-default" role="navigation" style="background-color: white">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="navbar-header"><h1>我的关注</h1></div>-->
+<!--    </div>-->
+<!--</nav>-->
+<div class="container3">
+    <div class="row">
+        <div class="col-md-3 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img class="img" src="../../img/focusimg/p5.jpg" alt="">
+                <div class="bottom"><span><img src="../../img/focusimg/1.jpg" alt="lol"
+                                               class="img-circle"
+                                               width="18%"></span>
+                    <div class="one">
+                        <ul>
+                            <li><span>芜湖大司马</span><span class="right">英雄联盟</span></li>
+                            <li class="down"><span>4:00准时抽奖</span><span class="right">666万</span><span
+                                    class="right glyphicon glyphicon-fire"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img class="img" src="../../img/focusimg/p5.jpg" alt="">
+                <div class="bottom"><span><img src="../../img/focusimg/1.jpg" alt="lol"
+                                               class="img-circle"
+                                               width="18%"></span>
+                    <div class="one">
+                        <ul>
+                            <li><span>芜湖大司马</span><span class="right">英雄联盟</span></li>
+                            <li class="down"><span>4:00准时抽奖</span><span class="right">666万</span><span
+                                    class="right glyphicon glyphicon-fire"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img class="img" src="../../img/focusimg/p5.jpg" alt="">
+                <div class="bottom"><span><img src="../../img/focusimg/1.jpg" alt="lol"
+                                               class="img-circle"
+                                               width="18%"></span>
+                    <div class="one">
+                        <ul>
+                            <li><span>芜湖大司马</span><span class="right">英雄联盟</span></li>
+                            <li class="down"><span>4:00准时抽奖</span><span class="right">666万</span><span
+                                    class="right glyphicon glyphicon-fire"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-xs-8 item div">
+            <a href="#" class="thumbnail">
+                <img class="img" src="../../img/focusimg/p5.jpg" alt="">
+                <div class="bottom"><span><img src="../../img/focusimg/1.jpg" alt="lol"
+                                               class="img-circle"
+                                               width="18%"></span>
+                    <div class="one">
+                        <ul>
+                            <li><span>芜湖大司马</span><span class="right">英雄联盟</span></li>
+                            <li class="down"><span>4:00准时抽奖</span><span class="right">666万</span><span
+                                    class="right glyphicon glyphicon-fire"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".div").mouseover(function () {
+            $(this).find("span").css("color", "#ff5d23");
+        })
+        $(".div").mouseleave(function () {
+            $(this).find("span").css("color", "");
+        })
+    })
+</script>
+</body>
+</html>
