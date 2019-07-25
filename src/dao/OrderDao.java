@@ -16,9 +16,15 @@ public interface OrderDao {
     public  OrderBean selectOrderById(int id);//根据订单id查找订单
     public List<OrderBean> selectAllOrders();//查询所有订单
     public List<OrderBean> selectOrdersByUser(String userName);//查询某个用户 的订单
+    public List<OrderBean> pageOrdersByUser(String userName,int currentPage,int pageSize);//分页查询某个用户 的订单
     public List<OrderBean> selectOrdersByPlayer(String player);//查询某个玩家的订单
+    public List<OrderBean> pageOrdersByPlayer(String player,int currentPage,int pageSize);//分页查询某个玩家的订单
     public List<OrderBean> selectOrdersByGame(String GameName);//查询某个游戏相关的订单
+    public List<OrderBean> pageOrdersByGame(String GameName,int currentPage,int pageSize);//分页查询某个游戏相关的订单
     public List<OrderBean> selectOrdersByDate(Date date);//查询某个日期的订单
+    public List<OrderBean> pageOrdersByDate(Date date,int currentPage,int pageSize);//查询某个日期的订单
     public List<OrderBean> selectOrdersByPayWay(int payway);//查询特定支付方式的订单
+    public List<OrderBean> spageOrdersByPayWay(int payway,int currentPage,int pageSize);//查询特定支付方式的订单
     public List<OrderBean> selectOrdersByPoints(int points);//查询特订评分的订单
+    public List<OrderBean> pageOrdersByPoints(int points,int currentPage,int pageSize);//查询特订评分的订单
 }
