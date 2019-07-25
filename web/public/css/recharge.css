@@ -1,0 +1,142 @@
+h1 {
+    padding-left: 50px;
+    border-left: 16px solid #F86D5A;
+}
+
+.back {
+    background-color: white;
+    margin-left: 30px;
+}
+
+.wrap {
+    margin-left: 68px;
+}
+
+.top {
+    margin-top: 66px;
+    font-size: 30px;
+}
+
+.col1 {
+    float: left;
+}
+
+.col2 {
+    float: left;
+    margin-left: 20px;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.col3 {
+    float: left;
+    margin-left: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: red;
+    margin-top: -2px;
+}
+
+.list {
+    float: left;
+}
+
+.list > li {
+    float: left;
+    margin-left: 20px;
+    background-color: #f6f6f6;
+    border: 1px solid #a5adaf;
+    width: 120px;
+    height: 50px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+    color: #cbcbcb;
+    /*background: url("../../img/money/true.png") no-repeat 96px 24px;*/
+
+}
+
+.clear {
+    clear: both;
+}
+
+ul {
+    list-style: none;
+}
+
+ul > li {
+    transition: all 0.2s ease 0s;
+}
+
+ul > li:hover {
+    transform: scale(1.1);
+}
+
+.big {
+    transition: all 0.2s ease 0s;
+}
+
+.big:hover {
+    transform: scale(1.1);
+}
+
+ul, li {
+    margin: 0px;
+    padding: 0px;
+}
+
+li > span {
+    display: inline-block;
+}
+
+.ver {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.content {
+    vertical-align: middle;
+}
+
+input {
+    height: 50px;
+    border: 1px solid #a5adaf;
+    width: 220px;
+    font-size: 18px;
+    padding-left: 40px;
+    color: #25E198;
+}
+
+.m_left {
+    margin-left: 20px;
+}
+
+.font {
+    font-size: 20px;
+    margin-left: -34px;
+    margin-top: 12px;
+}
+
+.none {
+    display: none;
+}
+
+.ant-btn-red {
+    color: green;
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+    margin-top: 50px;
+    margin-left: 148px;
+    font-size: 20px;
+    height: 50px;
+    width: 120px;
+}
+
+.input:focus {
+    outline: none;
+    border: 1px solid #25E198;
+}

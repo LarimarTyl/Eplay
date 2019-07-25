@@ -8,8 +8,11 @@ import java.util.Date;
  */
 public class OrderBean {
     private int id; //订单编号
+    private int gameID;//游戏id
     private String gameName; //根据游戏id拿到的游戏名
+    private int userID;//用户id
     private String staffName;//根据用户id拿到的用户名
+    private int playerID;//玩家id
     private String playerName;//根据玩家id拿到的玩家名
     private String contact;//联系方式
     private Date starttime;//开始时间
@@ -20,6 +23,23 @@ public class OrderBean {
     private String remark;//备注
 
     public OrderBean() {
+    }
+
+    public OrderBean(int id, int gameID, String gameName, int userID, String staffName, int playerID, String playerName, String contact, Date starttime, Date endtime, double price, int poitns, String appraise, String remark) {
+        this.id = id;
+        this.gameID = gameID;
+        this.gameName = gameName;
+        this.userID = userID;
+        this.staffName = staffName;
+        this.playerID = playerID;
+        this.playerName = playerName;
+        this.contact = contact;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.price = price;
+        this.poitns = poitns;
+        this.appraise = appraise;
+        this.remark = remark;
     }
 
     public OrderBean(int id, String gameName, String staffName, String playerName, String contact, Date starttime, Date endtime, double price, int poitns, String appraise, String remark) {
@@ -34,6 +54,30 @@ public class OrderBean {
         this.poitns = poitns;
         this.appraise = appraise;
         this.remark = remark;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
     }
 
     public int getId() {

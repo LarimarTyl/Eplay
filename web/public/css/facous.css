@@ -1,0 +1,66 @@
+h1 {
+    padding-left: 50px;
+    border-left: 16px solid #F86D5A;
+}
+
+.back {
+    background-color: white;
+    margin-left: 30px;
+}
+
+.div span {
+    color: black;
+    margin-left: 20px;
+}
+
+.div {
+    transition: all 0.2s ease 0s;
+}
+
+/* transition 别放hover里，放到img里，这样移入移出一样缓慢，不然只对hover移上去有缓慢效果 */
+.div:hover {
+    transform: scale(1.1);
+    /*transition: all 2s ease-in-out 0s;*/
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
+
+.img {
+    margin-bottom: 6px;
+}
+
+.one {
+    display: inline-block;
+    width: 72%;
+    font-size: 20px;
+    position: relative;
+    top: 12px;
+    margin-left: -6px;
+}
+
+.bottom {
+    margin: 6px 0px;
+}
+
+.down {
+    position: relative;
+    top: 8px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+
+ul li {
+    margin: 0px;
+    padding: 0px;
+}
+
+.right {
+    float: right;
+    margin-right: -10px;
+}
