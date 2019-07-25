@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 24/07/2019 18:04:32
+ Date: 24/07/2019 22:17:14
 */
 
 SET NAMES utf8mb4;
@@ -233,7 +233,7 @@ CREATE TABLE `user`  (
   `gender` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '性别',
   `email` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '邮箱',
   `telephone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '电话',
-  `picturePath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '头像路径',
+  `photoPath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像路径',
   `price` double(11, 0) NULL DEFAULT NULL COMMENT '消费总额',
   `QQ` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'QQ号码',
   `registerTime` datetime(0) NOT NULL COMMENT '注册时间',

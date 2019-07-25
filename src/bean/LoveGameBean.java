@@ -6,7 +6,9 @@ package bean;
  */
 public class LoveGameBean {
     private int id ; //游戏爱好id
+    private int userID;//用户id
     private String staffName;//用户名
+    private String gameID;//游戏id
     private String gameName;//游戏名
     /*空参构造*/
     public LoveGameBean() {

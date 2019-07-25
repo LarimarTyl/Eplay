@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class RechargeBean {
     private int id;//充值订单编号
+    private int userID ;//用户id
     private String staffName;//用户名
     private double money;//充值金额
     private int type;//充值方式 1：支付宝 2：微信 默认支付宝
