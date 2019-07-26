@@ -11,6 +11,23 @@ public class LoveGameBean {
     private int gameID;//游戏id
     private String gameName;//游戏名
     /*空参构造*/
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public String getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
+    }
+
     public LoveGameBean() {
     }
     /*获取关注游戏列表的构造*/
