@@ -2,7 +2,7 @@ package test;
 
 import bean.RechargeBean;
 import dao.RechargeDao;
-import dao.impl.RechargeDaoimpl;
+import dao.impl.RechargeDaoImpl;
 import org.junit.Test;
 import util.Factory;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * time on 2019/7/26  9:36
  */
 public class TestRecharge {
-    static RechargeDao rechargeDao = Factory.getInstance("RechargeDaoimpl", RechargeDaoimpl.class);
+    static RechargeDao rechargeDao = Factory.getInstance("rechargeDao", RechargeDao.class);
 
     @Test
     public void testSave() {

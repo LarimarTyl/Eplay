@@ -15,10 +15,10 @@ import java.util.List;
  * Create by czq
  * time on 2019/7/25  15:34
  */
-public class MessageDaoimpl implements MessageDao {
+public class MessageDaoImpl implements MessageDao {
     QueryRunner qr;
 
-    public MessageDaoimpl() {
+    public MessageDaoImpl() {
         qr = new QueryRunner(C3P0Util.getDs());
     }
 
