@@ -14,6 +14,9 @@ public interface RechargeDao {
     public boolean delRecharge(String userName,RechargeBean recharge);
     public boolean updateRecharge(String userName,RechargeBean recharge);
     public List<RechargeBean> selectAllRechers(String userName);//查找某个用户的全部充值订单
+    public List<RechargeBean> pageAllRechers(String userName,int currentPage,int pageSize);//分页查找某个用户的全部充值订单
     public List<RechargeBean> selectRechersByType(int type);//根据充值方式查找充值订单
+    public List<RechargeBean> pageRechersByType(int type,int currentPage,int pageSize);//根据充值方式分页查找充值订单
     public List<RechargeBean> selectRechersByDate(Date date);//根据日期查找充值信息
+    public List<RechargeBean> pageRechersByDate(Date date,int currentPage,int pageSize);//根据日期分页查找充值信息
 }
