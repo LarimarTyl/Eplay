@@ -1,7 +1,9 @@
 package service;
 
+import bean.LoveGameBean;
 import bean.OrderBean;
 import bean.RechargeBean;
+import bean.RelationshipBean;
 import bean.UserBean;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public interface UserService {
     public boolean takeOrder(String player,String game);//下单
     public boolean comment();//评论
 
-    public boolean recharge(String userName, RechargeBean recharge);//充值
+    public boolean recharge();//充值
     public boolean addFocous();//添加关注
     public boolean removeFocous();//移除关注
 
@@ -28,10 +30,10 @@ public interface UserService {
     public boolean modefyInfo(UserBean user);//修改用户信息
 
 
-    public boolean addLoveGames();//添加游戏偏好
-    public boolean removeLoveGames();//移除游戏偏好
-    public boolean addBlackList();//添加黑名单
-    public boolean removeBlackList();//移除黑名单
+    public boolean addLoveGames(LoveGameBean loveGameBean);//添加游戏偏好
+    public boolean removeLoveGames(LoveGameBean loveGameBean);//移除游戏偏好
+    public boolean addBlackList(RelationshipBean relationshipBean);//添加黑名单
+    public boolean removeBlackList(RelationshipBean relationshipBean);//移除黑名单
 
 
 

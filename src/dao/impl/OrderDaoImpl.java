@@ -5,7 +5,9 @@ import dao.OrderDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import util.C3P0Util;
+import util.Constant;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -380,6 +382,47 @@ public class OrderDaoImpl implements OrderDao {
             e.printStackTrace();
         }
         System.out.println("查询出错，检查代码。");
+        return null;
+    }
+
+    @Override
+    public List<OrderBean> selectTopPrice() {
+        String sql="select o.id,sum(o.price) as price,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,o.playerID,playerinfo.playerName," +
+                "contact,payway,starttime,endtime,o.price,poitns,appraise,remark from orders as o,user," +
+                "(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist " +
+                "where playerID=user.id and player.gameID=gamelist.id) as playerinfo where playerinfo.id=o.playerID and userID=user.id group by o.playerID limit  ?,?";
+        List<OrderBean> result;
+        try {
+            result= qr.query(sql,new BeanListHandler<OrderBean>(OrderBean.class) , Constant.DEFAULT_MIN_RECORD, Constant.DEFAULT_MAX_RECORD);
+            if(result.size()>=0){
+                return result;
+            }else{
+                System.out.println("查询高收入有错");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<OrderBean> selectTopOrder() {
+        String sql="select o.id,count(o.id) as count,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,o.playerID,playerinfo.playerName," +
+                "contact,payway,starttime,endtime,o.price,poitns,appraise,remark from orders as o,user," +
+                "(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist " +
+                "where playerID=user.id and player.gameID=gamelist.id) as playerinfo where playerinfo.id=o.playerID and userID=user.id group by o.playerID limit  ?,?";
+        List<OrderBean> result;
+        try {
+            result= qr.query(sql,new BeanListHandler<OrderBean>(OrderBean.class) , Constant.DEFAULT_MIN_RECORD, Constant.DEFAULT_MAX_RECORD);
+            if(result.size()>=0){
+                return result;
+            }else{
+                System.out.println("查询高订单,有错");
+            }
+        } catch (SQLException e) {
+            System.out.println("语句有错"+e.getMessage());
+            e.printStackTrace();
+        }
         return null;
     }
 }

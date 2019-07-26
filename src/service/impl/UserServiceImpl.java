@@ -6,6 +6,15 @@ import bean.UserBean;
 import dao.RechargeDao;
 import dao.impl.RechargeDaoImpl;
 import service.UserService;
+import bean.LoveGameBean;
+import bean.OrderBean;
+import bean.RelationshipBean;
+import bean.UserBean;
+import dao.LoveGameDao;
+import dao.RelationshipDao;
+import dao.UserDao;
+import service.UserService;
+import util.Factory;
 
 import java.util.List;
 
@@ -15,6 +24,14 @@ import java.util.List;
  */
 public class UserServiceImpl implements UserService {
     RechargeDaoImpl rechargeDao;
+    private RelationshipDao relationshipDao;
+    private LoveGameDao loveGameDao;
+
+    private UserServiceImpl(){
+
+        relationshipDao=Factory.getInstance("relationshipDao",RelationshipDao.class);
+        loveGameDao=Factory.getInstance("loveGameDao",LoveGameDao.class);
+    }
     @Override
     public boolean regiser(String name, String passWord, String phone, String qq, String code) {
         return false;
@@ -36,9 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean recharge(String userName, RechargeBean recharge) {
-
-        rechargeDao.saveRecharge(userName,recharge);
+    public boolean recharge() {
         return false;
     }
 
@@ -77,23 +92,43 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+
+
     @Override
-    public boolean addLoveGames() {
-        return false;
+    public boolean addLoveGames(LoveGameBean loveGameBean) {
+        boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
+        return b;
     }
 
     @Override
-    public boolean removeLoveGames() {
-        return false;
+    public boolean removeLoveGames(LoveGameBean loveGameBean) {
+        boolean b = loveGameDao.delLoveGame(loveGameBean.getStaffName(),loveGameBean);
+        return b;
     }
 
     @Override
-    public boolean addBlackList() {
-        return false;
+    public boolean addBlackList(RelationshipBean relationshipBean) {
+        RelationshipBean result = relationshipDao.selectRelationshipByStatus(relationshipBean.getStaffName(), relationshipBean.getPlayerName(), relationshipBean.getStatus());
+        boolean black=false;
+        if(!result.equals("")){
+            if(result.getStatus()==0){
+                boolean b = relationshipDao.updateRelationShip(relationshipBean.getStaffName(), relationshipBean);
+                return b;
+            }else{
+                System.out.println("你已经拉黑了给主播");
+            }
+        }else{
+            boolean b = relationshipDao.addRelationShip(relationshipBean.getStaffName(), relationshipBean);
+            return  b;
+        }
+        return black;
     }
 
     @Override
-    public boolean removeBlackList() {
-        return false;
+    public boolean removeBlackList(RelationshipBean relationshipBean) {
+        boolean result = relationshipDao.delRelationShip(relationshipBean.getStaffName(), relationshipBean);
+        return result;
     }
+
+
 }
