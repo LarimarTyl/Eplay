@@ -15,9 +15,9 @@ import java.util.List;
  * Create by mysteriousTime
  * time on 2019/7/26  9:43
  */
-public class GameListImpl implements GameListDao {
+public class GameListDaoImpl implements GameListDao {
     private static  QueryRunner qr;
-    public GameListImpl() {
+    public GameListDaoImpl() {
         qr = new QueryRunner(C3P0Util.getDs());
     }
     @Override
