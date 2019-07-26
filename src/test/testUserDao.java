@@ -103,6 +103,11 @@ public class testUserDao {
 
     }
     @Test
+    public void selectUserByLoginName(){
+        UserBean userBean=userDao.selectUserByLoginName("player");
+        System.out.println(userBean);
+    }
+    @Test
     public void testById(){
         userDao.selectMoneyById(1);
     }

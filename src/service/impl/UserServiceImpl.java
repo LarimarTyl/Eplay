@@ -12,26 +12,30 @@ import bean.RelationshipBean;
 import bean.UserBean;
 import dao.LoveGameDao;
 import dao.RelationshipDao;
+import bean.PlayerBean;
+import bean.UserBean;
+import dao.OrderDao;
+import dao.PlayerDao;
 import dao.UserDao;
 import service.UserService;
 import util.Factory;
 
 import java.util.List;
 
-/**
- * Create by mysteriousTime
- * time on 2019/7/26  14:34
- */
 public class UserServiceImpl implements UserService {
+    UserDao userDao;
+    OrderDao orderDao;
+    PlayerDao playerDao;
     RechargeDaoImpl rechargeDao;
     private RelationshipDao relationshipDao;
     private LoveGameDao loveGameDao;
-
-    private UserServiceImpl(){
-
-        relationshipDao=Factory.getInstance("relationshipDao",RelationshipDao.class);
-        loveGameDao=Factory.getInstance("loveGameDao",LoveGameDao.class);
-    }
+public UserServiceImpl(){
+    userDao= Factory.getInstance("userDao",UserDao.class);
+    orderDao=Factory.getInstance("orderDao",OrderDao.class);
+    playerDao=Factory.getInstance("playerDao",PlayerDao.class);
+    relationshipDao=Factory.getInstance("relationshipDao",RelationshipDao.class);
+    loveGameDao=Factory.getInstance("loveGameDao",LoveGameDao.class);
+}
     @Override
     public boolean regiser(String name, String passWord, String phone, String qq, String code) {
         return false;
@@ -68,32 +72,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<OrderBean> selectOrders() {
-        return null;
+    public List<OrderBean> selectOrders(String userName) {
+        List<OrderBean> list=orderDao.selectOrdersByUser(userName);
+        return list;
     }
 
     @Override
-    public List<OrderBean> selectIncome() {
-        return null;
+    public List<OrderBean> selectIncome(String player) {
+        List<OrderBean> list=orderDao.selectOrdersByPlayer(player);
+        return list;
     }
 
     @Override
-    public boolean changePsw() {
-        return false;
+    public boolean changePsw(UserBean userBean) {
+        boolean flag=userDao.updateUser(userBean);
+        return flag;
     }
 
     @Override
-    public boolean bePlayer() {
-        return false;
+    public boolean bePlayer(UserBean userBean,PlayerBean playerBean) {
+        userDao.updateUser(userBean);
+        boolean flag= playerDao.savePlayer(playerBean);
+        return flag;
     }
-
     @Override
-    public boolean modefyInfo(UserBean user) {
-        return false;
+    public boolean modefyInfo(UserBean userBean){
+        Boolean flag=userDao.updateUser(userBean);
+        return flag;
     }
-
-
-
     @Override
     public boolean addLoveGames(LoveGameBean loveGameBean) {
         boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
@@ -129,6 +135,5 @@ public class UserServiceImpl implements UserService {
         boolean result = relationshipDao.delRelationShip(relationshipBean.getStaffName(), relationshipBean);
         return result;
     }
-
 
 }
