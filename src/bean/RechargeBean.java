@@ -12,17 +12,34 @@ public class RechargeBean {
     private String staffName;//用户名
     private double money;//充值金额
     private int type;//充值方式 1：支付宝 2：微信 默认支付宝
-    private Date time;//充值时间
+    private String time;//充值时间
 
     public RechargeBean() {
     }
 
-    public RechargeBean(int id, String staffName, double money, int type, Date time) {
+    public RechargeBean(int id, int userID, String staffName, double money, int type, String time) {
         this.id = id;
+        this.userID = userID;
         this.staffName = staffName;
         this.money = money;
         this.type = type;
         this.time = time;
+    }
+
+    public RechargeBean(int userID, String staffName, double money, int type, String time) {
+        this.userID = userID;
+        this.staffName = staffName;
+        this.money = money;
+        this.type = type;
+        this.time = time;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public int getType() {
@@ -57,11 +74,11 @@ public class RechargeBean {
         this.money = money;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

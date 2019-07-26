@@ -21,8 +21,9 @@
                                                                             onclick="">
             <label for="checkbox1" class="one"></label></a>
         </td>
+        <td class="hideid">1</td>
         <td width="12%" class="noReader"><span class="reader second">未读</span></td>
-        <td width="16%" class="way"><span>[系统消息]<span class="hideid">1</span></span></td>
+        <td width="16%" class="way"><span name="1">[系统消息]</span></span></td>
         <td width="50%">eplay的小姐姐小哥哥都在等着你们哦~</td>
         <td width="20%">2019-7-19</td>
     </tr>
@@ -33,8 +34,9 @@
                                                           onclick="">
             <label for="checkbox2" class="one"></label></a>
         </td>
+        <td class="hideid">2</td>
         <td width="10%" class="noReader"><span class="reader second">未读</span></td>
-        <td width="16%" class="way"><span>[系统消息] <span class="hideid">2</span></span></td>
+        <td width="16%" class="way"><span name="2">[系统消息]</span></td>
         <td width="50%">杰普发来战帖，叫你们最厉害的上场</td>
         <td width="20%">2019-7-18</td>
     </tr>
@@ -62,7 +64,7 @@
 
 
         $(".icon>.mycheck").siblings().click(function () {
-          alert($(this).siblings(".way").find(".hideid").text());
+            alert($(this).siblings(".hideid").text());
         })
 
         // //未读标志和未读数量
