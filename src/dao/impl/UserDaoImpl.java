@@ -5,7 +5,6 @@ import dao.UserDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.junit.Test;
 import util.C3P0Util;
 
 import java.sql.SQLException;
