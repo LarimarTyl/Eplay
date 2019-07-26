@@ -16,11 +16,11 @@ public interface UserService {
     public boolean takeOrder(String player,String game);//下单
     public boolean recharge();//充值
     public boolean comment();//评论
+
     public List<OrderBean> selectOrders();//查看订单（消费）用户消费
     public List<OrderBean> selectIncome();//查看收入（收入）玩家收入
     public boolean changePsw();//更改密码
     public boolean bePlayer();//入驻成为玩家
-
 
     public boolean modefyInfo(UserBean user);//修改用户信息
     public boolean addFocous();//添加关注
