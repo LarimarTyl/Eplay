@@ -1,4 +1,4 @@
-package dao.impl;
+package test;
 
 import bean.OrderBean;
 import dao.OrderDao;
