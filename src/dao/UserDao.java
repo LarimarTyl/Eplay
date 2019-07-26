@@ -27,6 +27,6 @@ public interface UserDao {
     public List<UserBean> selectUsersByStatus(int status);//根据用户状态查找用户（玩家、用户、管理员）
     public List<UserBean> pageUsersByStatus(int status,int currentPage,int pageSize);//根据用户状态查找用户（玩家、用户、管理员）
     public List<UserBean> selectUsersByender(String gender);//根据性别查找用户
-
+    public double selectMoneyById(int id);//根据用户名查余额
 
 }

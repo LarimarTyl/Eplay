@@ -5,7 +5,6 @@ import dao.UserDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.junit.Test;
 import util.C3P0Util;
 
 import java.sql.SQLException;
@@ -228,6 +227,23 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
 
+    @Override
+    public double selectMoneyById(int id) {
+            UserBean user;
+        String sql="select money from user where id=?";
+
+        try {
+           user= qr.query(sql,new BeanHandler<>(UserBean.class),id);
+            System.out.println("-----------");
+            if (user!=null){
+                double b=user.getMoney();
+                return b;
+            }
+        } catch (SQLException e) {
+            System.out.println("根据用户id查余额失败："+e.getMessage());
+        }
+        return 0;
+    }
     @Override
     public List<UserBean> selectUsersByStatus(int status) {
         String sql="select * from user where status=?";

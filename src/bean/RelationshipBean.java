@@ -19,6 +19,11 @@ public class RelationshipBean {
     public RelationshipBean() {
     }
 
+    public RelationshipBean(int userID,int playerID,int status){
+        this.userID=userID;
+        this.playerID=playerID;
+        this.status=status;
+    }
     public RelationshipBean(int id, String staffName, String playerName, String photoPath, String gameName, String picPath, String introduce) {
         this.id = id;
         this.staffName = staffName;
