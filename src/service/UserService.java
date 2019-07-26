@@ -2,6 +2,7 @@ package service;
 
 import bean.LoveGameBean;
 import bean.OrderBean;
+import bean.RechargeBean;
 import bean.RelationshipBean;
 import bean.UserBean;
 

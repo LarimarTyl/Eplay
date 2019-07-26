@@ -1,5 +1,11 @@
 package service.impl;
 
+import bean.OrderBean;
+import bean.RechargeBean;
+import bean.UserBean;
+import dao.RechargeDao;
+import dao.impl.RechargeDaoImpl;
+import service.UserService;
 import bean.LoveGameBean;
 import bean.OrderBean;
 import bean.RelationshipBean;
@@ -13,6 +19,11 @@ import util.Factory;
 import java.util.List;
 
 /**
+ * Create by mysteriousTime
+ * time on 2019/7/26  14:34
+ */
+public class UserServiceImpl implements UserService {
+    RechargeDaoImpl rechargeDao;
  * @author Mr Wu
  * @create: 2019-07-26 14:43
  */
@@ -47,6 +58,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean recharge(String userName, RechargeBean recharge) {
+
+        rechargeDao.saveRecharge(userName,recharge);
     public boolean recharge() {
         return false;
     }
@@ -87,6 +101,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean addLoveGames() {
+        return false;
+    }
+
+    @Override
+    public boolean removeLoveGames() {
+        return false;
+    }
+
+    @Override
+    public boolean addBlackList() {
+        return false;
+    }
+
+    @Override
+    public boolean removeBlackList() {
+        return false;
+    }
     public boolean addLoveGames(LoveGameBean loveGameBean) {
         boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
         return b;
