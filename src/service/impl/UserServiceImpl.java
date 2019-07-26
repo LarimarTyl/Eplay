@@ -1,22 +1,12 @@
 package service.impl;
 
-import bean.OrderBean;
-import bean.RechargeBean;
-import bean.UserBean;
-import dao.RechargeDao;
+import bean.*;
+import dao.*;
 import dao.impl.RechargeDaoImpl;
 import service.UserService;
-import bean.LoveGameBean;
 import bean.OrderBean;
-import bean.RelationshipBean;
 import bean.UserBean;
-import dao.LoveGameDao;
-import dao.RelationshipDao;
-import bean.PlayerBean;
 import bean.UserBean;
-import dao.OrderDao;
-import dao.PlayerDao;
-import dao.UserDao;
 import service.UserService;
 import util.DateUtil;
 import util.Factory;
@@ -38,12 +28,16 @@ public class UserServiceImpl implements UserService {
     UserDao userDao = null;
     MessageDao messageDao = null;
     PlayerDao playerDao = null;
+    LoveGameDao loveGameDao = null;
+    RelationshipDao relationshipDao = null;
 
     public UserServiceImpl() {
         orderDao = Factory.getInstance("orderDao", OrderDao.class);
         userDao = Factory.getInstance("userDao", UserDao.class);
         messageDao = Factory.getInstance("message", MessageDao.class);
         playerDao = Factory.getInstance("playerDao", PlayerDao.class);
+        loveGameDao = Factory.getInstance("loveGameDao", LoveGameDao.class);
+        relationshipDao = Factory.getInstance("relationshipDao", RelationshipDao.class);
     }
 
     @Override
@@ -147,33 +141,35 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<OrderBean> selectOrders(String userName) {
-        List<OrderBean> list=orderDao.selectOrdersByUser(userName);
+        List<OrderBean> list = orderDao.selectOrdersByUser(userName);
         return list;
     }
 
     @Override
     public List<OrderBean> selectIncome(String player) {
-        List<OrderBean> list=orderDao.selectOrdersByPlayer(player);
+        List<OrderBean> list = orderDao.selectOrdersByPlayer(player);
         return list;
     }
 
     @Override
     public boolean changePsw(UserBean userBean) {
-        boolean flag=userDao.updateUser(userBean);
+        boolean flag = userDao.updateUser(userBean);
         return flag;
     }
 
     @Override
-    public boolean bePlayer(UserBean userBean,PlayerBean playerBean) {
+    public boolean bePlayer(UserBean userBean, PlayerBean playerBean) {
         userDao.updateUser(userBean);
-        boolean flag= playerDao.savePlayer(playerBean);
+        boolean flag = playerDao.savePlayer(playerBean);
         return flag;
     }
+
     @Override
-    public boolean modefyInfo(UserBean userBean){
-        Boolean flag=userDao.updateUser(userBean);
+    public boolean modefyInfo(UserBean userBean) {
+        Boolean flag = userDao.updateUser(userBean);
         return flag;
     }
+
     @Override
     public boolean addLoveGames(LoveGameBean loveGameBean) {
         boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
@@ -182,24 +178,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean removeLoveGames(LoveGameBean loveGameBean) {
-        boolean b = loveGameDao.delLoveGame(loveGameBean.getStaffName(),loveGameBean);
+        boolean b = loveGameDao.delLoveGame(loveGameBean.getStaffName(), loveGameBean);
         return b;
     }
 
     @Override
     public boolean addBlackList(RelationshipBean relationshipBean) {
         RelationshipBean result = relationshipDao.selectRelationshipByStatus(relationshipBean.getStaffName(), relationshipBean.getPlayerName(), relationshipBean.getStatus());
-        boolean black=false;
-        if(!result.equals("")){
-            if(result.getStatus()==0){
+        boolean black = false;
+        if (!result.equals("")) {
+            if (result.getStatus() == 0) {
                 boolean b = relationshipDao.updateRelationShip(relationshipBean.getStaffName(), relationshipBean);
                 return b;
-            }else{
+            } else {
                 System.out.println("你已经拉黑了给主播");
             }
-        }else{
+        } else {
             boolean b = relationshipDao.addRelationShip(relationshipBean.getStaffName(), relationshipBean);
-            return  b;
+            return b;
         }
         return black;
     }
