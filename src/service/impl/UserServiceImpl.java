@@ -36,7 +36,6 @@ public UserServiceImpl(){
     relationshipDao=Factory.getInstance("relationshipDao",RelationshipDao.class);
     loveGameDao=Factory.getInstance("loveGameDao",LoveGameDao.class);
 }
->>>>>>> upstream/master
     @Override
     public boolean regiser(String name, String passWord, String phone, String qq, String code) {
         return false;
@@ -73,7 +72,6 @@ public UserServiceImpl(){
     }
 
     @Override
-<<<<<<< HEAD
     public List<OrderBean> selectOrders(String userName) {
         List<OrderBean> list=orderDao.selectOrdersByUser(userName);
         return list;
@@ -97,52 +95,11 @@ public UserServiceImpl(){
         boolean flag= playerDao.savePlayer(playerBean);
         return flag;
     }
-
     @Override
     public boolean modefyInfo(UserBean userBean){
         Boolean flag=userDao.updateUser(userBean);
         return flag;
     }
-
-    @Override
-    public boolean addLoveGames(LoveGameBean loveGameBean) {
-        boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
-        return b;
-    }
-    @Override
-    public boolean removeLoveGames(LoveGameBean loveGameBean) {
-        boolean b = loveGameDao.delLoveGame(loveGameBean.getStaffName(),loveGameBean);
-        return b;
-    }
-
-    @Override
-    public boolean addBlackList(RelationshipBean relationshipBean) {
-        RelationshipBean result = relationshipDao.selectRelationshipByStatus(relationshipBean.getStaffName(), relationshipBean.getPlayerName(), relationshipBean.getStatus());
-        boolean black=false;
-        if(!result.equals("")){
-            if(result.getStatus()==0){
-                boolean b = relationshipDao.updateRelationShip(relationshipBean.getStaffName(), relationshipBean);
-                return b;
-            }else{
-                System.out.println("你已经拉黑了给主播");
-            }
-        }else{
-            boolean b = relationshipDao.addRelationShip(relationshipBean.getStaffName(), relationshipBean);
-            return  b;
-        }
-        return black;
-    }
-
-    @Override
-    public boolean removeBlackList(RelationshipBean relationshipBean) {
-        boolean result = relationshipDao.delRelationShip(relationshipBean.getStaffName(), relationshipBean);
-        return result;
-    }
-
-
-
-
-
     @Override
     public boolean addLoveGames(LoveGameBean loveGameBean) {
         boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
