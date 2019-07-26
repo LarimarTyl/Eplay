@@ -58,7 +58,7 @@ public class TestRelationship {
 
     public void update(){
 
-        boolean b = relationshipDao.updateRelationShip("1", new RelationshipBean(2, 3, 0));
+        boolean b = relationshipDao.updateRelationShip("1", new RelationshipBean(1, 3, 1));
         String result= b ? "更新成功 " :"更新失败";
         System.out.println(result);
 
