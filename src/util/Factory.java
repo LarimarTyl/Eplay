@@ -12,7 +12,7 @@ public class Factory {
         bundle=ResourceBundle.getBundle("instance");
     }
     public static <T>T getInstance(String key,Class<T> classType){
-        String className = bundle.getString("key");
+        String className = bundle.getString(key);
         try {
             return (T)Class.forName(className).newInstance();
         } catch (ClassNotFoundException e) {
