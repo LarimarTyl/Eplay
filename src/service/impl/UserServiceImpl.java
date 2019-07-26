@@ -24,11 +24,6 @@ import java.util.List;
  */
 public class UserServiceImpl implements UserService {
     RechargeDaoImpl rechargeDao;
- * @author Mr Wu
- * @create: 2019-07-26 14:43
- */
-public class UserServiceImpl implements UserService {
-
     private RelationshipDao relationshipDao;
     private LoveGameDao loveGameDao;
 
@@ -58,9 +53,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean recharge(String userName, RechargeBean recharge) {
-
-        rechargeDao.saveRecharge(userName,recharge);
     public boolean recharge() {
         return false;
     }
@@ -100,25 +92,9 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    @Override
-    public boolean addLoveGames() {
-        return false;
-    }
+
 
     @Override
-    public boolean removeLoveGames() {
-        return false;
-    }
-
-    @Override
-    public boolean addBlackList() {
-        return false;
-    }
-
-    @Override
-    public boolean removeBlackList() {
-        return false;
-    }
     public boolean addLoveGames(LoveGameBean loveGameBean) {
         boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
         return b;
