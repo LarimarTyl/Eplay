@@ -28,6 +28,14 @@ public class GameListBean {
         this.gameName = gameName;
         this.gameLogo = gameLogo;
     }
+    public GameListBean(String gameName, String gameLogo,int id) {
+        this.id=id;
+        this.gameName = gameName;
+        this.gameLogo = gameLogo;
+    }
+    public GameListBean(int i) {
+        this.id=i;
+    }
 
     public int getId() {
         return id;
@@ -58,6 +66,7 @@ public class GameListBean {
         return "GameListBean{" +
                 "id=" + id +
                 ", gameName='" + gameName + '\'' +
+                ", gameLogo='" + gameLogo + '\'' +
                 '}';
     }
 }

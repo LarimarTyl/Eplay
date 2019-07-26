@@ -10,6 +10,30 @@ public class LevelBean {
     private String gameName;//游戏名称
     private String gameLeve;//游戏段位
 
+    public LevelBean(int id,  int gameID,String gameLeve) {
+        this.id=id;
+        this.gameID=gameID;
+        this.gameLeve=gameLeve;
+    }
+
+    public LevelBean(int id) {
+        this.id=id;
+    }
+
+    public LevelBean(int i, String s, int i1) {
+        this.gameID=i;
+        this.gameLeve=s;
+        this.id=i1;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
+
     /*空参构造*/
     public LevelBean() {
     }
