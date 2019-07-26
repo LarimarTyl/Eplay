@@ -2,14 +2,10 @@ package test;
 
 import bean.MessageBean;
 import dao.MessageDao;
-import dao.UserDao;
-import dao.impl.MessageDaoimpl;
+import dao.impl.MessageDaoImpl;
 import org.junit.Test;
 import util.Factory;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +13,7 @@ import java.util.List;
  * time on 2019/7/25  15:59
  */
 public class TestMessage {
-    private static MessageDao messageDao = Factory.getInstance("MessageDaoimpl", MessageDaoimpl.class);
+    private static MessageDao messageDao = Factory.getInstance("messageDao", MessageDao.class);
 
     @Test
     public void testAdd() {

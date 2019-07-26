@@ -15,8 +15,9 @@ public class OrderBean {
     private int playerID;//玩家id
     private String playerName;//根据玩家id拿到的玩家名
     private String contact;//联系方式
-    private Date starttime;//开始时间
-    private Date endtime;//结束时间
+    private int payWay;//付款方式（1直接付款 2余额支付）
+    private String starttime;//开始时间
+    private String endtime;//结束时间
     private double price;//总价格
     private int poitns;//评分
     private String appraise;//客户评论
@@ -24,8 +25,7 @@ public class OrderBean {
 
     public OrderBean() {
     }
-
-    public OrderBean(int id, int gameID, String gameName, int userID, String staffName, int playerID, String playerName, String contact, Date starttime, Date endtime, double price, int poitns, String appraise, String remark) {
+    public OrderBean(int id, int gameID, String gameName, int userID, String staffName, int playerID, String playerName, String contact, String starttime, String endtime, double price, int poitns, String appraise, String remark) {
         this.id = id;
         this.gameID = gameID;
         this.gameName = gameName;
@@ -42,12 +42,29 @@ public class OrderBean {
         this.remark = remark;
     }
 
-    public OrderBean(int id, String gameName, String staffName, String playerName, String contact, Date starttime, Date endtime, double price, int poitns, String appraise, String remark) {
+    public OrderBean(int gameID, int userID, int playerID, String contact, int payWay, String starttime, String endtime, double price, String appraise, String remark) {
+        this.gameID = gameID;
+        this.userID = userID;
+        this.playerID = playerID;
+        this.contact = contact;
+        this.payWay = payWay;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.price = price;
+        this.appraise = appraise;
+        this.remark = remark;
+    }
+
+    public OrderBean(int id, int gameID, String gameName, int userID, String staffName, int playerID, String playerName, String contact, int payWay, String starttime, String endtime, double price, int poitns, String appraise, String remark) {
         this.id = id;
+        this.gameID = gameID;
         this.gameName = gameName;
+        this.userID = userID;
         this.staffName = staffName;
+        this.playerID = playerID;
         this.playerName = playerName;
         this.contact = contact;
+        this.payWay = payWay;
         this.starttime = starttime;
         this.endtime = endtime;
         this.price = price;
@@ -120,19 +137,19 @@ public class OrderBean {
         this.contact = contact;
     }
 
-    public Date getStarttime() {
+    public String getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Date starttime) {
+    public void setStarttime(String starttime) {
         this.starttime = starttime;
     }
 
-    public Date getEndtime() {
+    public String getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(Date endtime) {
+    public void setEndtime(String endtime) {
         this.endtime = endtime;
     }
 
@@ -166,6 +183,14 @@ public class OrderBean {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public int getPayWay() {
+        return payWay;
+    }
+
+    public void setPayWay(int payway) {
+        this.payWay = payway;
     }
 
     @Override

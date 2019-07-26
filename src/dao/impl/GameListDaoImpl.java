@@ -1,6 +1,7 @@
-package dao.Impl;
+package dao.impl;
 
 import bean.GameListBean;
+
 import dao.GameListDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -14,9 +15,9 @@ import java.util.List;
  * Create by mysteriousTime
  * time on 2019/7/26  9:43
  */
-public class GameListDaoimpl implements GameListDao {
-    QueryRunner qr;
-    public GameListDaoimpl() {
+public class GameListDaoImpl implements GameListDao {
+    private static  QueryRunner qr;
+    public GameListDaoImpl() {
         qr = new QueryRunner(C3P0Util.getDs());
     }
     @Override
@@ -86,13 +87,13 @@ public class GameListDaoimpl implements GameListDao {
     @Override
     public GameListBean selectAllGameByName(String gameName) {
         GameListBean gamelist;
-      String sql="select * from gamelist where gamename=?";
+        String sql="select * from gamelist where gamename=?";
         try {
             gamelist= qr.query(sql,new BeanHandler<>(GameListBean.class),gameName);
-       if (gamelist!=null){
-           System.out.println(gamelist);
-           return gamelist;
-       }
+            if (gamelist!=null){
+                System.out.println(gamelist);
+                return gamelist;
+            }
         } catch (SQLException e) {
             System.out.println("selectAllGameByName失败："+e.getMessage());
         }
