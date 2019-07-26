@@ -8,15 +8,13 @@ import java.util.ResourceBundle;
  */
 public class Factory {
     private static ResourceBundle bundle;
-
     static {
-        bundle = ResourceBundle.getBundle("instance");
+        bundle=ResourceBundle.getBundle("instance");
     }
-
-    public static <T> T getInstance(String key, Class<T> classType) {
+    public static <T>T getInstance(String key,Class<T> classType){
         String className = bundle.getString(key);
         try {
-            return (T) Class.forName(className).newInstance();
+            return (T)Class.forName(className).newInstance();
         } catch (ClassNotFoundException e) {
 
         } catch (IllegalAccessException e) {
