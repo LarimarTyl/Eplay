@@ -5,15 +5,22 @@ import dao.UserDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.junit.Test;
 import util.C3P0Util;
 
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * @author Mr Wu
+ * @create: 2019-07-25 10:26
+ */
 public class UserDaoImpl implements UserDao {
+
     QueryRunner qr;
-    public UserDaoImpl() {
-        qr= new QueryRunner(C3P0Util.getDs());
+
+    public UserDaoImpl(){
+        qr=new QueryRunner(C3P0Util.getDs());
     }
     @Override
     public boolean saveUser(UserBean user) {
@@ -91,8 +98,21 @@ public class UserDaoImpl implements UserDao {
     public List<UserBean> selectAllUser() {
         String sql="select * from user";
         try {
-            List<UserBean> list=qr.query(sql,new BeanListHandler<>(UserBean.class));
-            return list;
+            List<UserBean> list= null;
+                list = qr.query(sql,new BeanListHandler<>(UserBean.class));
+                return list;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return null;
+    }
+    @Override
+    public List<UserBean> pageAllUser(int currentPage, int pageSize) {
+        String sql="select * from user limit ?,?";
+        List<UserBean> users;
+        try {
+            users=qr.query(sql,new BeanListHandler<UserBean>(UserBean.class),new Object[]{(currentPage-1)*pageSize,pageSize});
+            return users;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,8 +123,22 @@ public class UserDaoImpl implements UserDao {
     public List<UserBean> selectUsersByRegisterStatus(int registerStatus) {
     String sql="select * from user where registerStatus=?";
         try {
-            List<UserBean> list=qr.query(sql,new BeanListHandler<>(UserBean.class),registerStatus);
-            return list;
+            List<UserBean> list= null;
+
+                list = qr.query(sql,new BeanListHandler<>(UserBean.class),registerStatus);
+                return list;
+            } catch (SQLException e) {
+                e.printStackTrace();}
+        return null;
+    }
+
+    @Override
+    public List<UserBean> pageUsersByRegisterStatus(int registerStatus, int currentPage, int pageSize) {
+        String sql="select * from user where registerStatus =? limit ?,?";
+        List<UserBean> users;
+        try {
+            users=qr.query(sql,new BeanListHandler<UserBean>(UserBean.class),new Object[]{registerStatus,(currentPage-1)*pageSize,pageSize});
+            return users;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,29 +155,51 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return null;
-    }
 
-    @Override
-    public List<UserBean> selectUsersByStatus(int status) {
-        String sql="select * from user where status=?";
-        try {
-            List<UserBean> list=qr.query(sql,new BeanListHandler<>(UserBean.class),status);
-            return list;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Override
     public List<UserBean> selectUsersByender(String gender) {
-    String sql="select * from user where gender=?";
+            String sql="select * from user where gender=?";
+            List<UserBean> users;
+            try {
+                users=qr.query(sql,new BeanListHandler<UserBean>(UserBean.class),gender);
+                return users;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    @Override
+    public List<UserBean> selectUsersByStatus(int status) {
+        String sql="select * from user where status=?";
+        List<UserBean> users;
         try {
-            List<UserBean> list=qr.query(sql,new BeanListHandler<>(UserBean.class),gender);
-            return list;
+            users=qr.query(sql,new BeanListHandler<UserBean>(UserBean.class),status);
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+        }
+
+
+
+
+
+    @Override
+    public List<UserBean> pageUsersByStatus(int status, int currentPage, int pageSize) {
+        String sql="select * from user where status =? limit ?,?";
+        List<UserBean> users;
+        try {
+            users=qr.query(sql,new BeanListHandler<UserBean>(UserBean.class),new Object[]{status,(currentPage-1)*pageSize,pageSize});
+            return users;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
+
 }
