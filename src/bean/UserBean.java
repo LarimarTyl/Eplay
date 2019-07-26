@@ -28,6 +28,23 @@ public class UserBean {
     public UserBean() {
     }
 
+    public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String picturePath, double price, double money, String QQ, Date registerTime) {
+        this.id = id;
+        this.loginName = loginName;
+        this.loginPwd = loginPwd;
+        this.staffNumber = staffNumber;
+        this.staffName = staffName;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.email = email;
+        this.telephone = telephone;
+        this.picturePath = picturePath;
+        this.price = price;
+        this.money = money;
+        this.QQ = QQ;
+        this.registerTime = registerTime;
+    }
+
     public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String picturePath, double price, double money, String QQ, Date registerTime, int registerStatus, String code, int status) {
         this.id = id;
         this.loginName = loginName;
