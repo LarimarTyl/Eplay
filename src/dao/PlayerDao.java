@@ -27,5 +27,5 @@ public interface PlayerDao {
     public List<PlayerBean> selectPlayersByGameAndLevelAndGender(String gameName,String level,String gender);//根据游戏名、段位、性别查找玩家
     public List<PlayerBean> pagePlayersByGameAndLevelAndGender(String gameName,String level,String gender,int currentPage,int pageSize);//根据游戏名、段位、性别分页查找玩家
     public PlayerBean selectPlayByName(String playerName);//根据玩家名字查找玩家
-    public PlayerBean selectPlayById(String playerId);//根据玩家id查找玩家
+    public PlayerBean selectPlayById(int playerId);//根据玩家id查找玩家
 }

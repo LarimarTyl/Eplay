@@ -13,19 +13,36 @@ public class MessageBean {
     private String message; //消息内容
     private int status;//消息状态 0未读  1已读
     private int type;//消息类型 0系统消息 1用户消息
-    private Date time;//消息时间
+    private String time;//消息时间
 
     /*空参构造*/
     public MessageBean() {
     }
 
-    /*全参构造*/
-    public MessageBean(int id, String message, int status, int type, Date time) {
+    public MessageBean(int id, int userID, String staffName, String message, int status, int type, String time) {
         this.id = id;
+        this.userID = userID;
+        this.staffName = staffName;
         this.message = message;
         this.status = status;
         this.type = type;
         this.time = time;
+    }
+
+    /*全参构造*/
+    public MessageBean(int id, String message, int status, int type, String time) {
+        this.id = id;
+        this.message = message;
+        this.status = status;
+        this.type = type;
+    }
+
+    public MessageBean(int userID, String staffName, String message, int status, int type) {
+        this.userID = userID;
+        this.staffName = staffName;
+        this.message = message;
+        this.status = status;
+        this.type = type;
     }
 
     public int getId() {
@@ -60,22 +77,40 @@ public class MessageBean {
         this.type = type;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 
     @Override
     public String toString() {
         return "MessageBean{" +
                 "id=" + id +
+                ", userID=" + userID +
+                ", staffName='" + staffName + '\'' +
                 ", message='" + message + '\'' +
                 ", status=" + status +
                 ", type=" + type +
-                ", time=" + time +
+                ", time='" + time + '\'' +
                 '}';
     }
 }
