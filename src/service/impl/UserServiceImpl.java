@@ -1,10 +1,19 @@
 package service.impl;
 
-import bean.MessageBean;
 import bean.OrderBean;
+import bean.RechargeBean;
+import bean.UserBean;
+import dao.RechargeDao;
+import dao.impl.RechargeDaoImpl;
+import service.UserService;
+import bean.LoveGameBean;
+import bean.OrderBean;
+import bean.RelationshipBean;
+import bean.UserBean;
+import dao.LoveGameDao;
+import dao.RelationshipDao;
 import bean.PlayerBean;
 import bean.UserBean;
-import dao.MessageDao;
 import dao.OrderDao;
 import dao.PlayerDao;
 import dao.UserDao;
@@ -137,47 +146,68 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<OrderBean> selectOrders() {
-        return null;
+    public List<OrderBean> selectOrders(String userName) {
+        List<OrderBean> list=orderDao.selectOrdersByUser(userName);
+        return list;
     }
 
     @Override
-    public List<OrderBean> selectIncome() {
-        return null;
+    public List<OrderBean> selectIncome(String player) {
+        List<OrderBean> list=orderDao.selectOrdersByPlayer(player);
+        return list;
     }
 
     @Override
-    public boolean changePsw() {
-        return false;
+    public boolean changePsw(UserBean userBean) {
+        boolean flag=userDao.updateUser(userBean);
+        return flag;
     }
 
     @Override
-    public boolean bePlayer() {
-        return false;
+    public boolean bePlayer(UserBean userBean,PlayerBean playerBean) {
+        userDao.updateUser(userBean);
+        boolean flag= playerDao.savePlayer(playerBean);
+        return flag;
+    }
+    @Override
+    public boolean modefyInfo(UserBean userBean){
+        Boolean flag=userDao.updateUser(userBean);
+        return flag;
+    }
+    @Override
+    public boolean addLoveGames(LoveGameBean loveGameBean) {
+        boolean b = loveGameDao.addLoveGame(loveGameBean.getStaffName(), loveGameBean);
+        return b;
     }
 
     @Override
-    public boolean modefyInfo(UserBean user) {
-        return false;
+    public boolean removeLoveGames(LoveGameBean loveGameBean) {
+        boolean b = loveGameDao.delLoveGame(loveGameBean.getStaffName(),loveGameBean);
+        return b;
     }
 
     @Override
-    public boolean addLoveGames() {
-        return false;
+    public boolean addBlackList(RelationshipBean relationshipBean) {
+        RelationshipBean result = relationshipDao.selectRelationshipByStatus(relationshipBean.getStaffName(), relationshipBean.getPlayerName(), relationshipBean.getStatus());
+        boolean black=false;
+        if(!result.equals("")){
+            if(result.getStatus()==0){
+                boolean b = relationshipDao.updateRelationShip(relationshipBean.getStaffName(), relationshipBean);
+                return b;
+            }else{
+                System.out.println("你已经拉黑了给主播");
+            }
+        }else{
+            boolean b = relationshipDao.addRelationShip(relationshipBean.getStaffName(), relationshipBean);
+            return  b;
+        }
+        return black;
     }
 
     @Override
-    public boolean removeLoveGames() {
-        return false;
+    public boolean removeBlackList(RelationshipBean relationshipBean) {
+        boolean result = relationshipDao.delRelationShip(relationshipBean.getStaffName(), relationshipBean);
+        return result;
     }
 
-    @Override
-    public boolean addBlackList() {
-        return false;
-    }
-
-    @Override
-    public boolean removeBlackList() {
-        return false;
-    }
 }

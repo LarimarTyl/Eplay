@@ -1,8 +1,7 @@
 package service;
 
-import bean.OrderBean;
-import bean.PlayerBean;
-import bean.UserBean;
+
+import bean.*;
 
 import java.util.List;
 
@@ -29,24 +28,18 @@ public interface UserService {
 
     public boolean removeFocous();//移除关注
 
-    public List<OrderBean> selectOrders();//查看订单（消费）用户消费
-
-    public List<OrderBean> selectIncome();//查看收入（收入）玩家收入
-
-    public boolean changePsw();//更改密码
-
-    public boolean bePlayer();//入驻成为玩家
-
+    public List<OrderBean> selectOrders(String userName);//查看订单（消费）用户消费
+    public List<OrderBean> selectIncome(String player);//查看收入（收入）玩家收入
+    public boolean changePsw(UserBean userBean);//更改密码
+    public boolean bePlayer(UserBean userBean, PlayerBean playerBean);//入驻成为玩家
     public boolean modefyInfo(UserBean user);//修改用户信息
 
 
-    public boolean addLoveGames();//添加游戏偏好
+    public boolean addLoveGames(LoveGameBean loveGameBean);//添加游戏偏好
+    public boolean removeLoveGames(LoveGameBean loveGameBean);//移除游戏偏好
+    public boolean addBlackList(RelationshipBean relationshipBean);//添加黑名单
+    public boolean removeBlackList(RelationshipBean relationshipBean);//移除黑名单
 
-    public boolean removeLoveGames();//移除游戏偏好
-
-    public boolean addBlackList();//添加黑名单
-
-    public boolean removeBlackList();//移除黑名单
 
 
 }
