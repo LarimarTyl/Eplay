@@ -1,4 +1,4 @@
-package dao.impl;
+package test;
 
 import bean.UserBean;
 import dao.UserDao;

@@ -1,4 +1,4 @@
-package testD;
+package test;
 
 import bean.RelationshipBean;
 import dao.RelationshipDao;
