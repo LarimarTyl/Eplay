@@ -1,6 +1,7 @@
 package service;
 
 import bean.OrderBean;
+import bean.RechargeBean;
 import bean.UserBean;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface UserService {
     public boolean takeOrder(String player,String game);//下单
     public boolean comment();//评论
 
-    public boolean recharge();//充值
+    public boolean recharge(String userName, RechargeBean recharge);//充值
     public boolean addFocous();//添加关注
     public boolean removeFocous();//移除关注
 
