@@ -72,7 +72,7 @@ public class RechargeDaoImpl implements RechargeDao {
 
     @Override
     public List<RechargeBean> selectAllRechers(String userName) {
-        String sql = "select recharge.*,user.staffName from recharge,user where userid=user.ID and user.loginName=?";
+        String sql = "select recharge.*,user.staffName from recharge,user where userid=user.ID and user.staffName=?";
         List<RechargeBean> recharges = null;
         try {
             recharges = qr.query(sql, new BeanListHandler<>(RechargeBean.class), userName);
@@ -84,7 +84,7 @@ public class RechargeDaoImpl implements RechargeDao {
 
     @Override
     public List<RechargeBean> pageAllRechers(String userName, int currentPage, int pageSize) {
-        String sql = "select recharge.*,user.staffName from recharge,user where userid=user.ID and user.loginName=? limit ?,?";
+        String sql = "select recharge.*,user.staffName from recharge,user where userid=user.ID and user.staffName=? limit ?,?";
         List<RechargeBean> recharges = null;
         try {
             recharges = qr.query(sql, new BeanListHandler<>(RechargeBean.class), userName, (currentPage - 1) * pageSize, pageSize);

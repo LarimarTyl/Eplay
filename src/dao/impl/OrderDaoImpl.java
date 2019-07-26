@@ -19,7 +19,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public boolean saveOrder(OrderBean order) {
-        String sql = "INSERT INTO `order` (gameID, userID, playerID, contact, starttime, endtime, price, payway, appraise, remark) values (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `order` (gameID, userID, playerID, contact, starttime, endtime, price, payway, appraise, remark) values (?,?,?,?,?,?,?,?,?,?,?)";
         Object o[]={order.getGameID(),order.getUserID(),order.getPlayerID(),order.getContact(),order.getStarttime(),order.getEndtime(),order.getPrice(),order.getPayWay(),order.getAppraise(),order.getRemark()};
         try {
             int save = qr.update(sql, o);
