@@ -102,4 +102,8 @@ public class testUserDao {
         }
 
     }
+    @Test
+    public void testById(){
+        userDao.selectMoneyById(1);
+    }
 }
