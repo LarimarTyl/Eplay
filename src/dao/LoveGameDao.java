@@ -12,5 +12,5 @@ public interface LoveGameDao {
     public boolean addLoveGame(String username,LoveGameBean loveGame);
     public boolean delLoveGame(String username,LoveGameBean loveGame);
     public boolean upDateLoveGame(String username,LoveGameBean loveGame);
-    public List<LoveGameBean> selectLoveGames(String username);//查询某个用户的关注游戏列表
+    public List<LoveGameBean> selectLoveGames(String username);//查询某个特定用户的关注游戏列表
 }
