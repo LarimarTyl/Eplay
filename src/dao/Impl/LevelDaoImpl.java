@@ -1,4 +1,4 @@
-package dao.Impl;
+package dao.impl;
 
 import bean.LevelBean;
 import dao.LevelDao;

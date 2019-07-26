@@ -1,4 +1,4 @@
-package dao.Impl;
+package dao.impl;
 
 import bean.GameListBean;
 import dao.GameListDao;
@@ -14,9 +14,9 @@ import java.util.List;
  * Create by mysteriousTime
  * time on 2019/7/26  9:43
  */
-public class GameListDaoimpl implements GameListDao {
+public class GameListDaoImpl implements GameListDao {
     QueryRunner qr;
-    public GameListDaoimpl() {
+    public GameListDaoImpl() {
         qr = new QueryRunner(C3P0Util.getDs());
     }
     @Override

@@ -16,10 +16,10 @@ import java.util.List;
  * Create by czq
  * time on 2019/7/26  9:31
  */
-public class RechargeDaoimpl implements RechargeDao {
+public class RechargeDaoImpl implements RechargeDao {
     QueryRunner qr;
 
-    public RechargeDaoimpl() {
+    public RechargeDaoImpl() {
         qr = new QueryRunner(C3P0Util.getDs());
     }
 
