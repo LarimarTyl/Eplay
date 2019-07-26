@@ -10,14 +10,22 @@ import java.util.List;
  * @time 2019/7/24 星期三 17:16
  */
 public interface UserService {
-    public boolean regiser(String name,String passWord,String phone,String qq,String code);//注册
-    public boolean login(String name,String passWord,String code);//登录
+    public boolean regiser(String name, String passWord, String phone, String qq, String code);//注册
 
-    public boolean takeOrder(String player,String game);//下单
-    public boolean comment();//评论
+    public boolean login(String name, String passWord, String code);//登录
+
+    public boolean takeOrder(UserBean user, PlayerBean player, OrderBean order);//下单
+
+    public boolean addMyOrder(OrderBean order);//下单
+
+    public boolean delOrder(OrderBean order);//下单
+
+    public boolean comment(OrderBean order);//评论
 
     public boolean recharge();//充值
+
     public boolean addFocous();//添加关注
+
     public boolean removeFocous();//移除关注
 
     public List<OrderBean> selectOrders(String userName);//查看订单（消费）用户消费

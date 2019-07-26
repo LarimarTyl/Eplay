@@ -7,6 +7,7 @@ import java.util.Date;
  * @time 2019/7/24 星期三 15:28
  */
 public class OrderBean {
+
     private int id; //订单编号
     private int gameID;//游戏id
     private String gameName; //根据游戏id拿到的游戏名

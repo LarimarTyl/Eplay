@@ -62,9 +62,9 @@
 <script>
     $(function () {
         $(".input").focus(function () {
-            $(".font").css("color","#25E198");
+            $(".font").css("color", "#25E198");
         }).blur(function () {
-            $(".font").css("color","black");
+            $(".font").css("color", "black");
         })
 
         $("img").click(function () {
@@ -73,30 +73,39 @@
 
 
         $(".img1").click(function () {
-            if ($(".img4").css("display")=="block"){
-        $(".img4").hide();
-        $(".img3").show();
-            }})
+            if ($(".img4").css("display") == "block") {
+                $(".img4").hide();
+                $(".img3").show();
+            }
+        })
 
         $(".img3").click(function () {
-     if ($(".img2").css("display")=="block") {
-    $(".img2").hide();
-    $(".img1").show();}})
+            if ($(".img2").css("display") == "block") {
+                $(".img2").hide();
+                $(".img1").show();
+            }
+        })
 
         $("li").click(function () {
-            if ($(this).css("border")=="0.983193px solid rgb(165, 173, 175)"){
-                $(this).css("border","1px solid #25E198").css("background","url(../../img/money/true.png) no-repeat 96px 24px").css("color","#25E198");
-                var i=$(this).find(".content").text();
+            if ($(this).css("border") == "0.991597px solid rgb(165, 173, 175)") {
+                $(this).css("border", "1px solid #25E198").css("background", "url(../../img/money/true.png) no-repeat 96px 24px").css("color", "#25E198");
+                var i = $(this).find(".content").text();
                 $(".charge").text(i);
-            }else {
-                $(this).css("background","#f6f6f6").css("border","1px solid #a5adaf").css("color","#cbcbcb");
+            } else {
+                $(this).css("background", "#f6f6f6").css("border", "1px solid #a5adaf").css("color", "#cbcbcb");
             }
-            $(this).siblings().css("background","#f6f6f6").css("border","1px solid #a5adaf").css("color","#cbcbcb");
+            $(this).siblings().css("background", "#f6f6f6").css("border", "1px solid #a5adaf").css("color", "#cbcbcb");
         })
     })
+
     function update() {
-           var i=$(".input").val();
-            $(".charge").text(i);
+        var i = $(".input").val();
+        $(".charge").text(i);
+        var reg = /^[1-9]\d*$/;
+        if (!reg.test($(".input").val())) {
+            $(".input").val(null);
+            $(".charge").text(0);2
+        }
     }
 </script>
 </html>

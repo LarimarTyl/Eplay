@@ -23,7 +23,13 @@ public class PlayerBean {
     public PlayerBean() {
     }
 
-    public PlayerBean( String picPath, int orderNum, double money, String introduce, int status,int id) {
+    public PlayerBean(int playerID, int gameID, double money) {
+        this.playerID = playerID;
+        this.gameID = gameID;
+        this.money = money;
+    }
+
+    public PlayerBean(String picPath, int orderNum, double money, String introduce, int status, int id) {
         this.id = id;
         this.picPath = picPath;
         this.orderNum = orderNum;
@@ -31,6 +37,8 @@ public class PlayerBean {
         this.introduce = introduce;
         this.status = status;
     }
+
+
 
     public PlayerBean(int id, String staffName, String gameName, String photoPath, String gender, String picPath, String gameLeve, int orderNum, double money, String introduce, int status) {
         this.id = id;

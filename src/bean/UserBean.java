@@ -28,6 +28,13 @@ public class UserBean {
     public UserBean() {
     }
 
+    public UserBean(int id, String telephone, double price, double money) {
+        this.id = id;
+        this.telephone = telephone;
+        this.price = price;
+        this.money = money;
+    }
+
     public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String picturePath, double price, double money, String QQ, Date registerTime) {
         this.id = id;
         this.loginName = loginName;
