@@ -10,7 +10,7 @@ import java.util.List;
  * @time 2019/7/24 星期三 17:16
  */
 public interface UserService {
-    public boolean regiser(String name,String passWord,String phone,String qq,String code);//注册
+    public boolean regiser(UserBean register,String code);//注册
     public boolean login(String name,String passWord,String code);//登录
 
     public boolean takeOrder(String player,String game);//下单
