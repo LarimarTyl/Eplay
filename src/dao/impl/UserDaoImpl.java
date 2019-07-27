@@ -5,7 +5,6 @@ import dao.UserDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.junit.Test;
 import util.C3P0Util;
 
 import java.sql.SQLException;
@@ -57,6 +56,22 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+/**
+* @author zwd
+* */
+    @Override
+    public UserBean loginCheck(String loginName, String loginPwd) {
+        String sql="select * from user where (loginName=? or staffNumber=?) and loginPwd=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName,loginName,loginPwd);
+            System.out.println("登录验证成功");
+            return userBean;
+        } catch (SQLException e) {
+            System.out.println("登录验证失败");
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public UserBean selectUserByCode(UserBean user) {
@@ -94,6 +109,46 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    @Override
+    public UserBean selectUserByLoginName(String loginName) {
+        String sql="select * from user where loginName=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName);
+            return userBean;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+    * @author zwd
+     */
+    @Override
+    public int selectRegisterStatusByLoginName(String loginName) {
+        String sql="select * from user where loginName=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName);
+            return userBean.getRegisterStatus();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    /**
+     * @author zwd
+     */
+    @Override
+    public int selectStatusByStaffNumber(String staffNumber) {
+        String sql="select * from user where staffNumber=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),staffNumber);
+            return userBean.getStatus();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
     @Override
     public List<UserBean> selectAllUser() {
         String sql="select * from user";
@@ -142,7 +197,8 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+
+                  return null;
     }
 
     @Override
@@ -172,6 +228,23 @@ public class UserDaoImpl implements UserDao {
         }
 
     @Override
+    public double selectMoneyById(int id) {
+            UserBean user;
+        String sql="select money from user where id=?";
+
+        try {
+           user= qr.query(sql,new BeanHandler<>(UserBean.class),id);
+            System.out.println("-----------");
+            if (user!=null){
+                double b=user.getMoney();
+                return b;
+            }
+        } catch (SQLException e) {
+            System.out.println("根据用户id查余额失败："+e.getMessage());
+        }
+        return 0;
+    }
+    @Override
     public List<UserBean> selectUsersByStatus(int status) {
         String sql="select * from user where status=?";
         List<UserBean> users;
@@ -183,10 +256,6 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
         }
-
-
-
-
 
     @Override
     public List<UserBean> pageUsersByStatus(int status, int currentPage, int pageSize) {
@@ -200,6 +269,18 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
-
+    @Override
+    public boolean updateMoneyById(UserBean user) {
+        String sql="update user set money=? where id=?";
+        try {
+           int a= qr.update(sql,user.getMoney(),user.getId());
+            if (a!=0){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("修改余额从成功："+e.getMessage());
+        }
+        return false;
+    }
 
 }

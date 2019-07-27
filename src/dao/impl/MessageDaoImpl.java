@@ -3,10 +3,14 @@ package dao.impl;
 import bean.MessageBean;
 import dao.MessageDao;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import util.C3P0Util;
 import util.DateUtil;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,27 +27,23 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public boolean addMessage(String username, MessageBean message) {
-
-
+    public int addMessage(MessageBean message) {
         LocalDateTime now = LocalDateTime.now();
         String date = DateUtil.convert(now);
-
         String sql = "insert into message values(default,?,?,?,?,?)";
-        boolean flag = false;
+        int i = 0;
         try {
-            int update = qr.update(sql, message.getUserID(), message.getMessage(), message.getStatus(), message.getType(), date);
-            if (update == 1) {
-                flag = true;
-            }
+//          i = qr.update(sql, message.getUserID(), message.getMessage(), message.getStatus(), message.getType(), date);
+            ScalarHandler<BigInteger> rsh = new ScalarHandler<>();
+            i = qr.insert(sql, rsh, message.getUserID(), message.getMessage(), message.getStatus(), message.getType(), date).intValue();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return flag;
+        return i;
     }
 
     @Override
-    public boolean delMessage(String username, MessageBean message) {
+    public boolean delMessage(MessageBean message) {
         String sql = "delete from message where id=?";
         boolean flag = false;
         try {
@@ -58,7 +58,7 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public boolean updateMessage(String username, MessageBean message) {
+    public boolean updateMessage(MessageBean message) {
         String sql = "update message set statu=1 where id=?";
         boolean flag = false;
         try {
@@ -73,8 +73,25 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
+    public boolean queryMessage(int id, int status) {
+        String sql = "select * from message where id=? and status=?";
+        MessageBean message = null;
+        boolean flag = false;
+        try {
+            message = qr.query(sql, new BeanHandler<>(MessageBean.class), id, status);
+            if (message != null) {
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
+    @Override
     public List<MessageBean> selectAllMessages(String username) {
-        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.loginName=?";
+        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.staffName=?";
         List<MessageBean> messages = null;
         try {
             messages = qr.query(sql, new BeanListHandler<>(MessageBean.class), username);
@@ -86,7 +103,7 @@ public class MessageDaoImpl implements MessageDao {
 
     @Override
     public List<MessageBean> selectMessagesByStatus(String username, int status) {
-        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.loginName=? and message.status=?";
+        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.staffName=? and message.status=?";
         List<MessageBean> messages = null;
         try {
             messages = qr.query(sql, new BeanListHandler<>(MessageBean.class), username, status);
@@ -98,7 +115,7 @@ public class MessageDaoImpl implements MessageDao {
 
     @Override
     public List<MessageBean> selectMessagesByType(String username, int type) {
-        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.loginName=? and message.type=?";
+        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.staffName=? and message.type=?";
         List<MessageBean> messages = null;
         try {
             messages = qr.query(sql, new BeanListHandler<>(MessageBean.class), username, type);
@@ -110,7 +127,7 @@ public class MessageDaoImpl implements MessageDao {
 
     @Override
     public List<MessageBean> selectMessagesByDate(String username, String date) {
-        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.loginName=? and message.time=?";
+        String sql = "select message.*,user.staffName from message,user where userid=user.ID and user.staffName=? and message.time=?";
         List<MessageBean> messages = null;
         try {
             messages = qr.query(sql, new BeanListHandler<>(MessageBean.class), username, date);

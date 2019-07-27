@@ -2,3 +2,6 @@
 *.iml
 out
 config
+/src/dao/impl/Test.java
+/src/test/testservice/
+/config/
