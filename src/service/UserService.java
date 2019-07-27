@@ -2,7 +2,9 @@ package service;
 
 import bean.OrderBean;
 import bean.RechargeBean;
+import bean.RelationshipBean;
 import bean.UserBean;
+import sun.plugin.dom.DOMObject;
 
 import java.util.List;
 
@@ -17,9 +19,9 @@ public interface UserService {
     public boolean takeOrder(String player,String game);//下单
     public boolean comment();//评论
 
-    public boolean recharge(String userName, RechargeBean recharge);//充值
-    public boolean addFocous();//添加关注
-    public boolean removeFocous();//移除关注
+    public boolean recharge(RechargeBean recharge,UserBean userBean,double rechargeMoney);//充值
+    public boolean addFocous(String staffName,RelationshipBean relationshipBean);//添加关注
+    public boolean removeFocous(String staffName,RelationshipBean relationshipBean);//移除关注
 
     public List<OrderBean> selectOrders();//查看订单（消费）用户消费
     public List<OrderBean> selectIncome();//查看收入（收入）玩家收入

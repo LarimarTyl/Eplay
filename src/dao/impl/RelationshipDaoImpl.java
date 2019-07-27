@@ -3,6 +3,7 @@ package dao.impl;
 import bean.RelationshipBean;
 import dao.RelationshipDao;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import util.C3P0Util;
 
@@ -37,7 +38,7 @@ public class RelationshipDaoImpl implements RelationshipDao {
     }
 
     @Override
-    public boolean delRelationShip(String userName, RelationshipBean relationship) {
+    public boolean delRelationShip(String staffName, RelationshipBean relationship) {
 
         String sql = "delete from relationship where userID=? and playerID=?";
         try {
@@ -86,5 +87,35 @@ public class RelationshipDaoImpl implements RelationshipDao {
         }
         return null;
     }
+    public int selectStatusById( RelationshipBean relationship){
 
+        String sql="select status from relationship where userid=? and playerid=?";
+        try {
+           relationship=qr.query(sql,new BeanHandler<>(RelationshipBean.class),relationship.getUserID(),relationship.getPlayerID());
+           if (relationship!=null){
+              int status= relationship.getStatus();
+              return status;
+           }
+        } catch (SQLException e) {
+            System.out.println("通过id查询状态异常："+e.getMessage());
+        }
+        return -1;
+    }
+    /*
+    *关注
+    * */
+//    @Override
+//    public boolean updateRelationShipStatus( int id) {
+//        boolean flag=false;
+//        String sql = "update relationship set status=0 where ID=?";
+//        try {
+//          int a=qr.update(sql,  id);
+//            if (a!=0){
+//                flag=true;
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("updateRelationShipStatus异常"+e.getMessage());
+//        }
+//        return flag;
+//    }
 }
