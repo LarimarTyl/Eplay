@@ -269,6 +269,18 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
-
+    @Override
+    public boolean updateMoneyById(UserBean user) {
+        String sql="update user set money=? where id=?";
+        try {
+           int a= qr.update(sql,user.getMoney(),user.getId());
+            if (a!=0){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("修改余额从成功："+e.getMessage());
+        }
+        return false;
+    }
 
 }

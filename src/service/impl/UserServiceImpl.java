@@ -5,7 +5,14 @@ import dao.*;
 import dao.impl.RechargeDaoImpl;
 import service.UserService;
 import bean.OrderBean;
+import bean.RechargeBean;
+import bean.RelationshipBean;
 import bean.UserBean;
+import dao.RechargeDao;
+import dao.UserDao;
+import dao.impl.RechargeDaoImpl;
+import dao.impl.RelationshipDaoImpl;
+import dao.impl.UserDaoImpl;
 import bean.UserBean;
 import service.UserService;
 import util.DateUtil;
@@ -24,12 +31,13 @@ import java.util.concurrent.locks.LockSupport;
  * time on 2019/7/26  14:33
  */
 public class UserServiceImpl implements UserService {
-    OrderDao orderDao = null;
-    UserDao userDao = null;
-    MessageDao messageDao = null;
-    PlayerDao playerDao = null;
-    LoveGameDao loveGameDao = null;
-    RelationshipDao relationshipDao = null;
+    UserDao userDao;
+    RechargeDao rechargeDao;
+    RelationshipDao relationshipDao;
+    OrderDao orderDao;
+    MessageDao messageDao;
+    PlayerDao playerDao;
+    LoveGameDao loveGameDao;
 
     public UserServiceImpl() {
         orderDao = Factory.getInstance("orderDao", OrderDao.class);
@@ -111,6 +119,8 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+
+
     /**
      * 有了订单才可以评论
      *
@@ -119,23 +129,58 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean comment(OrderBean order) {
-        OrderDao orderDao = Factory.getInstance("orderDao", OrderDao.class);
-        orderDao.upDateOrder(order);
         return false;
     }
 
+    /*
+     * 充值方法
+     * */
     @Override
-    public boolean recharge() {
-        return false;
+    public boolean recharge(RechargeBean recharge, UserBean user, double rechargeMoney) {
+        boolean flag = false;
+        double money = userDao.selectMoneyById(user.getId());//先查询账户余额
+        rechargeDao.saveRecharge(rechargeMoney, recharge);//插入一条充值记录
+        double money1 = rechargeDao.selectMoneyById(user.getId());//查找充值表中的金额
+        user.setMoney(money + money1);//User对象里将money修改
+        if (userDao.updateMoneyById(user) == true) {
+            System.out.println("充值成功");
+            flag = true;
+        } else {
+            System.out.println("充值失败");
+        }
+        return flag;
     }
 
+    /*
+     *增加关注
+     * */
     @Override
-    public boolean addFocous() {
-        return false;
+    public boolean addFocous(String staffName, RelationshipBean relationship) {
+        int status = relationshipDao.selectStatusById(relationship.getUserID());//先查询是否被关注
+        if (status == 0) {
+            System.out.println("已关注");
+            return true;
+        } else {
+            relationship.setStatus(0);//将其设置为关注状态
+            boolean flag = relationshipDao.updateRelationShip(staffName, relationship);
+            System.out.println("将其添加为关注状态：" + flag);
+            return flag;
+        }
     }
 
+    /*
+     * 移除关注
+     * */
     @Override
-    public boolean removeFocous() {
+    public boolean removeFocous(String staffName, RelationshipBean relationship) {
+        int status = relationshipDao.selectStatusById(relationship.getUserID());//先查询是否被关注
+        if (status == 0) {
+            System.out.println("已关注");
+            relationshipDao.delRelationShip(staffName, relationship);
+            return true;
+        } else {
+            System.out.println("你未关注该陪玩");
+        }
         return false;
     }
 

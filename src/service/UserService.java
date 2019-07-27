@@ -1,6 +1,10 @@
 package service;
 
-
+import bean.OrderBean;
+import bean.RechargeBean;
+import bean.RelationshipBean;
+import bean.UserBean;
+import sun.plugin.dom.DOMObject;
 import bean.*;
 
 import java.util.List;
@@ -11,22 +15,16 @@ import java.util.List;
  */
 public interface UserService {
     public boolean regiser(String name, String passWord, String phone, String qq, String code);//注册
-
     public boolean login(String name, String passWord, String code);//登录
 
     public boolean takeOrder(UserBean user, PlayerBean player, OrderBean order);//下单
-
-    public boolean addMyOrder(OrderBean order);//下单
-
-    public boolean delOrder(OrderBean order);//下单
-
+    public boolean delOrder(OrderBean order);//删除订单
+    public boolean addMyOrder(OrderBean order);//添加订单
     public boolean comment(OrderBean order);//评论
 
-    public boolean recharge();//充值
-
-    public boolean addFocous();//添加关注
-
-    public boolean removeFocous();//移除关注
+    public boolean recharge(RechargeBean recharge,UserBean userBean,double rechargeMoney);//充值
+    public boolean addFocous(String staffName,RelationshipBean relationshipBean);//添加关注
+    public boolean removeFocous(String staffName,RelationshipBean relationshipBean);//移除关注
 
     public List<OrderBean> selectOrders(String userName);//查看订单（消费）用户消费
     public List<OrderBean> selectIncome(String player);//查看收入（收入）玩家收入
