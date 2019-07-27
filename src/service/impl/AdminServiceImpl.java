@@ -1,6 +1,5 @@
 package service.impl;
 
-import bean.OrderBean;
 import bean.PlayerBean;
 import bean.UserBean;
 import dao.OrderDao;
@@ -44,13 +43,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<OrderBean> listTopPricePlayers() {
+    public List<PlayerBean> listTopPricePlayers() {
 
         return null;
     }
 
     @Override
-    public List<OrderBean> listTopOrderPlayers() {
+    public List<PlayerBean> listTopOrderPlayers() {
         return null;
     }
 }

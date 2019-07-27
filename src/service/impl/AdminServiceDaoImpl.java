@@ -5,7 +5,6 @@ import bean.UserBean;
 import dao.UserDao;
 import service.AdminService;
 import util.Factory;
-
 import java.util.List;
 
 /**
