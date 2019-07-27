@@ -5,7 +5,6 @@ import dao.UserDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.junit.Test;
 import util.C3P0Util;
 
 import java.sql.SQLException;
@@ -57,6 +56,22 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+/**
+* @author zwd
+* */
+    @Override
+    public UserBean loginCheck(String loginName, String loginPwd) {
+        String sql="select * from user where (loginName=? or staffNumber=?) and loginPwd=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName,loginName,loginPwd);
+            System.out.println("登录验证成功");
+            return userBean;
+        } catch (SQLException e) {
+            System.out.println("登录验证失败");
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public UserBean selectUserByCode(UserBean user) {
@@ -94,6 +109,46 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    @Override
+    public UserBean selectUserByLoginName(String loginName) {
+        String sql="select * from user where loginName=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName);
+            return userBean;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+    * @author zwd
+     */
+    @Override
+    public int selectRegisterStatusByLoginName(String loginName) {
+        String sql="select * from user where loginName=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName);
+            return userBean.getRegisterStatus();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    /**
+     * @author zwd
+     */
+    @Override
+    public int selectStatusByStaffNumber(String staffNumber) {
+        String sql="select * from user where staffNumber=?";
+        try {
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),staffNumber);
+            return userBean.getStatus();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
     @Override
     public List<UserBean> selectAllUser() {
         String sql="select * from user";
@@ -142,7 +197,8 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+
+                  return null;
     }
 
     @Override
@@ -200,10 +256,6 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
         }
-
-
-
-
 
     @Override
     public List<UserBean> pageUsersByStatus(int status, int currentPage, int pageSize) {
