@@ -1,4 +1,4 @@
-package test.testservice;
+package test;
 
 import bean.OrderBean;
 import bean.PlayerBean;

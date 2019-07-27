@@ -2,7 +2,6 @@ package service.impl;
 
 import bean.*;
 import dao.*;
-import dao.impl.RechargeDaoImpl;
 import service.UserService;
 import bean.OrderBean;
 import bean.RechargeBean;
@@ -10,25 +9,12 @@ import bean.RelationshipBean;
 import bean.UserBean;
 import dao.RechargeDao;
 import dao.UserDao;
-import dao.impl.RechargeDaoImpl;
-import dao.impl.RelationshipDaoImpl;
-import dao.impl.UserDaoImpl;
-import bean.UserBean;
-import service.UserService;
-import util.DateUtil;
 import util.Factory;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.locks.LockSupport;
 
 /**
- * Create by czq
- * time on 2019/7/26  14:33
+ * @author Larimar
+ * @time 2019/7/26 星期五 14:38
  */
 public class UserServiceImpl implements UserService {
     UserDao userDao;
@@ -46,15 +32,52 @@ public class UserServiceImpl implements UserService {
         playerDao = Factory.getInstance("playerDao", PlayerDao.class);
         loveGameDao = Factory.getInstance("loveGameDao", LoveGameDao.class);
         relationshipDao = Factory.getInstance("relationshipDao", RelationshipDao.class);
+        rechargeDao = Factory.getInstance("rechargeDao",RechargeDao.class);
     }
 
+    /**
+     *
+     * @param register
+     * @param code
+     * @author tyl
+     * @return
+     */
     @Override
-    public boolean regiser(String name, String passWord, String phone, String qq, String code) {
+    public boolean regiser(UserBean register,String code) {
+        boolean b = userDao.saveUser(register);
+        UserBean userBean = userDao.selectUserByCode(register);
+        if (userBean.getRegisterStatus()!=1){
+            /*验证过程*/
+            if (code==userBean.getCode()){
+                userBean.setRegisterStatus(1);
+                boolean b1 = userDao.updateUser(userBean);
+                if (b1){
+                    System.out.println("注册并激活成功");
+                    return true;
+                }else {
+                    System.out.println("激活失败");
+                    return false;
+                }
+            }
+        }
         return false;
     }
 
+    /**
+     *
+     * @param name
+     * @param passWord
+     * @param code
+     * @author tyl
+     * @return
+     */
     @Override
     public boolean login(String name, String passWord, String code) {
+        UserBean selectUserByName = userDao.selectUserByName(name);
+        if (selectUserByName!=null){
+        }else {
+            System.out.println("用户名或密码错误（用户名不存在）");
+        }
         return false;
     }
 

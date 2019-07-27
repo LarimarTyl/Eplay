@@ -1,6 +1,5 @@
 package dao;
 
-import bean.RechargeBean;
 import bean.RelationshipBean;
 
 import java.util.List;

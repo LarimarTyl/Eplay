@@ -2,32 +2,24 @@ package service.impl;
 
 import bean.PlayerBean;
 import bean.UserBean;
-import dao.OrderDao;
-import dao.PlayerDao;
 import dao.UserDao;
 import service.AdminService;
 import util.Factory;
-
 import java.util.List;
 
 /**
- * @author Mr Wu
- * @create: 2019-07-26 15:34
+ * @author Larimar
+ * @time 2019/7/26 星期五 15:50
  */
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceDaoImpl implements AdminService {
 
 
-    private OrderDao orderDao;
-    private UserDao userDao;
-    private PlayerDao playerDao;
-
-    public AdminServiceImpl(){
-        orderDao= Factory.getInstance("orderDao",OrderDao.class);
-        userDao=Factory.getInstance("userDao",UserDao.class);
-        playerDao=Factory.getInstance("playerDao",PlayerDao.class);
-    }
+    /**
+    *@author Larimar
+    */
     @Override
     public List<UserBean> selectTopSpentUser() {
+        UserDao userDao = Factory.getInstance("userDao",UserDao.class);
         List<UserBean> userBeans = userDao.selectUsersBySpend();
         return userBeans;
     }
@@ -44,7 +36,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<PlayerBean> listTopPricePlayers() {
-
         return null;
     }
 

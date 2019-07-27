@@ -203,7 +203,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<UserBean> selectUsersBySpend() {
-        String sql="select * from user order by price desc";
+        String sql="select * from user order by price desc limit 0,10";
         try {
             List<UserBean> list=qr.query(sql,new BeanListHandler<>(UserBean.class));
             return list;
