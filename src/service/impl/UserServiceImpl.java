@@ -31,16 +31,13 @@ import java.util.concurrent.locks.LockSupport;
  * time on 2019/7/26  14:33
  */
 public class UserServiceImpl implements UserService {
-    UserDaoImpl userDao;
-    RechargeDaoImpl rechargeDao;
-    RelationshipDaoImpl relationshipDao;
-
-    OrderDao orderDao = null;
-    UserDao userDao = null;
-    MessageDao messageDao = null;
-    PlayerDao playerDao = null;
-    LoveGameDao loveGameDao = null;
-    RelationshipDao relationshipDao = null;
+    UserDao userDao;
+    RechargeDao rechargeDao;
+    RelationshipDao relationshipDao;
+    OrderDao orderDao;
+    MessageDao messageDao;
+    PlayerDao playerDao;
+    LoveGameDao loveGameDao;
 
     public UserServiceImpl() {
         orderDao = Factory.getInstance("orderDao", OrderDao.class);
@@ -122,6 +119,8 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+
+
     /**
      * 有了订单才可以评论
      *
@@ -129,7 +128,7 @@ public class UserServiceImpl implements UserService {
      * @author czq
      */
     @Override
-    public boolean comment() {
+    public boolean comment(OrderBean order) {
         return false;
     }
 
@@ -157,7 +156,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public boolean addFocous(String staffName, RelationshipBean relationship) {
-        int status = relationshipDao.selectStatusById(relationship);//先查询是否被关注
+        int status = relationshipDao.selectStatusById(relationship.getUserID());//先查询是否被关注
         if (status == 0) {
             System.out.println("已关注");
             return true;
@@ -174,7 +173,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public boolean removeFocous(String staffName, RelationshipBean relationship) {
-        int status = relationshipDao.selectStatusById(relationship);//先查询是否被关注
+        int status = relationshipDao.selectStatusById(relationship.getUserID());//先查询是否被关注
         if (status == 0) {
             System.out.println("已关注");
             relationshipDao.delRelationShip(staffName, relationship);

@@ -75,6 +75,21 @@ public class RelationshipDaoImpl implements RelationshipDao {
     }
 
     @Override
+    public int selectStatusById(int userId) {
+        String sql="select u.loginName as userName,u1.playName,u.photoPath,r.id,r.playerID,r.userID,r.status,g.gameName,p.introduce,p.picPath from user as u,gamelist as g,player as p, relationship as r,(select u2.loginName as playName,u2.id as id_2 from user as u2 where status=3) as u1 where g.id=p.gameID and r.playerID=p.id and p.playerID=u1.id_2 and u.id=r.userID and r.userID=?";
+        try {
+            RelationshipBean query = qr.query(sql, new BeanHandler<RelationshipBean>(RelationshipBean.class), userId);
+            if (query!=null){
+                return  query.getStatus();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
     public List<RelationshipBean> selectAllRelationshipByStatus(String username, int status) {
         String sql = " select u.loginName as userName,u1.playName,u.photoPath,r.id,r.playerID,r.userID,r.status,g.gameName,p.introduce,p.picPath from user as u,gamelist as g,player as p, relationship as r,(select u2.loginName as playName,u2.id as id_2 from user as u2 where status=3) as u1 where g.id=p.gameID and r.playerID=p.id and p.playerID=u1.id_2 and u.id=r.userID and r.status=? and u.loginName=?";
         List<RelationshipBean> result;

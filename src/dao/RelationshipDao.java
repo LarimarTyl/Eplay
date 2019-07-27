@@ -24,4 +24,5 @@ public interface RelationshipDao {
      * @return 集合
      * */
     public RelationshipBean selectRelationshipByStatus(String username,String playerName,int status);
+    public int selectStatusById (int userId);
 }
