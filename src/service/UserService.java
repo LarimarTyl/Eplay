@@ -18,7 +18,7 @@ public interface UserService {
      * @param code 注册码
      * @return 返回注册状态
      */
-    public boolean regiser(UserBean register, String code);
+    public boolean register(UserBean register, String code);
 
     /**
      * 判断用户是否激活

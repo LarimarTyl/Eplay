@@ -43,12 +43,12 @@ public class UserServiceImpl implements UserService {
      * @return 注册结果
      */
     @Override
-    public boolean regiser(UserBean register,String code) {
+    public boolean register(UserBean register,String code) {
         boolean b = userDao.saveUser(register);
-        UserBean userBean = userDao.selectUserByCode(register);
+        UserBean userBean = userDao.selectUserByCode(code);
         if (userDao.selectRegisterStatusByLoginName(register.getLoginName())!=1){
             /*验证过程*/
-            if (code==userBean.getCode()){
+            if (code.equalsIgnoreCase(register.getCode())){
                 userBean.setRegisterStatus(1);
                 boolean b1 = userDao.updateUser(userBean);
                 if (b1){
