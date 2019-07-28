@@ -128,21 +128,4 @@ public class RelationshipDaoImpl implements RelationshipDao {
         }
         return -1;
     }
-    /*
-    *关注
-    * */
-//    @Override
-//    public boolean updateRelationShipStatus( int id) {
-//        boolean flag=false;
-//        String sql = "update relationship set status=0 where ID=?";
-//        try {
-//          int a=qr.update(sql,  id);
-//            if (a!=0){
-//                flag=true;
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("updateRelationShipStatus异常"+e.getMessage());
-//        }
-//        return flag;
-//    }
 }

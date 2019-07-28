@@ -74,10 +74,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserBean selectUserByCode(UserBean user) {
+    public UserBean selectUserByCode(String code) {
         String sql="select * from user where code=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),user.getCode());
+            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),code);
             return userBean;
         } catch (SQLException e) {
             e.printStackTrace();

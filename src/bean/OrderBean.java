@@ -23,6 +23,7 @@ public class OrderBean {
     private int poitns;//评分
     private String appraise;//客户评论
     private String remark;//备注
+    private int status;//订单状态
 
     public OrderBean() {
     }
@@ -194,20 +195,33 @@ public class OrderBean {
         this.payWay = payway;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "OrderBean{" +
                 "id=" + id +
+                ", gameID=" + gameID +
                 ", gameName='" + gameName + '\'' +
+                ", userID=" + userID +
                 ", staffName='" + staffName + '\'' +
+                ", playerID=" + playerID +
                 ", playerName='" + playerName + '\'' +
                 ", contact='" + contact + '\'' +
-                ", starttime=" + starttime +
-                ", endtime=" + endtime +
+                ", payWay=" + payWay +
+                ", starttime='" + starttime + '\'' +
+                ", endtime='" + endtime + '\'' +
                 ", price=" + price +
                 ", poitns=" + poitns +
                 ", appraise='" + appraise + '\'' +
                 ", remark='" + remark + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
