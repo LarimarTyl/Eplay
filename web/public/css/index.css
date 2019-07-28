@@ -3,7 +3,7 @@ a,div,p{
     margin: 0;
 }
 body{
- background-color: #E9ECF3;
+ background-color: #F9F9F9;
 }
 .top .navbar-default{
     background-color: #FFFFFF;
@@ -51,6 +51,9 @@ body{
     border-bottom: 5px solid salmon; 
 }
 /* 更改初始设置 */
+/* .container{
+    width: 70%;
+} */
 .search{
     line-height: 60px;
 }
@@ -104,9 +107,9 @@ body{
 }
 
 /* 轮播图样式 */
-.slider{
+.slider-item{
     padding: 40px;
-    height: 500px;
+    height: 400px;
     background-image: url(../img/bg/bg-slider.jpg)
 }
 .carousel-inner img{
@@ -132,22 +135,25 @@ body{
 }
 /* 主要内容样式 */
 .player{
-    margin-top:200px; 
+    margin-top:20px; 
 
 }
+.player .navbar{
+    border: none;
+}
 .navbar-default{
- background-color: #E9ECF3
+ background-color: #F9F9F9
 }
 /* 陪玩信息 */
 /* 二级菜单 */
-.label {
+.player .player-top .label {
     display: inline;
     padding: .3em .6em .3em;
     font-size: 75%;
     font-weight: bold;
     line-height: 1;
     color: #363636;;
-    background-color:#E9ECF3; 
+    background-color:#F9F9F9; 
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
@@ -169,7 +175,7 @@ body{
 }
 /* 玩家信息样式 */
 .thumbnail{
-    background-color: #E9ECF3;
+    background-color: #F9F9F9;
 }
 .player-info .thumbnail {
     transition: all 0.2s ease 0s;
@@ -197,6 +203,60 @@ body{
     margin: 0px;
     color: salmon;
 }
+/* 新秀陪玩 */
+.newPlayer{
+    background-color: #F9F9F9;
+}
+.newPlayer h3,.rank h3{
+    border-left: 5px salmon solid;
+    color: #969494;
+    text-indent: 10px;
+    margin-left:10px; 
+}
+.newPlayer .nav > li > a:hover,.newPlayer .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #F9F9F9;
+}
+.newPlayer .nav {
+    margin-bottom: 40px; 
+}
+.newPlayer .play-info{
+    position: relative;
+    text-align: center;
+    padding: 10px;
+}
+
+.newPlayer .player-icon{
+    width: 100px;
+    border-radius:100%;
+}
+.newPlayer .player-icon:hover{
+    background: none;
+}
+.newPlayer .label{
+    width: 50px;
+    margin:0 5px;
+}
+.label-pink{
+    background-color: #E7778D;
+}
+.newPlayer .userName{
+    font-size: 15px;
+    color: #363636;
+    line-height: 30px;
+    text-align: center;
+    height: 40px;
+    margin:0 5px;
+}
+.newPlayer .info .age{
+    float: right;
+    font-weight: bold;
+}
+.newPlayer .info .address{
+    background-color: gray;
+    float: left;
+}
+
 /* 开黑信息 样式 */
 .together .nav li a{
     margin-bottom: 25px;
@@ -230,4 +290,126 @@ body{
     font-size: 15px;
     color: #969494f5;
     
+}
+.together{
+    margin-bottom: 50px;
+}
+/* 排行榜样式 */
+.rank{
+    height: 300px;
+}
+.rank .title{
+    list-style: none;
+    display: block;
+    width: 100%;
+}
+.rank-item{
+    background-color: #FFFFFF
+    /* background-color: #E7778D */
+}
+.rank-list{
+    text-align: center;
+    font-size: 25px;
+    line-height: 60px;
+    color: salmon;
+    margin-bottom: 20px;
+}
+.rank-item .best{
+    height: 150px;
+    margin-bottom:20px; 
+}
+.rank-item .best img{
+    width: 150px;
+    border-radius:10px; 
+}
+.best .first{
+    position: relative;
+    float: left;
+    left: 20px;
+}
+.best .second{
+    position: relative;
+    right: 25px;
+    float: right;
+}
+.rank .rank-items{
+    padding-left:20px; 
+    height: 110px;
+    margin: 0;
+    padding: 10px 0px; 
+    border-bottom: dashed 1px salmon;
+}
+.rank .rank-items>img{
+    width: 90px;
+    margin-left: 25px;
+    border-radius:10px; 
+}
+.rank .rank-items span{
+    display:  inline-block;
+   
+}
+.rank .rank-items .info{
+    position: absolute;
+    padding-left: 10px; 
+    height: 100px;
+    font-size: 15px;
+}
+.name{
+    position: relative; 
+    top: 10px;
+    color: #969494
+}
+.level{
+    position: relative; 
+    top: 40px;
+}
+.rank .rank-items .number{
+    position: absolute;
+    right: 25px;
+    font-size: 15px;
+}
+.rank .rank-items .number .age{
+    position: relative; 
+    top: 10px;
+    float: right;
+}
+.rank .rank-items .number .count{
+    position: relative; 
+    top: 40px;
+    color: #969494;
+}
+/* 尾部信息 */
+.foot{
+    margin-top: 50px;
+}
+.help_box,.foot{
+    background-color: #535353;
+    text-align: center;
+    padding: 20px;
+}
+.foot .help_box .pic{
+    padding: 30px;
+    text-align: center;
+}
+.foot .help_box .font{
+    margin-left: 21%;
+    padding-bottom: 20px;
+}
+.foot .help_box .fl{
+    float: left;
+    font-size: 18px;
+    color: #969494;
+}
+.font .ml40{
+    padding-left: 30px;
+}
+.font  .ml40 a{
+    border: #969494 1px solid;
+    width: 100px;
+    background-color: #363636;
+    margin:0 20px;
+}
+.foot-info{
+    margin-top: 20px;
+    color: #969494;
 }
