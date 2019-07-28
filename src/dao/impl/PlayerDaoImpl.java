@@ -1,5 +1,6 @@
 package dao.impl;
 
+import bean.OrderBean;
 import bean.PlayerBean;
 import dao.PlayerDao;
 import org.apache.commons.dbutils.QueryRunner;
@@ -297,5 +298,41 @@ public class PlayerDaoImpl implements PlayerDao {
             e.printStackTrace();
         }
         return player;
+    }
+
+    @Override
+    public List<PlayerBean> selectNewPlayers() {
+        String sql = "SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,gameLeve,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level` order by player.id desc limit 10";
+        try {
+            List<PlayerBean> query = qr.query(sql, new BeanListHandler<PlayerBean>(PlayerBean.class));
+            if (query.size()>0){
+                System.out.println("查询到新秀玩家");
+                return  query;
+            }else {
+                System.out.println("没有查到新秀玩家");
+                return  null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    @Override
+    public int selectPlayerStatus(int id) {
+        String sql = "SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,gameLeve,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level` and player.playerID=?";
+        try {
+            PlayerBean query = qr.query(sql, new BeanHandler<PlayerBean>(PlayerBean.class));
+            if (query!=null){
+                System.out.println("查到了该玩家信息");
+                return query.getStatus();
+            }else {
+                System.out.println("该玩家信息不存在");
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

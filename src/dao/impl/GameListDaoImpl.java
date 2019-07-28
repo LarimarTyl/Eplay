@@ -20,6 +20,11 @@ public class GameListDaoImpl implements GameListDao {
     public GameListDaoImpl() {
         qr = new QueryRunner(C3P0Util.getDs());
     }
+
+    /**
+     * @param game 游戏列表对象（用于保存）
+     * @return 保存状态
+     */
     @Override
     public boolean saveGameList(GameListBean game) {
         boolean flag = false;

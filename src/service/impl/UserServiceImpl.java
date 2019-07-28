@@ -37,16 +37,16 @@ public class UserServiceImpl implements UserService {
 
     /**
      *
-     * @param register
-     * @param code
+     * @param register 注册用户对象
+     * @param code 注册码
      * @author tyl
-     * @return
+     * @return 注册结果
      */
     @Override
     public boolean regiser(UserBean register,String code) {
         boolean b = userDao.saveUser(register);
         UserBean userBean = userDao.selectUserByCode(register);
-        if (userBean.getRegisterStatus()!=1){
+        if (userDao.selectRegisterStatusByLoginName(register.getLoginName())!=1){
             /*验证过程*/
             if (code==userBean.getCode()){
                 userBean.setRegisterStatus(1);
@@ -63,30 +63,52 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    /**
-     *
-     * @param name
-     * @param passWord
-     * @param code
-     * @author tyl
-     * @return
-     */
     @Override
-    public boolean login(String name, String passWord, String code) {
-        UserBean selectUserByName = userDao.selectUserByName(name);
-        if (selectUserByName!=null){
-        }else {
-            System.out.println("用户名或密码错误（用户名不存在）");
+    public boolean isExcit(UserBean register) {
+        UserBean selectUserByName = userDao.selectUserByLoginName(register.getLoginName());
+        if (selectUserByName!=null) {
+            System.out.println("该账号已经存在");
+            return true;
+        }
+        System.out.println("该账号不存在");
+        return false;
+    }
+
+    @Override
+    public boolean isActive(UserBean register) {
+        int i = userDao.selectRegisterStatusByLoginName(register.getLoginName());
+        if (i==1){
+            System.out.println("已经激活");
+            return true;
         }
         return false;
     }
 
     /**
+     *登录校验：先校验用户是否存在 再校验是否激活 再校验账号密码
+     * @param name 用户名或登录名
+     * @param passWord 用户登录密码
+     * @param code 验证码
+     * @author tyl
+     * @return 返会登录状态
+     */
+    @Override
+    public boolean login(String name, String passWord, String code) {
+            if (userDao.loginCheck(name, passWord) != null) {
+                System.out.println("登录成功");
+                return true;
+            } else {
+                System.out.println("用户名或密码错误");
+                return false;
+            }
+    }
+    /**
      * 订单
      *
-     * @param player
-     * @param
-     * @return
+     * @param user 用户
+     * @param player 玩家
+     * @param order 订单对象
+     * @return 下单状态
      * @author czq
      */
     @Override
@@ -108,8 +130,8 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param order
-     * @return
+     * @param order 订单对象
+     * @return 返回添加状态（是否成功）
      * @author czq
      */
     @Override
@@ -131,8 +153,8 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param order
-     * @return
+     * @param order 订单对象
+     * @return 删除状态
      * @author czq
      */
     @Override
@@ -146,13 +168,14 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 有了订单才可以评论
-     *
-     * @return
+     * @param order 订单对象
+     * @return 评论对象
      * @author czq
      */
     @Override
     public boolean comment(OrderBean order) {
-        return false;
+
+        return orderDao.saveOrder(order);
     }
 
     /*
@@ -227,9 +250,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean bePlayer(UserBean userBean, PlayerBean playerBean) {
+        System.out.println("提交审核申请，改变状态待审核");
+        userBean.setStatus(2);
         userDao.updateUser(userBean);
-        boolean flag = playerDao.savePlayer(playerBean);
-        return flag;
+        return playerDao.savePlayer(playerBean);
     }
 
     @Override
