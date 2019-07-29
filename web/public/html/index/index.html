@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="mar">|</li>
-                <li class="nav_item userinfo">
+                <li class="nav_item userinfo" style="display: none">
                     <a href="">
                         <div class="img"><img src="../../img/user/user.JPEG" alt="" width="60px"
                                 style="border-radius:50% ">
@@ -97,6 +97,9 @@
                             <p class="name">Larimar</p>
                         </div>
                     </a>
+                </li>
+                <li class="nav_item login-rigster">
+                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
                 </li>
                 <li class="nav_item">
                     <a href="">退出</a>
@@ -804,6 +807,105 @@
                 Reserved</div>
         </div>
     </div>
+    <!-- 注册登录模块框 -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                          <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#home" aria-controls="login" role="tab" data-toggle="tab">登录</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#tab" aria-controls="register" role="tab" data-toggle="tab">注册</a>
+                                </li>
+                            </ul>
+                          </div>
+                        </h4>
+                   </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="modal-body">
+                            <form class="form-horizontal" id="user_form" >
+                                <div class="form-group">
+                                    <label for="new_loginName" class="col-sm-2 control-label">账号</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="new_loginName" placeholder="账号" name="loginName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_loginPwd" class="col-sm-2 control-label">密码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="new_loginPwd" placeholder="密码" name="loginPwd">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login_code" class="col-sm-2 control-label">验证码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="login_code" placeholder="验证码" name="code">
+                                        <img src="code" onclick="changeCode()"/><a href="javascript:changeCode()" >看不清换一张</a><br>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="loginUser()">登录</button>
+                        </div></div>
+                        <div role="tabpanel" class="tab-pane" id="tab"><div class="modal-body">
+                            <form class="form-horizontal" id="register_user_form" >
+                                <div class="form-group">
+                                    <label for="register_loginName" class="col-sm-2 control-label">账号</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="register_loginName" placeholder="账号" name="loginName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register_loginPwd" class="col-sm-2 control-label">密码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="register_loginPwd" placeholder="密码" name="loginPwd">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register_gender" class="col-sm-2 control-label">性别</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="register_gender" placeholder="性别" name="gender">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register_email" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="register_email" placeholder="Email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register_telephone" class="col-sm-2 control-label">电话</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="register_telephone" placeholder="电话" name="telephone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register_QQ" class="col-sm-2 control-label">QQ</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="register_QQ" placeholder="QQ账号" name="QQ">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="registerUser()">注册</button>
+                        </div>
+                    </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    <!-- 注册登录模块框 -->
 </body>
 
 </html>
