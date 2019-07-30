@@ -1,0 +1,156 @@
+a,div,p{
+    padding: 0;
+    margin: 0;
+}
+body{
+ background-color: #F9F9F9;
+}
+.top .navbar-default{
+    background-color: #FFFFFF;
+}
+.top-item{
+    height: 80px;
+
+}
+.logo{
+    padding-left: 80px;
+    padding-top:10px;
+}
+.top-item .font{
+    padding-top: 10px;
+}
+.title{
+    font-size: 35px;
+}
+.font{
+    font-size: 15px;
+}
+/* 导航区域 */
+
+.navbar-nav{
+    font-size: 20px;
+}
+.nav-item a{
+    height: 60px;
+    padding: 0;
+    margin: 0 20px;
+}
+
+/* 更改初始设置 */
+.navbar-nav li>a{
+    line-height: 60px;
+    padding:0 10px;
+    margin: 10px;
+}
+.navbar-default .navbar-nav > .actived > a, .navbar-default .navbar-nav > .actived > a:hover, .navbar-default .navbar-nav > .actived > a:focus {
+    color:salmon;
+    border-bottom: 5px solid salmon; 
+}
+.actived a{
+    color: salmon;
+    border-bottom: 5px solid salmon; 
+}
+/* 更改初始设置 */
+/* .container{
+    width: 70%;
+} */
+.search{
+    line-height: 60px;
+}
+.navbar-form,.navbar-form .form-control {
+    width: 350px;
+}
+.form-group,.form-group input{
+    width: 100%;
+    place-content: center;
+}
+.form-control{
+    border-radius: 34px;
+}
+.top-right{
+    line-height: 60px; 
+    text-align: center;
+    padding-top: 10px;
+    font-size: 25px;
+}
+.top-right .font{
+    font-size: 15px;
+    padding: 5px;
+}
+.mar {
+    font-size: 25px;
+    font-weight: lighter;
+    padding-top: 25px;
+    color: #969494f5;
+}
+/* 用户信息样式 */
+.userinfo{
+    padding-left: 20px;
+}
+.userinfo .img{
+    float: left;
+    padding-right: 10px;
+}
+.userinfo .info{
+    float: right;
+    padding-left:10px; 
+    line-height: 30px  
+}
+.userinfo .leve{
+    font-size: 20px;
+}
+.userinfo .name{
+    font-size: 20px;
+}
+.login-rigster{
+    margin-top: 20px;
+}
+.top-item{
+    margin-bottom:0px; 
+}
+/* 尾部信息 */
+.foot{
+    margin-top: 50px;
+}
+.help_box,.foot{
+    background-color: #535353;
+    text-align: center;
+    padding: 20px;
+}
+.foot .help_box .pic{
+    padding: 30px;
+    text-align: center;
+}
+.foot .help_box .font{
+    margin-left: 21%;
+    padding-bottom: 20px;
+}
+.foot .help_box .fl{
+    float: left;
+    font-size: 18px;
+    color: #969494;
+}
+.font .ml40{
+    padding-left: 30px;
+}
+.font  .ml40 a{
+    border: #969494 1px solid;
+    width: 100px;
+    background-color: #363636;
+    margin:0 20px;
+}
+.foot-info{
+    margin-top: 20px;
+    color: #969494;
+}
+/* 模态框注册登录位置 */
+.form-group .code{
+    position: relative;
+    top: -30px;
+    right: -190px;
+    width: 180px;
+}
+.form-group .code a{
+    line-height: 10px;
+    padding-left: 10px;
+}

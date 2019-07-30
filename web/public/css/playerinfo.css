@@ -102,6 +102,9 @@ body{
 .userinfo .name{
     font-size: 20px;
 }
+.login-rigster{
+    margin-top: 20px;
+}
 .top-item{
     margin-bottom:0px; 
 }
@@ -131,6 +134,9 @@ body{
 .playerinfo .info{
     position: relative;
     float: left;
+
+
+    
     top: 20px;
     left: 5px;
 }
@@ -160,13 +166,162 @@ body{
 }
 
 /* 主体左边 */
-.left-info,.right-info{
-    height: 1000px;
-    background-color: #F9F9F9
+.left-info{
+    background-color: #F9F9F9;
+    padding: 10px;
 }
 .left-info .big{
     width: 100%;
-    
+}
+.left-info .small{
+    width: 70px;
+}
+.left-info .pic {
+    padding: 5px;
+}
+.left-info .pic ul{
+    padding:0 10px;
+}
+.left-info .pic .left{
+    display:block;
+    position: relative;
+    float: left;
+    top: 35px;
+}
+.left-info .pic .right{
+    display:block;
+    position: relative;
+    float: right;
+    top: 35px;
+}
+.left-info .pic li{
+    text-align: center;
+    list-style: none;
+    width: 60px;
+    float: left;
+    margin: 10px;
+}
+.left-info .info{
+    padding: 10px;
+}
+.left-info .info .top{
+    color:salmon;
+    line-height: 40px;
+    border-bottom: 3px solid salmon; 
+}
+/* 主体右部 */
+.right-info{
+    background-color: #F9F9F9;
+}
+.right-info .nav > li > a {
+    height: 50px;
+    line-height: 30px;
+    color: #555;
+    margin: 0;
+    font-size: 20px;
+}
+/* 清除默认样式 */
+.active{
+    background-color: #fff;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    background-color: #fff;
+    text-decoration: black;
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: none;
+    border-bottom-color: transparent;
+}
+.nav-tabs > li > a:hover {
+    border-color: #fff;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #fff;
+}
+/* 游戏栏 */
+.right-info .nav-tabs{
+    background-color: #CBCBCB;
+}
+.right-info .player-game{
+    padding: 10px;
+    border-bottom: 1px #CBCBCB dashed;
+}
+.right-info .tab-pane{
+    background-color: #fff;
+    padding: 30px;
+}
+/* 顶部游戏图标及段位 */
+.right-info .gameicon{
+    float: left;
+}
+.right-info .top{
+    height: 150px;
+}
+.right-info .gameinfo{
+    position: relative;
+    float: left;
+    padding-left: 20px;
+}
+.gameinfo .lecel span,.gameinfo .acount span{
+    display: block;
+    margin-top: 10px;
+}
+.right-info .order{
+    position: relative;
+    font-size: 20px;
+    padding-top:20px; 
+    position: relative;
+    float: right;
+}
+.right-info .order span{
+    color: salmon;
+    font-size: 30px;
+}
+.right-info .order button{
+    float: right;
+    width: 100px;
+    margin-top:20px; 
+}
+/* 介绍栏 */
+.right-info .introduce h3{
+    margin-top: 10px;
+}
+.right-info .introduce p{
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+}
+/* 评论栏 */
+.right-info .comment h3{
+    position: relative;
+    margin-top: 10px;
+    float: left;
+}
+.right-info .comment .point{
+    position: relative;
+    float: right;
+}
+.right-info .comment .usercommint{
+    margin-top:50px; 
+    padding:0 20px;
+}
+.right-info .comment .usercommint li{
+    margin: 10px;
+    font-size: 18px;
+    padding: 5px;
+    border-bottom: #CBCBCB solid 1px;
+}
+.comment .usercommint .name{
+    font-weight: bolder;
+    font-size: 20px;
+}
+.comment .usercommint .time{
+    display: block;
+    float: right;
+    font-size: 15px;
+    color: #969494;
 }
 /* 主体内容样式 */
 
@@ -202,3 +357,16 @@ body{
     margin-top: 20px;
     color: #969494;
 }
+/* 模态框注册登录位置 */
+.form-group .code{
+    position: relative;
+    top: -30px;
+    right: -190px;
+    width: 180px;
+}
+.form-group .code a{
+    line-height: 10px;
+    padding-left: 10px;
+}
+
+

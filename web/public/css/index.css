@@ -102,6 +102,9 @@ body{
 .userinfo .name{
     font-size: 20px;
 }
+.login-rigster{
+    margin-top: 20px;
+}
 .top-item{
     margin-bottom:0px; 
 }
@@ -412,4 +415,15 @@ body{
 .foot-info{
     margin-top: 20px;
     color: #969494;
+}
+/* 模态框注册登录位置 */
+.form-group .code{
+    position: relative;
+    top: -30px;
+    right: -190px;
+    width: 180px;
+}
+.form-group .code a{
+    line-height: 10px;
+    padding-left: 10px;
 }

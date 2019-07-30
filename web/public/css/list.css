@@ -1,0 +1,207 @@
+/* 主体部分 */
+body{
+    background-color: #F3F3F3;
+}
+.container{
+    width: 70%;
+}
+/* 游戏信息部分 */
+.gamelist{
+    padding-top:30px; 
+}
+.gamelist table{
+    background-color: #fff;
+    border: #F3F3F3 1px solid;
+}
+.gamelist table td{
+    border: #F3F3F3 1px solid;
+}
+.gamelist table tr{
+    border-bottom: #969494f5 1.5px solid;
+}
+.gamelist .title{
+    width: 220px;
+    text-align: center;
+    font-size: 20px;
+      
+}
+.gamelist .games .title{
+    line-height: 120px;
+}
+.gamelist .games li{
+    height: 120px;
+    width: 100px;
+    text-align: center;
+    line-height: 100px;
+    margin:0 15px;
+    font-size: 18px;
+}
+.gamelist .games a{
+    height: 120px;
+    padding: 0 10px;
+}
+.gamelist .games li img{
+    width: 70px;
+}
+.gamelist .games span{
+    position: relative;
+    top:-50px;
+    font-size: 15px;
+}
+/* 等级区域 */
+.levels  .title,.genders .title{
+    line-height: 52px;
+}
+.levels .level,.genders .gender{
+    font-size: 15px;
+    line-height: 60px;
+}
+.levels .level,.genders .gender{
+    padding: 0 15px;
+    width: 150px;
+    line-height: 52px;
+    text-align: center;
+}
+.label-active{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 40px;
+    color: #fff;
+    background-color: salmon;
+    text-align: center;
+    border-radius: 20px;
+}
+.label-select{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 40px;
+    color: #fff;
+    background-color: salmon;
+    text-align: center;
+    border-radius: 20px;
+}
+/* 玩家信息 */
+.player{
+    width: 80%;
+    float: left;
+    margin-left: -15px;
+}
+.thumbnail{
+    background-color: #F9F9F9;
+}
+.player-info .thumbnail .media-body{
+    padding:0px 10px;
+    padding-top:20px; 
+}
+.player-info .thumbnail .media-body .dec{
+    padding-top:5px; 
+}
+.player-info .thumbnail {
+    transition: all 0.2s ease 0s;
+}
+
+/* transition 别放hover里，放到img里，这样移入移出一样缓慢，不然只对hover移上去有缓慢效果 */
+.player-info .thumbnail:hover {
+    transform: scale(1.1);
+    /*transition: all 2s ease-in-out 0s;*/
+}
+.player-info .thumbnail .media-body .game{
+    margin-top:5px; 
+    font-size: 15px;
+    color: #969494f5;
+    float: left;
+}
+.player-info .label{
+    width: 50px;
+    margin:0 5px;
+}
+.label-pink{
+    background-color: #E7778D;
+}
+.player-info .thumbnail .media-body .price{
+    float: right;
+    font-size: 20px;
+    margin-top: 10px;
+    color: salmon;
+}
+/* 排行榜样式 */
+.rank{
+    height: 20%;
+    float: right; 
+}
+.ranks{
+    padding-bottom:30px; 
+}
+.rank .title{
+    list-style: none;
+    display: block;
+    width: 100%;
+}
+.rank-item{
+    background-color: #FFFFFF;
+    width: 270px;
+    /* background-color: #E7778D */
+}
+.rank-list{
+    text-align: center;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    color: salmon;
+    padding:5px;
+}
+.rank .rank-items{
+    padding-left:20px; 
+    height: 80px;
+    margin: 0;
+    padding: 10px 0px; 
+    border-bottom: dashed 1px salmon;
+}
+.rank .rank-items>img{
+    width: 60px;
+    border-radius:100%; 
+    margin-left: 25px; 
+}
+.rank .rank-items span{
+    display:  inline-block;
+   
+}
+.rank .rank-items .info{
+    position: absolute;
+    padding-left: 10px; 
+    height: 100px;
+    font-size: 15px;
+}
+.name{
+    position: relative; 
+    top: 10px;
+    color: #969494
+}
+.rank .rank-items .number{
+    position: absolute;
+    right: 25px;
+    font-size: 15px;
+}
+.rank .rank-items .number .age{
+    position: relative; 
+    top: 10px;
+    float: right;
+}
+.rank .rank-items .number .count{
+    position: relative; 
+    top: 25px;
+    color: #969494;
+}
+/* 文档流还原 */
+.exit{
+    margin-top: 1600px;
+    width: 100%;
+    height: 10px;
+    flex: 1;
+}
