@@ -166,17 +166,21 @@ body{
 }
 
 /* 主体左边 */
-.left-info,.right-info{
-    background-color: #F9F9F9
+.left-info{
+    background-color: #F9F9F9;
+    padding: 10px;
 }
 .left-info .big{
     width: 100%;
 }
 .left-info .small{
-    width: 60px;
+    width: 70px;
 }
 .left-info .pic {
     padding: 5px;
+}
+.left-info .pic ul{
+    padding:0 10px;
 }
 .left-info .pic .left{
     display:block;
@@ -206,6 +210,9 @@ body{
     border-bottom: 3px solid salmon; 
 }
 /* 主体右部 */
+.right-info{
+    background-color: #F9F9F9;
+}
 .right-info .nav > li > a {
     height: 50px;
     line-height: 30px;
@@ -350,3 +357,16 @@ body{
     margin-top: 20px;
     color: #969494;
 }
+/* 模态框注册登录位置 */
+.form-group .code{
+    position: relative;
+    top: -30px;
+    right: -190px;
+    width: 180px;
+}
+.form-group .code a{
+    line-height: 10px;
+    padding-left: 10px;
+}
+
+

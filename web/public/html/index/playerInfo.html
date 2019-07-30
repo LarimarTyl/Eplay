@@ -87,7 +87,6 @@
                         </span>
                     </a>
                 </li>
-                <li class="mar">|</li>
                 <!-- 判断是否登录 显示哪个内容 -->
                 <li class="nav_item userinfo" style="display: none">
                     <a href="">
@@ -332,13 +331,13 @@
                             <form class="form-horizontal" id="user_form" >
                                 <div class="form-group">
                                     <label for="new_loginName" class="col-sm-2 control-label">账号</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="new_loginName" placeholder="账号" name="loginName">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="new_loginPwd" class="col-sm-2 control-label">密码</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="new_loginPwd" placeholder="密码" name="loginPwd">
                                     </div>
                                 </div>
@@ -346,7 +345,9 @@
                                     <label for="login_code" class="col-sm-2 control-label">验证码</label>
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control" id="login_code" placeholder="验证码" name="code">
-                                        <img src="code" onclick="changeCode()"/><a href="javascript:changeCode()" >看不清换一张</a><br>
+                                        <div class="code" style="float: right">
+                                        <img src="../../img/bg/ia_10281.jpg" onclick="changeCode()"/><a href="javascript:changeCode()" >看不清换一张</a><br>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -359,37 +360,37 @@
                             <form class="form-horizontal" id="register_user_form" >
                                 <div class="form-group">
                                     <label for="register_loginName" class="col-sm-2 control-label">账号</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="register_loginName" placeholder="账号" name="loginName">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="register_loginPwd" class="col-sm-2 control-label">密码</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="register_loginPwd" placeholder="密码" name="loginPwd">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="register_gender" class="col-sm-2 control-label">性别</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="register_gender" placeholder="性别" name="gender">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="register_email" class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="register_email" placeholder="Email" name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="register_telephone" class="col-sm-2 control-label">电话</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="register_telephone" placeholder="电话" name="telephone">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="register_QQ" class="col-sm-2 control-label">QQ</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="register_QQ" placeholder="QQ账号" name="QQ">
                                     </div>
                                 </div>
