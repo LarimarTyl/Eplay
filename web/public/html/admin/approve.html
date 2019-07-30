@@ -19,7 +19,7 @@
 			<div class="panel-body">
 				<form class="form-inline" method="get" action="">
 					<div class="form-group">
-						<label for="">申请主播名称</label> 
+						<label for="">申请成为主播用户名称</label>
 						<input type="text" class="form-control" id="" value="" name="">
 					</div>
 					<button type="submit" class="btn btn-primary">查询</button>
@@ -33,7 +33,7 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
                 <td>操作</td>
             </tr>
@@ -44,7 +44,7 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
                 <td>
                     <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="agreeapprove()">同意</a>
@@ -56,7 +56,7 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="agreeapprove()">同意</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="disagreeapprove()">不同意</a>
@@ -67,7 +67,7 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="agreeapprove()">同意</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="disagreeapprove()">不同意</a>
@@ -78,7 +78,7 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="agreeapprove()">同意</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="disagreeapprove()">不同意</a>
@@ -89,7 +89,7 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="agreeapprove()">同意</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="disagreeapprove()">不同意</a>
@@ -97,6 +97,17 @@
             </tr>
         </tbody>
     </table>
+    <div class="col-md-12 text-right">
+        <nav>
+            <ul class="pagination">
+                <li ><a href="#">首页 </a></li>
+                <li ><a href="#">上一页 </a></li>
+                <li><a href="#">1</a></li>
+                <li ><a href="#">下一页</a></li>
+                <li ><a href="#">尾页</a></li>
+            </ul>
+        </nav>
+    </div>
 <script type="text/javascript">
         // 同意成为陪玩人员
         function agreeapprove() {

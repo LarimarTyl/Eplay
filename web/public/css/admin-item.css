@@ -1,6 +1,7 @@
 body{
    background-color: #E9ECF3;
-   border: seagreen solid 1px;
+   border-width: 1px;
+   border-style: solid;
    /*padding: 10px 20px;*/
 }
 h1{
