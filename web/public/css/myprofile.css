@@ -1,0 +1,61 @@
+.head_portrait_box {
+    margin-top: 20px;
+    margin-left: 20px;
+    border-bottom: dotted 2px #d6d7dc;
+    padding-bottom: 50px;
+    width: 97%;
+    height: 152px;
+}
+.head_portrait {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    float: left;
+}
+.portrait_text {
+    font-size: 14px;
+    float: left;
+    margin-left: 48px;
+    margin-top: 24px;
+    color: #666666;
+}
+.portrait_btn {
+    background-color: #5ecfba;
+    width: 172px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.game_ID {
+    font-size: 25px;
+    color: #646464;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.submit_box {
+    margin-top: 30px;
+    width: 230px;
+    margin-left: 180px;
+}
+.submit_box input {
+    width: 230px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #fff;
+    border: none 0;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 80px;
+    background-color: #e87074;
+    height: 50px;
+}
+.gameID_all{
+    padding-left: 300px;
+}
