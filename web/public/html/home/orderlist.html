@@ -22,23 +22,200 @@
         background-color: white;
         margin-left: 30px;
     }
+
+    table {
+        font-size: 20px;
+    }
+
+    .left {
+        margin-left: -36px;
+    }
+
+    .ml {
+        margin-left: 8px;
+    }
+
+    #orderNum {
+        display: none;
+    }
 </style>
 <body class="back">
 <h1>我的订单</h1>
 <hr>
-<nav class="navbar navbar-default navbar-static-top">
-    <ul class="nav nav-tabs navbar-nav">
-        <li class="item">
-            <a href="allorder.html" class="nav-link active" target="order">全部订单</a>
-        </li>
-        <li class="item">
-            <a href="myorder.html" class="nav-link" target="order">我的订单</a>
-        </li>
-    </ul>
-</nav>
-<div class="main">
-    <iframe name="order" frameborder="0" width="100%" height="800px" src="allorder.html"></iframe>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">全部订单</a>
+    </li>
+    <li role="presentation">
+        <a href="#money" aria-controls="money" role="tab" data-toggle="tab">收入订单</a>
+    </li>
+    <li role="presentation">
+        <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">我的订单</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <td>#</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>
+                    <div class="left">
+                        <button type="button" class="btn btn-primary ml">接收</button>
+                        <button type="button" class="btn btn-danger">拒绝</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>
+                    <div class="left">
+                        <button type="button" class="btn btn-primary ml">接收</button>
+                        <button type="button" class="btn btn-danger">拒绝</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="money">
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <td>#</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>
+                    <button type="button" class="btn btn-danger ml">删除</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>
+                    <button type="button" class="btn btn-danger ml">删除</button>
+                </td>
+            </tbody>
+        </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab">
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <td>#</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>
+                    <button id="1" type="button" class="btn btn-primary ml" data-toggle="modal" data-target="#myModal">
+                        评论
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>用户名</td>
+                <td>用户id</td>
+                <td>时间</td>
+                <td>价格</td>
+                <td>备注</td>
+                <td>
+                    <button id="2" type="button" class="btn btn-primary ml" data-toggle="modal" data-target="#myModal">
+                        评论
+                    </button>
+                </td>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    有什么相对陪玩说的，发表一下您的看法吧
+                </h4>
+            </div>
+            <form id="mform" action="">
+                <div class="modal-body">
+                    <input id="orderNum" type="text" name="orderNum">
+                    <textarea cols="30" rows="6"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        提交评论
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 </body>
-
+<script>
+    $(function () {
+        $("#tab").find("button").click(function () {
+            $("#orderNum").val($(this).attr("id"));
+        })
+    })
+</script>
 </html>

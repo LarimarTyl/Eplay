@@ -8,6 +8,10 @@ h1 {
     border-left: 16px solid #F86D5A;
 }
 
+h2 {
+    text-align: center;
+}
+
 .back {
     background-color: white;
     margin-left: 30px;
@@ -130,6 +134,53 @@ button:hover {
     transform: scale(1.1);
 }
 
+.button {
+    transition: all 0.2s ease 0s;
+    background-color: #ff5d23;
+
+    border: none;
+
+    color: white;
+
+    padding: 8px 24px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    display: inline-block;
+
+    font-size: 18px;
+
+    margin: 4px 0px;
+
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+button > span {
+    margin: 6px;
+}
+
 .hideid {
     display: none;
+}
+
+.pbody {
+    margin-top: 50px;
+}
+
+.content {
+    margin: 30px auto;
+    width: 70%;
+    text-indent: 2em;
+    font-size: 20px;
+}
+.time{
+    margin-top: 30px;
+    color: #acacac;
+    text-align: center;
 }

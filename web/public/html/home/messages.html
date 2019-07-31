@@ -15,11 +15,11 @@
 <hr>
 <table border="1" cellspacing="0" rules="rows" frame="void" width="100%">
     <tr class="message icon">
-        <td width="2%" class="mycheck"><a href="messagedisplay.html"><input type="checkbox" value="1" id="checkbox1"
-                                                                            name=""
-                                                                            class="hook"
-                                                                            onclick="">
-            <label for="checkbox1" class="one"></label></a>
+        <td width="2%" class="mycheck"><input type="checkbox" value="1" id="checkbox1"
+                                              name=""
+                                              class="hook"
+                                              onclick="">
+            <label for="checkbox1" class="one"></label>
         </td>
         <td class="hideid">1</td>
         <td width="12%" class="noReader"><span class="reader second">未读</span></td>
@@ -28,11 +28,11 @@
         <td width="20%">2019-7-19</td>
     </tr>
     <tr class="message icon">
-        <td width="4%" class="mycheck"><a href="#"><input type="checkbox" value="1" id="checkbox2"
-                                                          name=""
-                                                          class="hook"
-                                                          onclick="">
-            <label for="checkbox2" class="one"></label></a>
+        <td width="4%" class="mycheck"><input type="checkbox" value="1" id="checkbox2"
+                                              name=""
+                                              class="hook"
+                                              onclick="">
+            <label for="checkbox2" class="one"></label>
         </td>
         <td class="hideid">2</td>
         <td width="10%" class="noReader"><span class="reader second">未读</span></td>
@@ -64,7 +64,8 @@
 
 
         $(".icon>.mycheck").siblings().click(function () {
-            alert($(this).siblings(".hideid").text());
+            // alert($(this).siblings(".hideid").text());
+            window.location.href = "messagedisplay.html";
         })
 
         // //未读标志和未读数量
@@ -110,6 +111,7 @@
             $(".hook").each(function () {
                 if ($(this).prop("checked")) {
                     $(this).parents(".message").remove();
+                    // alert($(this).parent().next(".hideid").text()); //ajax去数据库真正删除数据
                     var i = parseInt($(".reader").eq(0).text());
                     if (i > 1) {
                         $(".reader").eq(0).text(i - 1);
