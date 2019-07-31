@@ -56,6 +56,7 @@ body{
 } */
 .search{
     line-height: 60px;
+    padding-top:15px;
 }
 .navbar-form,.navbar-form .form-control {
     width: 350px;

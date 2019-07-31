@@ -57,6 +57,7 @@
 
 <body>
 <!-- 头部导航 -->
+<!-- 头部导航 -->
 <div class="top">
     <nav class="navbar navbar-default navbar-static-top top-item" role="navigation">
         <a class="navbar-brand logo" href="#">
@@ -67,16 +68,16 @@
         </a>
         <ul class="nav navbar-nav">
             <li class="nav-item actived">
-                <a href="#">主页</a>
+                <a href="index.jsp">主页</a>
             </li>
             <li class="nav-item">
-                <a href="#">约陪玩</a>
+                <a href="list.jsp">约陪玩</a>
             </li>
             <li class="nav-item">
                 <a href="#">开黑大厅</a>
             </li>
             <li class="nav-item">
-                <a href="#">充值</a>
+                <a href="../home/userHome.jsp?target=recharge">充值</a>
             </li>
             <li class="nav-item">
                 <a href="#">APP下载</a>
@@ -98,7 +99,7 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="#">
+                <a href="../home/userHome.jsp?target=message">
                         <span class="glyphicon glyphicon-tasks" aria-hidden="true">
                             <p class="font">消息</p>
                         </span>
@@ -106,7 +107,7 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="#">
+                <a href="../home/userHome.jsp?target=protocol">
                         <span class="glyphicon glyphicon-flag" aria-hidden="true">
                             <p class="font">入驻</p>
                         </span>
@@ -114,7 +115,7 @@
             </li>
             <!-- 判断是否登录 显示哪个内容 -->
             <li class="nav_item userinfo" style="display: none">
-                <a href="">
+                <a href="../home/userHome.jsp?target=orderlist">
                     <div class="img"><img src="../../img/user/user.JPEG" alt="" width="60px"
                                           style="border-radius:50% ">
                     </div>
@@ -184,7 +185,7 @@
     <div class="player">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10015.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -198,7 +199,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10013.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -211,7 +212,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10023.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -224,7 +225,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10097.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -238,7 +239,7 @@
 
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10096.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -251,7 +252,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10095.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -264,7 +265,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10012.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -277,7 +278,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10014.jpg" alt="Image">
                 </a>
                 <div class="media-body">

@@ -56,6 +56,7 @@ body{
 } */
 .search{
     line-height: 60px;
+    padding-top:15px;
 }
 .navbar-form,.navbar-form .form-control {
     width: 350px;
@@ -115,8 +116,14 @@ body{
     height: 400px;
     background-image: url(../img/bg/bg-slider.jpg)
 }
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 283px;
+    overflow: hidden;
+}
 .carousel-inner img{
-    width:1140px; 
+    width:1140px;
 }
 .carousel-control {
     position: absolute;

@@ -49,16 +49,16 @@
         </a>
         <ul class="nav navbar-nav">
             <li class="nav-item actived">
-                <a href="#">主页</a>
+                <a href="index.jsp">主页</a>
             </li>
             <li class="nav-item">
-                <a href="#">约陪玩</a>
+                <a href="list.jsp">约陪玩</a>
             </li>
             <li class="nav-item">
                 <a href="#">开黑大厅</a>
             </li>
             <li class="nav-item">
-                <a href="#">充值</a>
+                <a href="../home/userHome.jsp?target=recharge">充值</a>
             </li>
             <li class="nav-item">
                 <a href="#">APP下载</a>
@@ -80,7 +80,7 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="#">
+                <a href="../home/userHome.jsp?target=message">
                         <span class="glyphicon glyphicon-tasks" aria-hidden="true">
                             <p class="font">消息</p>
                         </span>
@@ -88,14 +88,15 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="#">
+                <a href="../home/userHome.jsp?target=protocol">
                         <span class="glyphicon glyphicon-flag" aria-hidden="true">
                             <p class="font">入驻</p>
                         </span>
                 </a>
             </li>
+            <!-- 判断是否登录 显示哪个内容 -->
             <li class="nav_item userinfo" style="display: none">
-                <a href="">
+                <a href="../home/userHome.jsp?target=orderlist">
                     <div class="img"><img src="../../img/user/user.JPEG" alt="" width="60px"
                                           style="border-radius:50% ">
                     </div>
@@ -121,20 +122,32 @@
                 <li data-target="#carousel-item" data-slide-to="0" class=""></li>
                 <li data-target="#carousel-item" data-slide-to="1" class=""></li>
                 <li data-target="#carousel-item" data-slide-to="2" class=""></li>
-                <li data-target="#mycarousel" data-slide-to="3" class="active"></li>
+                <li data-target="#carousel-item" data-slide-to="3" class=""></li>
+                <li data-target="#carousel-item" data-slide-to="4" class=""></li>
+                <li data-target="#carousel-item" data-slide-to="5" class=""></li>
+                <li data-target="#mycarousel" data-slide-to="6" class="active"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="item" style="background: #223240">
-                    <a href="#"><img src="../../img/big-picture/1.png" alt=""></a>
+                    <a href="#"><img src="../../img/big-picture/1.jpg" alt=""></a>
                 </div>
                 <div class="item " style="background: #223240">
                     <a href="#"><img src="../../img/big-picture/2.jpg" alt=""></a>
                 </div>
                 <div class="item" style="background: #223240">
-                    <a href="#"><img src="../../img/big-picture/3.jpg" alt=""></a>
+                    <a href="#"><img src="../../img/big-picture/3.png" alt=""></a>
                 </div>
                 <div class="item active" style="background: #223240">
                     <a href="#"><img src="../../img/big-picture/4.jpg" alt=""></a>
+                </div>
+                <div class="item active" style="background: #223240">
+                    <a href="#"><img src="../../img/big-picture/5.jpg" alt=""></a>
+                </div>
+                <div class="item active" style="background: #223240">
+                    <a href="#"><img src="../../img/big-picture/6.jpg" alt=""></a>
+                </div>
+                <div class="item active" style="background: #223240">
+                    <a href="#"><img src="../../img/big-picture/7.jpg" alt=""></a>
                 </div>
             </div>
             <a class="left carousel-control" href="#carousel-item" data-slide="prev"><span
@@ -156,42 +169,42 @@
                         游戏陪玩</span></a>
             <ul class="nav navbar-nav gamelist">
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">英雄联盟</span>
                     </a>
                 </li>
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">绝地求生</span>
                     </a>
                 </li>
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">DOTA2自走棋</span>
                     </a>
                 </li>
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">守望先锋</span>
                     </a>
                 </li>
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">地下城</span>
                     </a>
                 </li>
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">王者荣耀</span>
                     </a>
                 </li>
                 <li class="games">
-                    <a href="#">
+                    <a href="list.jsp">
                         <span class="label label-default">CS：GO</span>
                     </a>
                 </li>
                 <li class="games reflash">
-                    <a href="#">
+                    <a href="list.jsp">
                         换一批&nbsp;<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                     </a>
                 </li>
@@ -200,7 +213,7 @@
         <!-- 陪玩详细信息 -->
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10015.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -214,7 +227,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10013.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -227,7 +240,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10023.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -240,7 +253,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10097.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -251,10 +264,9 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10096.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -267,7 +279,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10095.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -280,7 +292,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10012.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -293,7 +305,7 @@
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="#">
+                <a class="pull-top" href="playerInfo.jsp">
                     <img class="img" src="../../img/user-big/ia_10014.jpg" alt="Image">
                 </a>
                 <div class="media-body">
@@ -310,7 +322,7 @@
         <ul class="nav navbar-nav">
             <h3>新秀推荐</h3>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10075.jpg" alt="">
                     <p class="userName">酷酷</p>
                     <p class="info">
@@ -320,7 +332,7 @@
                 </a>
             </li>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10233.jpg" alt="">
                     <p class="userName">软软泡o</p>
                     <p class="info">
@@ -330,7 +342,7 @@
                 </a>
             </li>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10364.jpg" alt="">
                     <p class="userName">小嘴0.0嘟嘟</p>
                     <p class="info">
@@ -340,7 +352,7 @@
                 </a>
             </li>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10368.jpg" alt="">
                     <p class="userName">UU酱</p>
                     <p class="info">
@@ -350,7 +362,7 @@
                 </a>
             </li>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10047.jpg" alt="">
                     <p class="userName">明玉的苏大强</p>
                     <p class="info">
@@ -360,7 +372,7 @@
                 </a>
             </li>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10372.jpg" alt="">
                     <p class="userName">佛系糖糖</p>
                     <p class="info">
@@ -370,7 +382,7 @@
                 </a>
             </li>
             <li>
-                <a class="play-info" href="#">
+                <a class="play-info" href="playerInfo.jsp">
                     <img class="player-icon" src="../../img/user/ia_10061.jpg" alt="">
                     <p class="userName">好哥哥</p>
                     <p class="info">
