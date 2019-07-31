@@ -13,7 +13,7 @@ body {
     width: 10%;
     background-color: rgb(253, 133, 117);
     color: white;
-    font-size: 1.7em;
+    font-size: 1.5em;
     float: left;
 }
 
@@ -40,13 +40,13 @@ body {
 }
 
 .admin .nav_item {
-    height: 70px;
+    height: 50px;
     text-indent: 25%;
 }
 
 .admin .nav_item a {
     color: white;
-    line-height: 55px;
+    line-height: 32px;
 }
 
 .QR_code {
@@ -77,7 +77,7 @@ body {
 .nav_right .nav_item {
     height: 100%;
     margin: 0px 10px;
-    padding: 15px 5px;
+    padding: 5px 5px;
 }
 
 .nav_right .nav_item a {

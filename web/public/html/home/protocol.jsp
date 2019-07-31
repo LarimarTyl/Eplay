@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Larimar
+  Date: 2019/7/31
+  Time: 19:10
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,14 +81,14 @@
         </p>
     </div>
     <div class="protocol_box">
-    <div class="switch">
-        <input type="checkbox" id="control_che" class="control_checkbox" onclick="agree()" >
-    </div>
+        <div class="switch">
+            <input type="checkbox" id="control_che" class="control_checkbox" onclick="agree()" >
+        </div>
         <div class="agree">我已阅读并同意此协议</div>
         <div class="point_out">温馨提示：阅读整个协议，才能进行下一步。</div>
     </div>
     <div class="botton_box" style="text-align: center" >
-        <a href="entering.html"><input type="button" value="下一步&nbsp;&nbsp;&nbsp;>" id="button_xia" disabled="disabled" class="botton_box1" /></a>
+        <a href="entering.jsp"><input type="button" value="下一步&nbsp;&nbsp;&nbsp;>" id="button_xia" disabled="disabled" class="botton_box1" /></a>
     </div>
 
 </div>
