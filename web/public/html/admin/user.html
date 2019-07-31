@@ -19,9 +19,31 @@
 				<form class="form-inline" method="get" action="">
 					<div class="form-group">
 						<label for="">用户名称</label> 
-						<input type="text" class="form-control" id="" value="" name="">
+						<input type="text" class="form-control" id="" value="" name="loginName">
 					</div>
-					 
+                    <div class="form-group">
+                        <label for="playgender">性别</label>
+                        <select class="form-control" id="playgender" name="gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="playRegisterStatus">用户的状态</label>
+                        <select class="form-control" id="playRegisterStatus" name="registerStatus">
+                            <option value="0">未激活状态</option>
+                            <option value="1">激活状态</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="playStatus">用户的身份</label>
+                        <select class="form-control" id="playStatus" name="tatus">
+                            <option value="1">用户</option>
+                            <option value="2">申请成为主播用户</option>
+                            <option value="3">主播</option>
+                            <option value="4">管理员</option>
+                        </select>
+                    </div>
 					<button type="submit" class="btn btn-primary">查询</button>
 				</form>
 			</div>
@@ -34,8 +56,10 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>消费金额</th>
                 <th>余额</th>
+                <th>身份</th>
+                <th>是否被激活</th>
                 <td>操作</td>
             </tr>
         </thead>
@@ -45,8 +69,10 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>消费金额</th>
                 <th>余额</th>
+                <th>身份</th>
+                <th>是否被激活</th>
                 <td>
                     <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
@@ -58,8 +84,10 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>消费金额</th>
                 <th>余额</th>
+                <th>身份</th>
+                <th>是否被激活</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
                     </td>
@@ -69,8 +97,10 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>消费金额</th>
                 <th>余额</th>
+                <th>身份</th>
+                <th>是否被激活</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
                     </td>
@@ -80,8 +110,10 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>消费金额</th>
                 <th>余额</th>
+                <th>身份</th>
+                <th>是否被激活</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
                 </td>
@@ -91,14 +123,29 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>消费金额</th>
                 <th>余额</th>
+                <th>身份</th>
+                <th>是否被激活</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userEditDialog" onclick="edituser()">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteuser()">删除</a>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="col-md-12 text-right">
+        <nav>
+            <ul class="pagination">
+                <li ><a href="#">首页 </a></li>
+                <li ><a href="#">上一页 </a></li>
+                <li><a href="#">1</a></li>
+                <li ><a href="#">下一页</a></li>
+                <li ><a href="#">尾页</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- /.panel-body -->
+    </div>
  <!-- 创建用户模态框 -->
 <div class="modal fade" id="newUserDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
@@ -112,41 +159,52 @@
 			<div class="modal-body">
 				<form class="form-horizontal" id="new_user_form">
 					<div class="form-group">
-						<label for="new_name" class="col-sm-2 control-label">用户名</label>
+						<label for="new_loginName" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="new_name" placeholder="用户名" name="loginname">
+							<input type="text" class="form-control" id="new_loginName" placeholder="用户名" name="loginName">
 						</div>
-						<label for="new_gender" class="col-sm-2 control-label">
-						 性别</label>
-						<div class="col-sm-4"> 
-							<select class="form-control" id="new_gender" name="gender">
-								<option value="女">女</option>
-								<option value="男"">男</option>
-							</select>
-						</div>
-					</div>  
-                    
+                        <label for="new_loginPwd" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="new_loginPwd" placeholder="密码" name="loginPwd">
+                        </div>
+					</div>
+                    <div class="form-group">
+                        <label for="new_gender" class="col-sm-2 control-label">
+                            性别</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="new_gender" name="gender">
+                                <option value="女">女</option>
+                                <option value="男">男</option>
+                            </select>
+                        </div>
+                        <label for="new_email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="new_email" placeholder="用户名" name="email">
+                        </div>
+
+                    </div>
+
                     <div class="form-group">
 						<label for="new_telephone" class="col-sm-2 control-label">电话号码</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="new_telephone" placeholder="电话号码" name="telephone">
                         </div>
-                        <label for="new_love" class="col-sm-2 control-label">游戏爱好</label>
+                        <label for="new_QQ" class="col-sm-2 control-label">QQ</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="new_love" placeholder="游戏爱好" name="love">
+							<input type="text" class="form-control" id="new_QQ" placeholder="QQ号码" name="QQ">
                         </div>
                     </div>   
                     <div class="form-group">
-						<label for="new_status" class="col-sm-2 control-label">电话号码</label>
+						<label for="new_status" class="col-sm-2 control-label">身份</label>
 						<div class="col-sm-4">
 							<select class="form-control" id="new_status" name="status">
 								<option value="1">用户</option>
+                                <option value="2">申请成为陪玩的用户</option>
                                 <option value="3">陪玩人员</option>
-								<option value="4">管理员</option>
+								<option value="0">管理员</option>
 							</select>
                         </div>
-                    </div> 
-                    
+                    </div>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -188,13 +246,13 @@
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="edit_telephone" placeholder="电话号码" name="telephone">
                         </div>
-                        <label for="edit_love" class="col-sm-2 control-label">游戏爱好</label>
+                        <label for="edit_QQ" class="col-sm-2 control-label">QQ</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="edit_love" placeholder="游戏爱好" name="love">
+							<input type="text" class="form-control" id="edit_QQ" placeholder="QQ号码" name="QQ">
                         </div>
                     </div>   
                     <div class="form-group">
-						<label for="edit_status" class="col-sm-2 control-label">电话号码</label>
+						<label for="edit_status" class="col-sm-2 control-label">身份</label>
 						<div class="col-sm-5">
 							<select class="form-control" id="edit_status" name="status">
 								<option value="1">用户</option>
@@ -215,10 +273,11 @@
 <script type="text/javascript">
     //清空新建用户窗口中的数据
         function clearstudent() {
-            $("#new_name").val("");
+            $("#new_loginName").val("");
+            $("#new_loginPwd").val("");
             $("#new_gender").val("");
             $("#new_telephone").val("");
-            $("#new_love").val("");
+            $("#new_QQ").val("");
             $("#new_status").val("");
         }
         // 创建用户
@@ -243,10 +302,10 @@
                 data:{"id":id},
                 success:function(data) {
                     $("#edit_id").val(data.id);
-                    $("#edit_name").val(data.name);
+                    $("#edit_loginName").val(data.loginName);
                     $("#edit_gender").val(data.gender);
                     $("#edit_telephone").val(data.telephone);
-                    $("#edit_love").val(data.love);
+                    $("#edit_QQ").val(data.QQ);
                     $("#edit_status").val(data.status);
                 
                 }

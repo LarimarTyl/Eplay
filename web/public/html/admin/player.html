@@ -19,9 +19,20 @@
 			<div class="panel-body">
 				<form class="form-inline" method="get" action="">
 					<div class="form-group">
-						<label for="">主播名称</label> 
-						<input type="text" class="form-control" id="" value="" name="">
+						<label for="playLoginName">主播名称</label>
+						<input type="text" class="form-control" id="playLoginName" value="" name="loginName">
 					</div>
+                    <div class="form-group">
+                        <label for="playGender">性别</label>
+                        <select class="form-control" id="playGender" name="gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="playGameName">游戏名</label>
+                        <input type="text" class="form-control" id="playGameName" value="" name="gender">
+                    </div>
 					<button type="submit" class="btn btn-primary">查询</button>
 				</form>
 			</div>
@@ -34,8 +45,9 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
+                <th>个人介绍</th>
                 <td>操作</td>
             </tr>
         </thead>
@@ -45,8 +57,9 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
+                <th>个人介绍</th>
                 <td>
                     <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#playerEditDialog" onclick="editplayer(1)">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteplayer()">删除</a>
@@ -57,13 +70,25 @@
                 <th>用户名</th>
                 <th>性别</th>
                 <th>电话</th>
-                <th>游戏爱好</th>
+                <th>游戏名</th>
                 <th>段位</th>
+                <th>个人介绍</th>
                 <td><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#playerEditDialog" onclick="editplayer(1)">修改</a>
                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteplayer()">删除</a></td>
             </tr>
         </tbody>
     </table>
+    <div class="col-md-12 text-right">
+        <nav>
+            <ul class="pagination">
+                <li ><a href="#">首页 </a></li>
+                <li ><a href="#">上一页 </a></li>
+                <li><a href="#">1</a></li>
+                <li ><a href="#">下一页</a></li>
+                <li ><a href="#">尾页</a></li>
+            </ul>
+        </nav>
+    </div>
     <div class="modal fade" id="newplayerDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -85,7 +110,7 @@
                             <div class="col-sm-4"> 
                                 <select class="form-control" id="new_gender" name="gender">
                                     <option value="女">女</option>
-                                    <option value="男"">男</option>
+                                    <option value="男">男</option>
                                 </select>
                             </div>
                         </div>  
@@ -95,18 +120,23 @@
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="new_telephone" placeholder="电话号码" name="telephone">
                             </div>
-                            <label for="new_love" class="col-sm-2 control-label">游戏爱好</label>
+                            <label for="new_love" class="col-sm-2 control-label">陪玩游戏</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="new_love" placeholder="游戏爱好" name="love">
+                                <input type="text" class="form-control" id="new_love" placeholder="陪玩游戏" name="love">
                             </div>
                         </div>   
                         <div class="form-group">
-                            <label for="new_level" class="col-sm-2 control-label">电话号码</label>
+                            <label for="new_level" class="col-sm-2 control-label">段位水平</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="new_level" placeholder="段位水平" name="level">
                             </div>
-                        </div> 
-                        
+                        </div>
+                        <div class="form-group">
+                            <label for="new_introduce" class="col-sm-2 control-label">个人介绍</label>
+                            <div class="col-sm-10">
+                                <textarea rows="3" class="form-control" id="new_introduce" placeholder="个人介绍" name="introduce"></textarea>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -132,7 +162,7 @@
                         <div class="form-group">
                             <label for="edit_userName" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="edit_userName" placeholder="用户名" name="loginname">
+                                <input type="text" class="form-control" id="edit_userName" placeholder="用户名" name="loginName">
                             </div>
                             <label for="edit_gender" class="col-sm-2 control-label">性别</label>
                             <div class="col-sm-4">
@@ -171,11 +201,12 @@
     <script type="text/javascript">
         //清空新建用户窗口中的数据
             function clearplayer() {
-                $("#new_name").val("");
+                $("#new_loginName").val("");
                 $("#new_gender").val("");
                 $("#new_telephone").val("");
                 $("#new_love").val("");
                 $("#new_level").val("");
+                $("#new_introduce").val("");
             }
             // 创建用户
             function createplayer() {
@@ -199,7 +230,7 @@
                     data:{"id":id},
                     success:function(data) {
                         $("#edit_id").val(data.id);
-                        $("#edit_name").val(data.name);
+                        $("#edit_userName").val(data.loginName);
                         $("#edit_gender").val(data.gender);
                         $("#edit_telephone").val(data.telephone);
                         $("#edit_love").val(data.love);
