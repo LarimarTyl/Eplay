@@ -2,6 +2,7 @@ package service.impl;
 
 import bean.*;
 import dao.*;
+import dao.impl.RechargeDaoImpl;
 import service.UserService;
 import bean.OrderBean;
 import bean.RechargeBean;
@@ -10,7 +11,14 @@ import bean.UserBean;
 import dao.RechargeDao;
 import dao.UserDao;
 import util.Factory;
+
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * @author Larimar
@@ -102,6 +110,7 @@ public class UserServiceImpl implements UserService {
                 return false;
             }
     }
+
     /**
      * 订单
      *
@@ -174,8 +183,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean comment(OrderBean order) {
-
-        return orderDao.saveOrder(order);
+        OrderDao orderDao = Factory.getInstance("orderDao", OrderDao.class);
+        orderDao.upDateOrder(order);
+        return false;
     }
 
     /*
