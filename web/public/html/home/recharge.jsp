@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Larimar
+  Date: 2019/7/31
+  Time: 14:35
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,7 +94,8 @@
         })
 
         $("li").click(function () {
-            if ($(this).css("border") == "0.983193px solid rgb(165, 173, 175)") {
+            console.log($(this).css("border"));
+            if ($(this).css("border") == "1px solid rgb(165, 173, 175)") {
                 $(this).css("border", "1px solid #25E198").css("background", "url(../../img/money/true.png) no-repeat 96px 24px").css("color", "#25E198");
                 var i = $(this).find(".content").text();
                 $(".charge").text(i);
@@ -104,7 +112,8 @@
         var reg = /^[1-9]\d*$/;
         if (!reg.test($(".input").val())) {
             $(".input").val(null);
-            $(".charge").text(0);2
+            $(".charge").text(0);
+            2
         }
     }
 </script>

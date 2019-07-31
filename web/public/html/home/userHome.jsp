@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Larimar
+  Date: 2019/7/31
+  Time: 14:34
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
@@ -9,6 +15,7 @@
     <script src="../../dist/js/bootstrap.js"></script>
 </head>
 <link rel="stylesheet" href="../../css/myhome.css">
+<script src="../../dist/js/jquery-3.4.1.js"></script>
 <script>
     $(function () {
         $(".nav_right").find(".nav_item").mouseenter(function () {
@@ -45,19 +52,19 @@
             <li class="navbar-brand  nav_title">
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp; 管理
             </li>
-            <li class="nav_item active" role="presentation"><a href="orderlist.html" target="item_main">我的订单</a></li>
-            <li class="nav_item" role="presentation"><a href="games.html" target="item_main">我的游戏</a></li>
-            <li class="nav_item" role="presentation"><a href="messages.html" target="item_main">我的消息</a></li>
-            <li class="nav_item" role="presentation"><a href="facous.html" target="item_main">我的关注</a></li>
-            <li class="nav_item" role="presentation"><a href="blacklist.html" target="item_main">我的黑名单</a></li>
-            <li class="nav_item" role="presentation"><a href="recharge.html" target="item_main">余额充值</a></li>
+            <li class="nav_item active" role="presentation"><a href="orderlist.jsp" target="item_main">我的订单</a></li>
+            <li class="nav_item" role="presentation"><a href="games.jsp" target="item_main">我的游戏</a></li>
+            <li class="nav_item" role="presentation"><a href="message.jsp" target="item_main">我的消息</a></li>
+            <li class="nav_item" role="presentation"><a href="facous.jsp" target="item_main">我的关注</a></li>
+            <li class="nav_item" role="presentation"><a href="blacklist.jsp" target="item_main">我的黑名单</a></li>
+            <li class="nav_item" role="presentation"><a href="recharge.jsp" target="item_main">余额充值</a></li>
             <li class="navbar-brand nav_title">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; 设置
             </li>
-            <li class="nav_item" role="presentation"><a href="myprofile.html" target="item_main">个人资料</a></li>
-            <li class="nav_item" role="presentation"><a href="securitycenter.html" target="item_main">安全中心</a></li>
+            <li class="nav_item" role="presentation"><a href="myprofile.jsp" target="item_main">个人资料</a></li>
+            <li class="nav_item" role="presentation"><a href="securitycenter.jsp" target="item_main">安全中心</a></li>
             <li class="nav_item" role="presentation"><a href="#">游戏偏好</a></li>
-            <li class="nav_item" role="presentation"><a href="protocol.html" target="item_main">申请入驻</a></li>
+            <li class="nav_item" role="presentation"><a href="protocol.jsp" target="item_main">申请入驻</a></li>
         </ul>
         <ul class="nav  nav-stacked QR_code">
             <li class="navbar-brand qr_item">
@@ -101,7 +108,7 @@
             </ul>
         </nav>
         <div class="container4">
-            <iframe src="messages.html" name="item_main" frameborder="0" width="100%" height="100%">
+            <iframe src="orderlist.jsp" name="item_main" frameborder="0" width="100%" height="100%">
 
             </iframe>
         </div>

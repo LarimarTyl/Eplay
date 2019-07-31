@@ -142,6 +142,7 @@ body{
 }
 .player .navbar{
     border: none;
+    height: 80px;
 }
 .navbar-default{
  background-color: #F9F9F9
@@ -166,10 +167,14 @@ body{
     color: salmon;
     border: salmon 1px solid;
 }
+.gamelist{
+    margin-top: 20px;
+}
 .player .reflash{
     font-size: 15px;
     position: absolute;
     right: 5px;
+    top: -0px;
     padding-top: 3px;
 }
 .player-top{

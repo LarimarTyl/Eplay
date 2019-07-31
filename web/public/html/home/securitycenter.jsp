@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Larimar
+  Date: 2019/7/31
+  Time: 19:11
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +22,6 @@
 <h1>安全中心</h1>
 <hr>
 <div class="user_name_box userInfo">
-    <div class="icon">
-        <img src="../../img/user/ia_10065.jpg" width="50px">
-    </div>
     <div class="info">
         <span>用户编号：</span>
     </div>
@@ -26,9 +30,6 @@
     </div>
 </div>
 <div class="user_name_box userInfo">
-    <div class="icon">
-        <img src="../../img/user/ia_10065.jpg" width="50px">
-    </div>
     <div class="info">
         <span>登录密码：</span>
     </div>
@@ -40,9 +41,6 @@
     </div>
 </div>
 <div class="user_name_box userInfo">
-    <div class="icon">
-        <img src="../../img/user/ia_10065.jpg" width="50px">
-    </div>
     <div class="info">
         <span>手机号码：</span>
     </div>
@@ -54,9 +52,6 @@
     </div>
 </div>
 <div class="user_name_box userInfo">
-    <div class="icon">
-        <img src="../../img/user/ia_10065.jpg" width="50px">
-    </div>
     <div class="info">
         <span>电子邮箱：</span>
     </div>

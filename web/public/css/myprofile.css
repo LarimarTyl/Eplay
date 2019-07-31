@@ -2,20 +2,20 @@
     margin-top: 20px;
     margin-left: 20px;
     border-bottom: dotted 2px #d6d7dc;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     width: 97%;
-    height: 152px;
+    height: 110px;
 }
 .head_portrait {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
-    border-radius: 100px;
-    -webkit-border-radius: 100px;
+    border-radius: 80px;
+    -webkit-border-radius: 80px;
     float: left;
 }
 .portrait_text {
-    font-size: 14px;
+    font-size: 10px;
     float: left;
     margin-left: 48px;
     margin-top: 24px;
@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 .game_ID {
-    font-size: 25px;
+    font-size: 20px;
     color: #646464;
     margin-top: 30px;
     margin-left: 20px;
@@ -51,7 +51,7 @@
     color: #fff;
     border: none 0;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
     margin-right: 80px;
     background-color: #e87074;
     height: 50px;

@@ -1,8 +1,7 @@
 body{
    background-color: #E9ECF3;
-   border-width: 1px;
-   border-style: solid;
    /*padding: 10px 20px;*/
+   padding-top: 10px;
 }
 h1{
    background-color: white;

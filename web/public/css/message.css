@@ -1,6 +1,7 @@
 table {
-    font-size: 20px;
+    font-size: 15px;
     margin-top: -18px;
+    background-color: #fff;
 }
 
 h1 {
@@ -18,9 +19,8 @@ h2 {
 }
 
 td {
-    height: 60px;
+    height: 40px;
 }
-
 .mycheck {
     width: 25px;
     margin: 20px 100px;
