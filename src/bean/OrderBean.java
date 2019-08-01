@@ -15,6 +15,7 @@ public class OrderBean {
     private String staffName;//根据用户id拿到的用户名
     private int playerID;//玩家id
     private String playerName;//根据玩家id拿到的玩家名
+
     private String contact;//联系方式
     private int payWay;//付款方式（1直接付款 2余额支付）
     private String starttime;//开始时间

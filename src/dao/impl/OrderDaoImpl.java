@@ -91,7 +91,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public OrderBean selectOrderById(int id) {
 //        String sql = "select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id";
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having orders.id=?";
         try {
@@ -116,9 +116,33 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectAllOrders() {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
-                " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
-                "where playerinfo.id=orders.playerID and userID=user.id";
+
+        String sql = "select orders.id,\n" +
+                "       playerinfo.gameID,\n" +
+                "       playerinfo.gameName,\n" +
+                "       userID,\n" +
+                "       user.staffName,\n" +
+                "       orders.playerID,\n" +
+                "       playerinfo.staffName as playerName,\n" +
+                "       contact,\n" +
+                "       payway,\n" +
+                "       starttime,\n" +
+                "       endtime,\n" +
+                "       orders.price,\n" +
+                "       poitns,\n" +
+                "       appraise,\n" +
+                "       remark,\n" +
+                "       orders.status\n" +
+                "from orders,\n" +
+                "     user,\n" +
+                "     (select player.id, playerID, staffName , player.gameID, player.level, gameName, player.money\n" +
+                "      from player,\n" +
+                "           user,\n" +
+                "           gamelist\n" +
+                "      where playerID = user.id\n" +
+                "        and player.gameID = gamelist.id) as playerinfo\n" +
+                "where playerinfo.id = orders.playerID\n" +
+                "  and userID = user.id";
         try {
             List<OrderBean> query = qr.query(sql, new BeanListHandler<OrderBean>(OrderBean.class));
             if (query.size()>0){
@@ -143,7 +167,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageAllOrders(int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id limit ?,?";
         try {
@@ -169,9 +193,9 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectOrdersByUser(String userName) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
-                "where playerinfo.id=orders.playerID and userID=user.id having user.staffName=?";
+                "where playerinfo.id=orders.playerID and userID=user.id and staffName=?";
         try {
             List<OrderBean> query = qr.query(sql, new BeanListHandler<OrderBean>(OrderBean.class),userName);
             if (query.size()>0){
@@ -197,9 +221,9 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageOrdersByUser(String userName, int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
-                "where playerinfo.id=orders.playerID and userID=user.id having user.staffName=? limit ?,?";
+                "where playerinfo.id=orders.playerID and userID=user.id and staffName=? limit ?,?";
         try {
             List<OrderBean> query = qr.query(sql, new BeanListHandler<OrderBean>(OrderBean.class),userName,(currentPage-1)*pageSize,pageSize);
             if (query.size()>0){
@@ -223,9 +247,9 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectOrdersByPlayer(String player) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
-                "where playerinfo.id=orders.playerID and userID=user.id having playerinfo.playerName=?";
+                "where playerinfo.id=orders.playerID and userID=user.id having playerName=?";
         try {
             List<OrderBean> query = qr.query(sql, new BeanListHandler<OrderBean>(OrderBean.class),player);
             if (query.size()>0){
@@ -251,9 +275,9 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageOrdersByPlayer(String player, int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
-                "where playerinfo.id=orders.playerID and userID=user.id having playerinfo.playerName=? limit ?,?";
+                "where playerinfo.id=orders.playerID and userID=user.id having playerName=? limit ?,?";
         try {
             List<OrderBean> query = qr.query(sql, new BeanListHandler<OrderBean>(OrderBean.class),player,(currentPage-1)*pageSize,pageSize);
             if (query.size()>0){
@@ -277,7 +301,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectOrdersByGame(String GameName) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having playerinfo.gameName=?";
         try {
@@ -305,7 +329,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageOrdersByGame(String GameName, int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having playerinfo.gameName=? limit ?,?";
         try {
@@ -332,7 +356,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectOrdersByDate(String date) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having starttime<=?";
         try {
@@ -361,7 +385,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageOrdersByDate(String date, int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having starttime<=? limit ?,?";
         try {
@@ -387,7 +411,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectOrdersByPayWay(int payway) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having payway=?";
         try {
@@ -415,7 +439,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageOrdersByPayWay(int payway, int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having payway=? limit ?,?";
         try {
@@ -441,7 +465,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectOrdersByPoints(int points) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having poitns>?";
         try {
@@ -469,7 +493,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> pageOrdersByPoints(int points, int currentPage, int pageSize) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo " +
                 "where playerinfo.id=orders.playerID and userID=user.id having poitns>? limit ?,?";
         try {
@@ -494,7 +518,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectTopPrice() {
-        String sql="select o.id,sum(o.price) as price,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,o.playerID,playerinfo.playerName,contact,payway,starttime,endtime,o.price,poitns,appraise,remark from orders as o,user," +
+        String sql="select o.id,sum(o.price) as price,playerinfo.gameID,playerinfo.gameName,userID,staffName,o.playerID,playerName,contact,payway,starttime,endtime,o.price,poitns,appraise,remark from orders as o,user," +
                 "(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist " +
                 "where playerID=user.id and player.gameID=gamelist.id) as playerinfo where playerinfo.id=o.playerID and userID=user.id and o.status=1 group by o.playerID limit  ?,?";
         List<OrderBean> result;
@@ -517,7 +541,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List<OrderBean> selectTopOrder() {
-        String sql="select o.id,count(o.id) as count,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,o.playerID,playerinfo.playerName," +
+        String sql="select o.id,count(o.id) as count,playerinfo.gameID,playerinfo.gameName,userID,staffName,o.playerID,playerName," +
                 "contact,payway,starttime,endtime,o.price,poitns,appraise,remark from orders as o,user," +
                 "(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist " +
                 "where playerID=user.id and player.gameID=gamelist.id) as playerinfo where playerinfo.id=o.playerID and userID=user.id and o.status=1 group by o.playerID limit  ?,?";
@@ -544,7 +568,7 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public int getOrderStatusById(int Id) {
-        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,staffName,orders.playerID,playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo  " +
                 "where playerinfo.id=orders.playerID and userID=user.id and orders.id=?";
         try {
@@ -562,26 +586,54 @@ public class OrderDaoImpl implements OrderDao {
         System.out.println("查询出错");
         return 0;
     }
-
     /**
      * 根据用户id查找对应状态的订单
+     *
      * @param userId 用户id
-     * @param status 对应的订单状态
+     * @param
      * @return 找到的目标订单
      */
     @Override
-    public List<OrderBean> getOrdersByUserIdAndStatus(int userId, int status) {
+    public List<OrderBean> getOrdersByUserIdAndStatus(int userId) {
         String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
                 " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo  " +
-                "where playerinfo.id=orders.playerID and userID=user.id and orders.id=? and orders.status=?";
+                "where playerinfo.id=orders.playerID and userID=user.id and orders.userid=? and orders.status=?";
         try {
-            List<OrderBean> query = qr.query(sql, new BeanListHandler<OrderBean>(OrderBean.class));
-            if (query.size()>0){
+            List<OrderBean> query = qr.query(sql, new BeanListHandler<>(OrderBean.class), userId);
+            if (query.size() > 0) {
                 System.out.println("该用户对应状态的订单找到了");
                 return query;
-            }else {
+            } else {
                 System.out.println("找不到该用户对应状态的订单");
-                return null;
+                return query;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * 根据用户id查找对应状态的订单
+     * @param playId 玩家id
+     * @param status 对应的订单状态
+     * @return 找到的目标订单
+     */
+
+    @Override
+    public List<OrderBean> getOrdersByPlayIdAndStatus(int playId, int status) {
+        String sql = "select orders.id,playerinfo.gameID,playerinfo.gameName,userID,user.staffName,orders.playerID,playerinfo.playerName,contact,payway,starttime,endtime,orders.price,poitns,appraise,remark,orders.status" +
+                " from orders,user,(select player.id,playerID,staffName as playerName,player.gameID,player.level,gameName,player.money from player,user,gamelist where playerID=user.id and player.gameID=gamelist.id) as playerinfo  " +
+                "where playerinfo.id=orders.playerID and userID=user.id and orders.playerid=? and orders.status=?";
+        try {
+            List<OrderBean> query = qr.query(sql, new BeanListHandler<>(OrderBean.class), playId, status);
+            if (query.size() > 0) {
+                System.out.println("该用户对应状态的订单找到了");
+                return query;
+            } else {
+                System.out.println("找不到该用户对应状态的订单");
+                return query;
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -80,14 +80,12 @@ public class PlayerDaoImpl implements PlayerDao {
 
     @Override
     public List<PlayerBean> selectAllPlayers() {
-        PlayerBean player;
-        List<PlayerBean> list=new ArrayList<>();
-        String sql="SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,gameLeve,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level`";
+        List<PlayerBean> list;
+        String sql="select p.id,p.playerID,staffName,p.gameID,p.level,g.gameName,u.photoPath,u.gender,p.picPath,l.gameLeve as gameLeve,p.orderNum,p.money,p.introduce,p.status from player as p,user as u,level as l,gamelist as g where p.gameID=g.id and l.id=p.level and l.gameID=g.id and p.playerID=u.id";
         try {
-            player= qr.query(sql,new BeanHandler<>(PlayerBean.class));
-
-            if (player!=null){
-                list.add(player);
+            list = qr.query(sql, new BeanListHandler<PlayerBean>(PlayerBean.class));
+            if (list!=null){
+                System.out.println("查询所有用户信息！");
                 System.out.println(list);
                 return list;
             }
@@ -183,13 +181,14 @@ public class PlayerDaoImpl implements PlayerDao {
     @Override
     public List<PlayerBean> selectPlayersByGame(String gameName) {
         String sql = "SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,gameLeve,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level` and gamelist.gameName=?;";
-        List<PlayerBean> players = null;
+
         try {
-            players = qr.query(sql, new BeanListHandler<>(PlayerBean.class), gameName);
+            List<PlayerBean>   players = qr.query(sql, new BeanListHandler<>(PlayerBean.class), gameName);
+            return players;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return players;
+        return null;
     }
 
     @Override
@@ -290,7 +289,7 @@ public class PlayerDaoImpl implements PlayerDao {
 
     @Override
     public PlayerBean selectPlayById(int playerId) {
-        String sql = "SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,gameLeve,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level` and player.playerID=?";
+        String sql="select p.id,p.playerID,u.staffName,p.gameID,p.level,g.gameName,u.photoPath,u.gender,p.picPath,l.gameLeve as gameLeve,p.orderNum,p.money,p.introduce,p.status from player as p,user as u,level as l,gamelist as g where p.gameID=g.id and l.id=p.level and l.gameID=g.id and p.playerID=u.id and p.id=?";
         PlayerBean player = null;
         try {
             player = qr.query(sql, new BeanHandler<>(PlayerBean.class), playerId);
@@ -302,11 +301,12 @@ public class PlayerDaoImpl implements PlayerDao {
 
     @Override
     public List<PlayerBean> selectNewPlayers() {
-        String sql = "SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,gameLeve,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level` order by player.id desc limit 10";
+        String sql="select p.id,p.playerID,u.staffName,p.gameID,p.level,g.gameName,u.photoPath,u.gender,p.picPath,l.gameLeve as gameLeve,p.orderNum,p.money,p.introduce,p.status from player as p,user as u,level as l,gamelist as g where p.gameID=g.id and l.id=p.level and l.gameID=g.id and p.playerID=u.id order by p.id desc limit 7";
         try {
             List<PlayerBean> query = qr.query(sql, new BeanListHandler<PlayerBean>(PlayerBean.class));
             if (query.size()>0){
                 System.out.println("查询到新秀玩家");
+                System.out.println(query);
                 return  query;
             }else {
                 System.out.println("没有查到新秀玩家");
@@ -334,5 +334,17 @@ public class PlayerDaoImpl implements PlayerDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public List<PlayerBean> selectPlayersByPlayerId(int playerId) {
+        String sql = "SELECT playerID,staffName,player.gameID,`level`,gameName,photoPath,gender,picPath,player.level,orderNum,player.money,introduce,player.`status` FROM player,user,gamelist,level WHERE player.playerID=user.id and player.gameID=gamelist.id and `level`.id=player.`level` and playerID=?;";
+        try {
+            List<PlayerBean>   players = qr.query(sql, new BeanListHandler<>(PlayerBean.class),playerId);
+            return players;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

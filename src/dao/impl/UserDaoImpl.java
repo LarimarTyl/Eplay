@@ -6,8 +6,12 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import util.C3P0Util;
+import util.Constant;
+import util.DateUtil;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,16 +20,14 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDao {
 
-    QueryRunner qr;
+    private static QueryRunner qr = new QueryRunner(C3P0Util.getDs());
 
-    public UserDaoImpl(){
-        qr=new QueryRunner(C3P0Util.getDs());
-    }
     @Override
     public boolean saveUser(UserBean user) {
         String sql="insert into user(loginName, loginPwd, staffNumber, staffName, birthday, gender, email, telephone, photoPath, price, QQ, registerTime, code) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
-            qr.update(sql,new Object[]{user.getLoginName(),user.getLoginPwd(),user.getStaffNumber(),user.getStaffName(),user.getBirthday(),user.getGender(),user.getEmail(),user.getTelephone(),user.getPicturePath(),user.getPrice(),user.getQQ(),user.getRegisterTime(),user.getCode()});
+            qr.update(sql,new Object[]{user.getLoginName(),user.getLoginPwd(),Integer.valueOf(200+user.getTelephone().substring(user.getTelephone().length()-3)),user.getLoginName(),user.getBirthday(),user.getGender(),user.getEmail(),user.getTelephone(),"user.JPEG",user.getPrice(),user.getQQ(), DateUtil.convert(LocalDateTime.now()),"123456"});
+//            qr.update(sql,new Object[]{user.getLoginName(),user.getLoginPwd(),user.getStaffNumber(),user.getStaffName(),user.getBirthday(),user.getGender(),user.getEmail(),user.getTelephone(),user.getPhotoPath(),user.getPrice(),user.getQQ(),user.getRegisterTime(),user.getCode()});
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,7 +51,7 @@ public class UserDaoImpl implements UserDao {
     public boolean updateUser(UserBean user) {
         String sql="update user set loginName=?,loginPwd=?,staffName=?,staffName=?,birthday=?,gender=?,email=?,telephone=?,photoPath=?,price=?,QQ=?,registerTime=?,code=? where id=?";
         try {
-            qr.update(sql,new Object[]{user.getLoginName(),user.getLoginPwd(),user.getStaffNumber(),user.getStaffName(),user.getBirthday(),user.getGender(),user.getEmail(),user.getTelephone(),user.getPicturePath(),user.getPrice(),user.getQQ(),user.getRegisterTime(),user.getCode(),user.getId()});
+            qr.update(sql,new Object[]{user.getLoginName(),user.getLoginPwd(),user.getStaffNumber(),user.getStaffName(),user.getBirthday(),user.getGender(),user.getEmail(),user.getTelephone(),user.getPhotoPath(),user.getPrice(),user.getQQ(),user.getRegisterTime(),user.getCode(),user.getId()});
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,7 +65,7 @@ public class UserDaoImpl implements UserDao {
     public UserBean loginCheck(String loginName, String loginPwd) {
         String sql="select * from user where (loginName=? or staffNumber=?) and loginPwd=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName,loginName,loginPwd);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),loginName,loginName,loginPwd);
             System.out.println("登录验证成功");
             return userBean;
         } catch (SQLException e) {
@@ -77,7 +79,7 @@ public class UserDaoImpl implements UserDao {
     public UserBean selectUserByCode(String code) {
         String sql="select * from user where code=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),code);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),code);
             return userBean;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +91,7 @@ public class UserDaoImpl implements UserDao {
     public UserBean selectUserByName(String name) {
         String sql="select * from user where staffName=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),name);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),name);
             return userBean;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,7 +103,7 @@ public class UserDaoImpl implements UserDao {
     public UserBean selectUserByUserID(int userId) {
         String sql="select * from user where id=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),userId);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),userId);
             return userBean;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,7 +115,8 @@ public class UserDaoImpl implements UserDao {
     public UserBean selectUserByLoginName(String loginName) {
         String sql="select * from user where loginName=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),loginName);
+            System.out.println(userBean);
             return userBean;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -128,7 +131,7 @@ public class UserDaoImpl implements UserDao {
     public int selectRegisterStatusByLoginName(String loginName) {
         String sql="select * from user where loginName=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),loginName);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),loginName);
             return userBean.getRegisterStatus();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,7 +145,7 @@ public class UserDaoImpl implements UserDao {
     public int selectStatusByStaffNumber(String staffNumber) {
         String sql="select * from user where staffNumber=?";
         try {
-            UserBean userBean=qr.query(sql,new BeanHandler<>(UserBean.class),staffNumber);
+            UserBean userBean=qr.query(sql,new BeanHandler<UserBean>(UserBean.class),staffNumber);
             return userBean.getStatus();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,7 +157,7 @@ public class UserDaoImpl implements UserDao {
         String sql="select * from user";
         try {
             List<UserBean> list= null;
-                list = qr.query(sql,new BeanListHandler<>(UserBean.class));
+                list = qr.query(sql,new BeanListHandler<UserBean>(UserBean.class));
                 return list;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -180,7 +183,7 @@ public class UserDaoImpl implements UserDao {
         try {
             List<UserBean> list= null;
 
-                list = qr.query(sql,new BeanListHandler<>(UserBean.class),registerStatus);
+                list = qr.query(sql,new BeanListHandler<UserBean>(UserBean.class),registerStatus);
                 return list;
             } catch (SQLException e) {
                 e.printStackTrace();}
@@ -205,7 +208,7 @@ public class UserDaoImpl implements UserDao {
     public List<UserBean> selectUsersBySpend() {
         String sql="select * from user order by price desc limit 0,10";
         try {
-            List<UserBean> list=qr.query(sql,new BeanListHandler<>(UserBean.class));
+            List<UserBean> list=qr.query(sql,new BeanListHandler<UserBean>(UserBean.class));
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -233,7 +236,7 @@ public class UserDaoImpl implements UserDao {
         String sql="select money from user where id=?";
 
         try {
-           user= qr.query(sql,new BeanHandler<>(UserBean.class),id);
+           user= qr.query(sql,new BeanHandler<UserBean>(UserBean.class),id);
             System.out.println("-----------");
             if (user!=null){
                 double b=user.getMoney();

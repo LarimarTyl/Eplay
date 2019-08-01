@@ -59,7 +59,7 @@ public class MessageDaoImpl implements MessageDao {
 
     @Override
     public boolean updateMessage(MessageBean message) {
-        String sql = "update message set statu=1 where id=?";
+        String sql = "update message set status=1 where id=?";
         boolean flag = false;
         try {
             int update = qr.update(sql, message.getId());
@@ -73,20 +73,39 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public boolean queryMessage(int id, int status) {
-        String sql = "select * from message where id=? and status=?";
+    public MessageBean queryMessageByOrderId(int id) {
+        String sql="select * from message where id=?";
         MessageBean message = null;
-        boolean flag = false;
         try {
-            message = qr.query(sql, new BeanHandler<>(MessageBean.class), id, status);
-            if (message != null) {
-                flag = true;
-            }
+            message = qr.query(sql, new BeanHandler<>(MessageBean.class), id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return message;
+    }
 
-        return flag;
+    @Override
+    public List<MessageBean> queryMessageByUserId(int userid) {
+        String sql="select * from message where userID=?";
+        List<MessageBean> messages = null;
+        try {
+            messages = qr.query(sql, new BeanListHandler<>(MessageBean.class), userid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return messages;
+    }
+
+    @Override
+    public List<MessageBean> queryMessage(int id, int status) {
+        String sql = "select * from message where userid=? and status=?";
+        List<MessageBean> message = null;
+        try {
+            message = qr.query(sql, new BeanListHandler<>(MessageBean.class), id, status);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return message;
     }
 
     @Override

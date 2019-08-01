@@ -16,16 +16,25 @@ public class UserBean {
     private String gender;//性别
     private String email;//邮箱
     private String telephone;//电话
-    private String picturePath;//头像路径
+    private String photoPath;//头像路径
     private double price;//总花费
     private double money;//余额
     private String QQ;//QQ号码
-    private Date registerTime;//注册时间
+    private String  registerTime;//注册时间
     private  int registerStatus;//注册状态 0未激活 1已激活
     private  String code;//注册码
     private int status;//账号状态 0管理员 1普通用户 2待审核玩家 3审核通过玩家
 
     public UserBean() {
+    }
+
+    public UserBean(String loginName, String loginPwd, String gender, String email, String telephone, String QQ) {
+        this.loginName = loginName;
+        this.loginPwd = loginPwd;
+        this.gender = gender;
+        this.email = email;
+        this.telephone = telephone;
+        this.QQ = QQ;
     }
 
     public UserBean(int id, String telephone, double price, double money) {
@@ -35,7 +44,7 @@ public class UserBean {
         this.money = money;
     }
 
-    public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String picturePath, double price, double money, String QQ, Date registerTime) {
+        public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String photoPath, double price, double money, String QQ, String registerTime) {
         this.id = id;
         this.loginName = loginName;
         this.loginPwd = loginPwd;
@@ -45,14 +54,14 @@ public class UserBean {
         this.gender = gender;
         this.email = email;
         this.telephone = telephone;
-        this.picturePath = picturePath;
+        this.photoPath = photoPath;
         this.price = price;
         this.money = money;
         this.QQ = QQ;
         this.registerTime = registerTime;
     }
 
-    public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String picturePath, double price, double money, String QQ, Date registerTime, int registerStatus, String code, int status) {
+    public UserBean(int id, String loginName, String loginPwd, String staffNumber, String staffName, String birthday, String gender, String email, String telephone, String photoPath, double price, double money, String QQ, String registerTime, int registerStatus, String code, int status) {
         this.id = id;
         this.loginName = loginName;
         this.loginPwd = loginPwd;
@@ -62,7 +71,7 @@ public class UserBean {
         this.gender = gender;
         this.email = email;
         this.telephone = telephone;
-        this.picturePath = picturePath;
+        this.photoPath = photoPath;
         this.price = price;
         this.money = money;
         this.QQ = QQ;
@@ -144,12 +153,12 @@ public class UserBean {
         this.telephone = telephone;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public double getPrice() {
@@ -176,11 +185,11 @@ public class UserBean {
         this.QQ = QQ;
     }
 
-    public Date getRegisterTime() {
+    public String getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
     }
 
@@ -219,7 +228,7 @@ public class UserBean {
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
                 ", telephone='" + telephone + '\'' +
-                ", picturePath='" + picturePath + '\'' +
+                ", photoPath='" + photoPath + '\'' +
                 ", price=" + price +
                 ", money=" + money +
                 ", QQ='" + QQ + '\'' +

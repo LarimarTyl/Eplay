@@ -138,6 +138,12 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public OrderBean queryOrderById(int id){
+        OrderBean order = orderDao.selectOrderById(id);
+        return order;
+    }
+
     /**
      * @param order 订单对象
      * @return 返回添加状态（是否成功）
@@ -247,6 +253,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<OrderBean> selectOrdersByPlayId(int playid, int status) {
+        List<OrderBean> orders = orderDao.getOrdersByPlayIdAndStatus(playid, status);
+        return orders;
+    }
+
+    @Override
     public List<OrderBean> selectIncome(String player) {
         List<OrderBean> list = orderDao.selectOrdersByPlayer(player);
         return list;
@@ -306,6 +318,46 @@ public class UserServiceImpl implements UserService {
     public boolean removeBlackList(RelationshipBean relationshipBean) {
         boolean result = relationshipDao.delRelationShip(relationshipBean.getStaffName(), relationshipBean);
         return result;
+    }
+
+    @Override
+    public MessageBean queryMessage(int id) {
+        MessageBean message = messageDao.queryMessageByOrderId(id);
+        return message;
+    }
+
+    @Override
+    public List<MessageBean> queryMessageListByUserId(int userId) {
+        List<MessageBean> messages = messageDao.queryMessageByUserId(userId);
+        return messages;
+    }
+
+    @Override
+    public List<MessageBean> queryMessageListByUserIdAndSatus(int userId, int status) {
+        List<MessageBean> messages = messageDao.queryMessage(userId, status);
+        return messages;
+    }
+
+    @Override
+    public List<MessageBean> queryMessageListByUserName(String username) {
+        List<MessageBean> messages = messageDao.selectAllMessages(username);
+        return messages;
+    }
+
+    @Override
+    public List<MessageBean> queryMessageListByUserNameAndStatus(String username, int status) {
+        List<MessageBean> messages = messageDao.selectMessagesByStatus(username, status);
+        return messages;
+    }
+
+    @Override
+    public void updateMessage(MessageBean message) {
+        messageDao.updateMessage(message);
+    }
+
+    @Override
+    public void deleteMessage(MessageBean message) {
+        messageDao.delMessage(message);
     }
 
 }

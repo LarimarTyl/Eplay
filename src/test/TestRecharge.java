@@ -4,6 +4,7 @@ import bean.RechargeBean;
 import dao.RechargeDao;
 import dao.impl.RechargeDaoImpl;
 import org.junit.Test;
+import util.C3P0Util;
 import util.Factory;
 
 import java.util.List;
@@ -15,11 +16,11 @@ import java.util.List;
 public class TestRecharge {
     static RechargeDao rechargeDao = Factory.getInstance("rechargeDao", RechargeDao.class);
 
-    @Test
-    public void testSave() {
-        boolean b = rechargeDao.saveRecharge("123", new RechargeBean(2, "123", 100, 2, "123"));
-        System.out.println(b);
-    }
+//    @Test
+//    public void testSave() {
+//        boolean b = rechargeDao.saveRecharge("123", new RechargeBean(2, "123", 100, 2, "123"));
+//        System.out.println(b);
+//    }
 
     @Test
     public void testDelete() {

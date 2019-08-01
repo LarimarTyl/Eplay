@@ -117,7 +117,7 @@ public class OrderDaoTest {
 
     @Test
     public void selectOrdersByUser() {
-        List<OrderBean> larimar = orderDao.selectOrdersByUser("Tyl");
+        List<OrderBean> larimar = orderDao.selectOrdersByUser("宋远桥");
         if (larimar.size()>0){
             System.out.println(larimar.toString());
             System.out.println("测试查询用户订单成功");
@@ -128,7 +128,7 @@ public class OrderDaoTest {
 
     @Test
     public void pageOrdersByUser() {
-        List<OrderBean> pageLarimar = orderDao.pageOrdersByUser("Tyl", 1, 2);
+        List<OrderBean> pageLarimar = orderDao.pageOrdersByUser("宋远桥", 1, 2);
         if (pageLarimar.size()>0){
             System.out.println(pageLarimar.toString());
             System.out.println("测试分页查询用户订单成功");
@@ -216,7 +216,7 @@ public class OrderDaoTest {
 
     @Test
     public void pageOrdersByPoints() {
-        List<OrderBean> orderBeans = orderDao.pageOrdersByPayWay(0,1,2);
+        List<OrderBean> orderBeans = orderDao.pageOrdersByPayWay(0,1,5);
         if (orderBeans.size()>0) {
             System.out.println(orderBeans.toString());
             System.out.println("测试分页评价大于指定参数的订单成功");

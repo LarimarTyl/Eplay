@@ -33,11 +33,11 @@ public class TestMessage {
         System.out.println(b);
     }
 
-    @Test
-    public void testQuery() {
-        boolean b = messageDao.queryMessage(16, 1);
-        System.out.println(b);
-    }
+//    @Test
+//    public void testQuery() {
+//        boolean b = messageDao.queryMessage(16, 1);
+//        System.out.println(b);
+//    }
 
     @Test
     public void testMessageAllByName() {

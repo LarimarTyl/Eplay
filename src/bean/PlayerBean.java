@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.Random;
+
 /**
  * @author Larimar
  * @time 2019/7/24 星期三 15:19

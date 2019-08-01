@@ -170,4 +170,5 @@ public interface PlayerDao {
      * @return 返回该id的玩家状态
      */
     public int selectPlayerStatus(int id);
+    public List<PlayerBean> selectPlayersByPlayerId(int id);
 }
