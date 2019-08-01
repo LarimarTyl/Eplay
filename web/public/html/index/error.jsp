@@ -14,7 +14,9 @@
     <meta name="keywords" content="" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link href="../../css/error.css" rel="stylesheet" type="text/css" media="all" />
-
+    <script type="text/javascript">
+        alert(1)
+    </script>
 <body>
 
 <div class="w3layouts-bg">

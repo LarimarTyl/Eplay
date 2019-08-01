@@ -33,7 +33,7 @@ body{
     width: 100px;
     text-align: center;
     line-height: 100px;
-    margin:0 15px;
+    margin:0 8px;
     font-size: 18px;
 }
 .gamelist .games a{
@@ -58,7 +58,7 @@ body{
 }
 .levels .level,.genders .gender{
     padding: 0 15px;
-    width: 150px;
+    width: 120px;
     line-height: 52px;
     text-align: center;
 }
@@ -90,12 +90,17 @@ body{
 }
 /* 玩家信息 */
 .player{
-    width: 80%;
+    width: 78%;
     float: left;
     margin-left: -15px;
 }
 .thumbnail{
     background-color: #F9F9F9;
+}
+.player-info .thumbnail > img,.player-info .thumbnail a > img {
+    margin-right: auto;
+    margin-left: auto;
+    width: 235px;
 }
 .player-info .thumbnail .media-body{
     padding:0px 10px;
@@ -182,7 +187,7 @@ body{
 }
 .name{
     position: relative; 
-    top: 10px;
+    /*top: 10px;*/
     color: #969494
 }
 .rank .rank-items .number{

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Larimar
@@ -14,12 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Eplay</title>
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css.map">
-    <script src="../../dist/js/jquery-3.4.1.js"></script>
-    <script src="../../dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../../css/base.css">
-    <link rel="stylesheet" href="../../css/list.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css.map">
+    <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/list.css">
     <script>
         $(function () {
             $(".games").mouseenter(function () {
@@ -53,6 +54,23 @@
             interval: 2000,
         });
     </script>
+    <script type="text/javascript">
+        function changeCode(){
+            //得到图片元素
+            var img = document.getElementById("checkCodeImg");
+            img.src = "${pageContext.request.contextPath}/code?time="+new Date().getTime();
+        };
+    </script>
+    <script>
+        $(function () {
+            $("#loginbtn").click( function loginUser(){
+                $("#dologin").click();
+            });
+            $("#registerBtn").click( function loginUser(){
+                $("#doRegister").click();
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -61,14 +79,14 @@
 <div class="top">
     <nav class="navbar navbar-default navbar-static-top top-item" role="navigation">
         <a class="navbar-brand logo" href="#">
-            <div style="float:left"><img src="../../img/Logo/ep-logo-l.png" alt="" width="70px"></div>
+            <div style="float:left"><img src="${pageContext.request.contextPath}/public/img/Logo/ep-logo-l.png" alt="" width="70px"></div>
             <div class="font" style="float: right"><span class="title">Eplay</span>
                 <p style="margin-top: 5px;">一起娱乐一起交友</p>
             </div>
         </a>
         <ul class="nav navbar-nav">
             <li class="nav-item actived">
-                <a href="index.jsp">主页</a>
+                <a href="${pageContext.request.contextPath}/public/html/index/index.jsp">主页</a>
             </li>
             <li class="nav-item">
                 <a href="list.jsp">约陪玩</a>
@@ -77,7 +95,7 @@
                 <a href="#">开黑大厅</a>
             </li>
             <li class="nav-item">
-                <a href="../home/userHome.jsp?target=recharge">充值</a>
+                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=recharge">充值</a>
             </li>
             <li class="nav-item">
                 <a href="#">APP下载</a>
@@ -99,7 +117,7 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="../home/userHome.jsp?target=message">
+                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=message">
                         <span class="glyphicon glyphicon-tasks" aria-hidden="true">
                             <p class="font">消息</p>
                         </span>
@@ -107,29 +125,44 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="../home/userHome.jsp?target=protocol">
+                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=protocol">
                         <span class="glyphicon glyphicon-flag" aria-hidden="true">
                             <p class="font">入驻</p>
                         </span>
                 </a>
             </li>
             <!-- 判断是否登录 显示哪个内容 -->
-            <li class="nav_item userinfo" style="display: none">
-                <a href="../home/userHome.jsp?target=orderlist">
-                    <div class="img"><img src="../../img/user/user.JPEG" alt="" width="60px"
-                                          style="border-radius:50% ">
-                    </div>
-                    <div class="info"><span class="leve">普通用户</span>
-                        <p class="name">Larimar</p>
-                    </div>
-                </a>
-            </li>
-            <li class="nav_item login-rigster">
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
-            </li>
-            <li class="nav_item">
-                <a href="">退出</a>
-            </li>
+            <%
+                boolean isLogin=false;
+                Object user = request.getSession().getAttribute("user");
+                if (user!=null){
+                    isLogin = true;
+                }
+                request.getSession().setAttribute("isLogin",isLogin);
+            %>
+            <c:if test="${sessionScope.isLogin}" var="flage" scope="session">
+                <li class="nav_item userinfo"  >
+                    <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=orderlist">
+                        <div class="img"><img src="${pageContext.request.contextPath}/public/img/user/${user.getPhotoPath()}" alt="" width="60px"
+                                              style="border-radius:50% ">
+                        </div>
+                        <div class="info"><span class="leve">${user.getStaffNumber()}</span>
+                            <p class="name">${user.getStaffName()}</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav_item">
+                    <a href="${pageContext.request.contextPath}/exitLogin.user">退出</a>
+                </li>
+            </c:if>
+            <c:if test="${!flage}" var="flage"  scope="session">
+                <li class="nav_item login-rigster">
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
+                </li>
+                <li class="loginMsg">
+                        ${loginMsg}${registerMsg}
+                </li>
+            </c:if>
         </ul>
     </nav>
 </div>
@@ -143,14 +176,14 @@
                 <td class="title">游戏服务</td>
                 <td>
                     <ul class="nav nav-pills">
-                        <li class="game"><a href=""><img src="../../img/gameimg/glory.png"><span>王者荣耀</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/pubg.png"><span>绝地求生</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/csgo.jpg"><span>CS：Go</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/zhanchang.png"><span>和平精英</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/apex.png"><span>Apex英雄</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/dotazzq.png"><span>Dota自走棋</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/lol.png"><span>英雄联盟</span></a> </li>
-                        <li class="game"><a href=""><img src="../../img/gameimg/yunding.png"><span>云顶之役</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/glory.png"><span>王者荣耀</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/pubg.png"><span>绝地求生</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/csgo.jpg"><span>CS：Go</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/zhanchang.png"><span>和平精英</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/apex.png"><span>Apex英雄</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/dotazzq.png"><span>Dota自走棋</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/lol.png"><span>英雄联盟</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/yunding.png"><span>云顶之役</span></a> </li>
                     </ul>
                 </td>
             </tr>
@@ -173,7 +206,8 @@
                 <td class="title">玩家性别</td>
                 <td>
                     <ul class="nav nav-pills">
-                        <li class="gender"> <span class="label-select label-active">男</span></li>
+                        <li class="gender"> <span class="label-select label-active">全部</span></li>
+                        <li class="gender"><span>男</span></li>
                         <li class="gender"><span>女</span></li>
                     </ul>
                 </td>
@@ -183,24 +217,45 @@
     </div>
     <!-- 玩家信息 -->
     <div class="player">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+        <c:forEach items="${players}" var="player">
+        </div> <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
-                <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10015.jpg" alt="Image">
+                <a class="pull-top" href="${pageContext.request.contextPath}/showPlayerInfo.player?playerID=${player.playerID}&&playerName=${player.staffName}">
+                    <img class="img" src="${pageContext.request.contextPath}/showPlayerInfo.player/${player.photoPath}" alt="Image">
                 </a>
                 <div class="media-body">
-                    <h4 class="media-heading">狂野傲娇小萝莉</h4>
+                    <h4 class="media-heading">${player.staffName}</h4>
                     <p class="dec">
-                    <p class="game"><span><span class="label age label-pink">♀ 19</span> 王者荣耀</span></p>
-                    <h3 class="price">35元/小时</h3>
+                    <p class="game"><span>
+                    <c:if test="${player.gender=='女'}" var="flage" scope="session"><span class="label age label-pink">♀ <%=(int)Math.random()*20+10%></span></c:if>
+                        ${player.gameName}</span></p>
+
+                        <c:if test="${!flage}" var="flage" scope="session"><span class="label age label-primary">♂ <%=(int)Math.random()*20+10%></span></c:if>
+                        ${player.gameName}</span></p>
+                    <h3 class="price">${player.money}元/小时</h3>
                     </p>
                 </div>
             </div>
         </div>
+        </c:forEach>
+       <%-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+        <div class="thumbnail">
+            <a class="pull-top" href="playerInfo.jsp">
+                <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10015.jpg" alt="Image">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">狂野傲娇小萝莉</h4>
+                <p class="dec">
+                <p class="game"><span><span class="label age label-pink">♀ 19</span> 王者荣耀</span></p>
+                <h3 class="price">35元/小时</h3>
+                </p>
+            </div>
+        </div>
+    </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10013.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10013.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">可爱丸子</h4>
@@ -213,7 +268,7 @@
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10023.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10023.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">皮皮猪</h4>
@@ -226,7 +281,7 @@
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10097.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10097.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">柯基的绿毛龟</h4>
@@ -236,11 +291,10 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10096.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10096.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">小仙女@锦梨</h4>
@@ -253,7 +307,7 @@
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10095.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10095.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">狂野小狸猫</h4>
@@ -266,7 +320,7 @@
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10012.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10012.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">可爱鬼*-*</h4>
@@ -279,7 +333,7 @@
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="playerInfo.jsp">
-                    <img class="img" src="../../img/user-big/ia_10014.jpg" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user-big/ia_10014.jpg" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">小甜心</h4>
@@ -288,18 +342,18 @@
                     <h3 class="price">28元/小时</h3>
                 </div>
             </div>
-        </div>
+        </div>--%>
     </div>
     <!-- 排行榜信息 -->
     <div class="item rank">
         <div class="ranks ">
             <div class="rank-item">
                 <p class="rank-list">
-                    <img class="icon" src="../../img/bg/ia_10314.png"> 热度榜
+                    <img class="icon" src="${pageContext.request.contextPath}/public/img/bg/ia_10314.png"> 热度榜
                 </p>
                 <ul class="nav nav-stacked">
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10019.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10019.jpg">
 
                         <span class="info">
                                 <p class="name">阿媚</p>
@@ -310,7 +364,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10013.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10013.jpg">
 
                         <span class="info">
                                 <p class="name">小迷糊</p>
@@ -322,7 +376,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10025.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10025.jpg">
 
                         <span class="info">
                                 <p class="name">咕咕叽</p>
@@ -334,7 +388,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10062.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10062.jpg">
 
                         <span class="info">
                                 <p class="name">乔·影</p>
@@ -346,7 +400,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10021.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10021.jpg">
 
                         <span class="info">
                                 <p class="name">紫妍</p>
@@ -358,7 +412,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10019.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10019.jpg">
 
                         <span class="info">
                                 <p class="name">倩倩</p>
@@ -374,11 +428,11 @@
         <div class="ranks">
             <div class="rank-item">
                 <p class="rank-list">
-                    <img src="../../img/bg/ia_10305.png"> 收入榜
+                    <img src="${pageContext.request.contextPath}/public/img/bg/ia_10305.png"> 收入榜
                 </p>
                 <ul class="nav nav-stacked">
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10019.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10019.jpg">
 
                         <span class="info">
                                 <p class="name">阿媚</p>
@@ -390,7 +444,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10013.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10013.jpg">
 
                         <span class="info">
                                 <p class="name">小迷糊</p>
@@ -402,7 +456,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10025.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10025.jpg">
 
                         <span class="info">
                                 <p class="name">咕咕叽</p>
@@ -414,7 +468,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10062.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10062.jpg">
 
                         <span class="info">
                                 <p class="name">乔·影</p>
@@ -426,7 +480,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10021.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10021.jpg">
 
                         <span class="info">
                                 <p class="name">紫妍</p>
@@ -438,7 +492,7 @@
                             </span>
                     </li>
                     <li class="rank-items">
-                        <img src="../../img/user/ia_10019.jpg">
+                        <img src="${pageContext.request.contextPath}/public/img/user/ia_10019.jpg">
 
                         <span class="info">
                                 <p class="name">倩倩</p>
@@ -461,7 +515,7 @@
 <!-- 尾部信息 -->
 <div class="foot">
     <div class="help_box mt30">
-        <div class="pic"><img src="../../img/bg/consume_new.jpg"></div>
+        <div class="pic"><img src="${pageContext.request.contextPath}/public/img/bg/consume_new.jpg"></div>
         <div class="font">
             <div class="fl ml35 pr30 border_right"><i class="icon custom mr10"></i>客服电话：<span
                     class="custom_01">010-68608228</span><span class="custom_02">咨询时间：7X24小时
@@ -508,7 +562,7 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div class="modal-body">
-                        <form class="form-horizontal" id="user_form" >
+                        <form class="form-horizontal" id="user_form" method="post" action="${pageContext.request.contextPath}/login.user" >
                             <div class="form-group">
                                 <label for="new_loginName" class="col-sm-2 control-label">账号</label>
                                 <div class="col-sm-8">
@@ -526,18 +580,20 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="login_code" placeholder="验证码" name="code">
                                     <div class="code" style="float: right">
-                                        <img src="../../img/bg/ia_10281.jpg" onclick="changeCode()"/><a href="javascript:changeCode()" >看不清换一张</a><br>
+                                        <img src="${pageContext.request.contextPath}/code" onclick="changeCode()" id="checkCodeImg"/>
+                                        <a href="javascript:changeCode()" >看不清换一张</a><br>
                                     </div>
                                 </div>
                             </div>
+                            <input type="submit" value="" id="dologin" style="display: none">
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" onclick="loginUser()">登录</button>
+                        <button type="button" class="btn btn-primary"  id="loginbtn" >登录</button>
                     </div></div>
                 <div role="tabpanel" class="tab-pane" id="tab"><div class="modal-body">
-                    <form class="form-horizontal" id="register_user_form" >
+                    <form class="form-horizontal" id="register_user_form" method="post" action="register.user" >
                         <div class="form-group">
                             <label for="register_loginName" class="col-sm-2 control-label">账号</label>
                             <div class="col-sm-8">
@@ -574,11 +630,12 @@
                                 <input type="text" class="form-control" id="register_QQ" placeholder="QQ账号" name="QQ">
                             </div>
                         </div>
+                        <input type="submit" value="" id="doRegister" style="display: none">
                     </form>
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" onclick="registerUser()">注册</button>
+                        <button type="button" class="btn btn-primary" id="registerBtn">注册</button>
                     </div>
                 </div>
             </div>

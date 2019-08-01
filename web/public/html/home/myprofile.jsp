@@ -1,21 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Larimar
-  Date: 2019/7/31
-  Time: 19:09
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Title</title>
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
-    <script src="../../dist/js/jquery-3.4.1.js"></script>
-    <script src="../../dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../../css/myprofile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/blacklist.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/myprofile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css.map">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/index.css">
+    <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
     <script>
         function YYYYMMDDstart()
         {
@@ -69,33 +66,35 @@
         {
             e.options.length = 1;
         }
-        $(function () {
-            $(".head_title2").click(function () {
-                $("#photo").click();
-            })
-        })
     </script>
-
 </head>
 <body class="back">
-<h1>个人资料</h1>
+<%
+    String msg1="";
+    user user=(user) session.getAttribute("user");
+    String msg=(String) request.getAttribute("msg");
+    if (msg!=null){
+        msg1=msg;
+    }
+%>
+<h1>个人资料           ${msg1 }</h1>
 <hr>
 <div class="head_portrait_box">
-<form action="#" method="get" name="myprofile_form"></form>
     <div class="head_portrait">
-        <img src="../../img/user/ia_10047.jpg">
+        <img src="${pageContext.request.contextPath}/img/user/ia_10047.jpg">
     </div>
     <ul class="portrait_text">
-        <input type="file" name="photo" id="photo" style="display: none"/>
-        <button type="button" class="btn head_title2 btn-success">上传头像</button>
+        <li class="portrait_btn">上传头像</li>
         <li>支持jpg、gif、png、或bmp格式的图片，文件必须小于1M</li>
     </ul>
 </div>
 <div class="gameID_all" >
+
+    <form action="modifyInfo.user" method="get" name="myprofile_form">
         <div class="game_ID">
-            用户编号：<input type="text" name="staffNumber" value="00001" readonly="readonly"/></div>
+            用户编号：<input type="text" name="staffNumber" value="${user.StaffNumber}111" readonly="readonly"/></div>
         <div class="game_ID">
-            用&nbsp;户&nbsp;名&nbsp;：<input type="text" name="staffName" ></div>
+            用&nbsp;户&nbsp;名&nbsp;：<input type="text" name="staffName"  value="${user.StaffName }111"></div>
         <div class="game_ID">
             生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;：
             <select name="YYYY" onchange="YYYYDD(this.value)">
@@ -111,16 +110,16 @@
 
         <div class="game_ID">
             性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;：
-            <select class="sex">
-                <option>男</option>
-                <option>女</option>
+            <select name="gender" class="sex">
+                <option value="男">男</option>
+                <option value="女">女</option>
             </select></div>
         <div class="game_ID">
-            邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱&nbsp;：<input type="email" name="email" ></div>
+            邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱&nbsp;：<input type="email" name="email" value="${user.email}111"></div>
         <div class="game_ID">
-            电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话&nbsp;：<input type="text" name="telephone" ></div>
+            电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话&nbsp;：<input type="text" name="telephone" value="${user.Telephone }111" ></div>
         <div class="game_ID">
-            QQ&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;：<input type="text" name="QQ" ></div>
+            QQ&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;：<input type="text" name="QQ" value="${user.QQ }111" ></div>
         <div class="submit_box">
             <input type="submit" value="提交修改">
         </div>

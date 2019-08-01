@@ -97,6 +97,12 @@ body{
     padding-left:10px; 
     line-height: 30px  
 }
+.loginMsg{
+    padding-top: 25px;
+    color: red;
+    font-weight: bolder;
+    text-indent: 5px;
+}
 .userinfo .leve{
     font-size: 20px;
 }

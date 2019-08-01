@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -13,12 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的订单</title>
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
-    <script src="../../dist/js/jquery-3.4.1.js"></script>
-    <script src="../../dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
+    <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/orderlist.css">
 </head>
-<link rel="stylesheet" href="../../css/orderlist.css">
-<script src="../../dist/js/jquery-3.4.1.js"></script>
 <style>
     h1 {
         padding-left: 50px;
@@ -42,9 +42,6 @@
         margin-left: 8px;
     }
 
-    #orderNum {
-        display: none;
-    }
 </style>
 <body class="back">
 <h1>我的订单</h1>
@@ -67,44 +64,32 @@
         <table class="table table-striped">
             <thead class="thead-light">
             <tr>
-                <td>#</td>
                 <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
+                <td>用户</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
                 <td>价格</td>
                 <td>备注</td>
                 <td>操作</td>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
-                <td>价格</td>
-                <td>备注</td>
-                <td>
-                    <div class="left">
-                        <button type="button" class="btn btn-primary ml">接收</button>
-                        <button type="button" class="btn btn-danger">拒绝</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
-                <td>价格</td>
-                <td>备注</td>
-                <td>
-                    <div class="left">
-                        <button type="button" class="btn btn-primary ml">接收</button>
-                        <button type="button" class="btn btn-danger">拒绝</button>
-                    </div>
-                </td>
-            </tr>
+            <tbody class="father">
+            <c:forEach var="order" items="${playOrders}" varStatus="status">
+                <tr>
+                    <td>${order.playerName}</td>
+                    <td>${order.staffName}</td>
+                    <td>${order.starttime}</td>
+                    <td>${order.endtime}</td>
+                    <td>${order.price}</td>
+                    <td>${order.remark}</td>
+                    <td>
+                        <div class="left">
+                            <button name="${order.id}" type="button" class="btn btn-primary ml accept">接收</button>
+                            <button name="${order.id}" type="button" class="btn btn-danger reject">拒绝</button>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -112,37 +97,29 @@
         <table class="table table-striped">
             <thead class="thead-light">
             <tr>
-                <td>#</td>
                 <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
+                <td>用户</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
                 <td>价格</td>
                 <td>备注</td>
                 <td>操作</td>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
-                <td>价格</td>
-                <td>备注</td>
-                <td>
-                    <button type="button" class="btn btn-danger ml">删除</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
-                <td>价格</td>
-                <td>备注</td>
-                <td>
-                    <button type="button" class="btn btn-danger ml">删除</button>
-                </td>
+            <tbody class="father">
+            <c:forEach var="order" items="${acceptPlayOrders}">
+                <tr>
+                    <td>${order.playerName}</td>
+                    <td>${order.staffName}</td>
+                    <td>${order.starttime}</td>
+                    <td>${order.endtime}</td>
+                    <td>${order.price}</td>
+                    <td>${order.remark}</td>
+                    <td>
+                        <button name="${order.id}" type="button" class="btn btn-danger ml reject">删除</button>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -150,41 +127,34 @@
         <table class="table table-striped">
             <thead class="thead-light">
             <tr>
-                <td>#</td>
                 <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
+                <td>用户</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
                 <td>价格</td>
                 <td>备注</td>
                 <td>操作</td>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
-                <td>价格</td>
-                <td>备注</td>
-                <td>
-                    <button id="1" type="button" class="btn btn-primary ml" data-toggle="modal" data-target="#myModal">
-                        评论
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>用户名</td>
-                <td>用户id</td>
-                <td>时间</td>
-                <td>价格</td>
-                <td>备注</td>
-                <td>
-                    <button id="2" type="button" class="btn btn-primary ml" data-toggle="modal" data-target="#myModal">
-                        评论
-                    </button>
-                </td>
+            <tbody class="father">
+            <c:forEach var="order" items="${userOrders}">
+                <tr>
+                    <td>${order.playerName}</td>
+                    <td>${order.staffName}</td>
+                    <td>${order.starttime}</td>
+                    <td>${order.endtime}</td>
+                    <td>${order.price}</td>
+                    <td>${order.remark}</td>
+                    <td>
+                        <div class="left">
+                            <button name="${order.id}" type="button" class="btn btn-primary ml" data-toggle="modal"
+                                    data-target="#myModal">评论
+                            </button>
+                            <button name="${order.id}" type="button" class="btn btn-danger reject">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -201,19 +171,18 @@
                     有什么相对陪玩说的，发表一下您的看法吧
                 </h4>
             </div>
-            <form id="mform" action="">
-                <div class="modal-body">
-                    <input id="orderNum" type="text" name="orderNum">
-                    <textarea cols="30" rows="6"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        提交评论
-                    </button>
-                </div>
-            </form>
+            <%--            //${pageContext.request.contextPath}/user_commentOrder--%>
+            <div class="modal-body">
+                <input id="orderNum" type="text" name="orderNum" hidden>
+                <textarea id="comment" cols="70" rows="8" name="comment"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="submit" class="btn btn-primary submitComment">
+                    提交评论
+                </button>
+            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
@@ -221,7 +190,95 @@
 <script>
     $(function () {
         $("#tab").find("button").click(function () {
-            $("#orderNum").val($(this).attr("id"));
+            $("#orderNum").val($(this).attr("name"));
+        })
+
+        var that=this;
+
+        //拒绝后执行的前后端代码
+        $(".father").on("click",'.reject',function (){
+            //ajax去后台sha删除
+            //删除缓存发送数据
+            console.log($(this).attr('name'));
+            console.log("进行删除");
+            var args = {
+                "date": new Date(),
+                "id":$(this).attr('name')
+            }
+
+            //前端删除
+            $(this).closest("tr").remove();
+
+            //发送请求
+            var url = "${pageContext.request.contextPath}/rejectOrder.user";
+
+            //post请求
+            $.post(url, args);
+        })
+
+        <%--$(".reject").on("click",function () {--%>
+        <%--      //ajax去后台sha删除--%>
+        <%--      //删除缓存发送数据--%>
+        <%--    console.log("进行删除");--%>
+        <%--      var args = {--%>
+        <%--          "date": new Date(),--%>
+        <%--          "id": $(this).attr("name")--%>
+        <%--      }--%>
+
+        <%--      //前端删除--%>
+        <%--      $(this).closest("tr").remove();--%>
+
+        <%--      //发送请求--%>
+        <%--      var url = "${pageContext.request.contextPath}/rejectOrder.user";--%>
+
+        <%--      //post请求--%>
+        <%--      $.post(url, args);--%>
+        <%--  })--%>
+
+
+        //接收后执行的前后端代码
+        $("#home").find(".accept").click(function () {
+            console.log($(this).attr("name"));
+            //ajax去后台sha删除
+            //删除缓存发送数据
+            var args = {
+                "date": new Date(),
+                "id": $(this).attr("name")
+            }
+            //前端删除
+            $(this).closest("tr").remove();
+            //发送请求
+            var url = "${pageContext.request.contextPath}/acceptOrder.user";
+
+            //post请求
+            $.post(url, args, function (data) {
+                var str = "";
+                let obj = data;
+                if(obj.remark==null){
+                    obj.remark="";
+                }
+                str += "<tr><td>" + obj.playerName + "</td><td>" + obj.staffName + "</td><td>" + obj.starttime + "</td><td>"
+                    + obj.endtime + "</td><td>" + obj.price + "</td><td>" + obj.remark + "</td><td><button name='"+obj.id+"' type=\"button\" class=\"btn btn-danger ml reject\">删除</button></td></tr>";
+                // });
+                $("#money>table>tbody").append(str);
+            }, "json");
+        })
+
+
+        $(".submitComment").click(function () {
+            console.log($("#orderNum").val());
+            console.log($("#comment").val());
+
+            var args = {
+                "date":new Date(),
+                "id":$("#orderNum").val(),
+                "comment":$("#comment").val()
+            }
+
+            var url = "${pageContext.request.contextPath}/CommentOrder.user";
+            $.post(url, args);
+            console.log("评论提交");
+            $("#myModal").modal('hide');
         })
     })
 </script>

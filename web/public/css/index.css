@@ -97,6 +97,12 @@ body{
     padding-left:10px; 
     line-height: 30px  
 }
+.loginMsg{
+    padding-top: 25px;
+    color: red;
+    font-weight: bolder;
+    text-indent: 5px;
+}
 .userinfo .leve{
     font-size: 20px;
 }
@@ -200,6 +206,11 @@ body{
     transform: scale(1.1);
     /*transition: all 2s ease-in-out 0s;*/
 }
+.thumbnail > img, .thumbnail a > img {
+    margin-right: auto;
+    margin-left: auto;
+    width: 272px;
+}
 .player-info .thumbnail .media-body{
     padding:20px 10px;
 }
@@ -224,6 +235,7 @@ body{
 .newPlayer h3,.rank h3{
     border-left: 5px salmon solid;
     color: #969494;
+    width: 1080px;
     text-indent: 10px;
     margin-left:10px; 
 }
@@ -368,12 +380,12 @@ body{
     height: 100px;
     font-size: 15px;
 }
-.name{
+.rank .name{
     position: relative; 
     top: 10px;
     color: #969494
 }
-.level{
+.rank .level{
     position: relative; 
     top: 40px;
 }

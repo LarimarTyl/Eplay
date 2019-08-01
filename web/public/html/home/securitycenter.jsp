@@ -12,21 +12,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Title</title>
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
-    <script src="../../dist/js/jquery-3.4.1.js"></script>
-    <script src="../../dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../../css/blacklist.css">
-    <link rel="stylesheet" href="../../css/securitycenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/blacklist.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/securitycenter.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css.map">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/index.css">
+    <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
 </head>
 <body class="back">
-<h1>安全中心</h1>
+<h1>安全中心      ${msg}</h1>
 <hr>
 <div class="user_name_box userInfo">
     <div class="info">
         <span>用户编号：</span>
     </div>
     <div class="info">
-        <span>102355</span>
+        <span>${user.staffNumber }</span>
     </div>
 </div>
 <div class="user_name_box userInfo">
@@ -45,7 +47,7 @@
         <span>手机号码：</span>
     </div>
     <div class="info">
-        <span>139****3361</span>
+        <span>${user.telephone }</span>
     </div>
     <div class="info1">
         <span><a href="#" data-toggle="modal" data-target="#modifyTelephone" onclick="editUser()">修改</a></span>
@@ -56,7 +58,7 @@
         <span>电子邮箱：</span>
     </div>
     <div class="info">
-        <span>1727032340@qq.com</span>
+        <span>${user.telephone }</span>
     </div>
     <div class="info1">
         <span><a href="#" data-toggle="modal" data-target="#modifyEmail" onclick="editUser()">修改</a></span>
@@ -223,7 +225,7 @@
     }
     // 执行修改用户操作
     function updateUserEmail() {
-        $.post("updatePsw.action",
+        $.post("updateEmail.action",
             $("#edit_user_Email").serialize(),
             function(data){
                 if(data =="OK"){

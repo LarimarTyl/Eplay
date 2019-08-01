@@ -10,12 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
-    <script src="../../dist/js/jquery-3.4.1.js"></script>
-    <script src="../../dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
+    <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
 </head>
-<link rel="stylesheet" href="../../css/myhome.css">
-<script src="../../dist/js/jquery-3.4.1.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/myhome.css">
+<script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
 <script>
     $(function () {
         $(".nav_right").find(".nav_item").mouseenter(function () {
@@ -44,7 +44,7 @@
     <!-- 左侧导航 -->
     <div class="left_navbar" id="myScrollspy">
         <ul class="nav nav-tabs nav-stacked top_logo">
-            <li class="navbar-brand"><span><a href="#"><img src="../../img/Logo/Logo_small.png" alt="" width="65%"></a></span>
+            <li class="navbar-brand"><span><a href="${pageContext.request.contextPath}/public/html/index/index2.jsp"><img src="${pageContext.request.contextPath}/public/img/Logo/Logo_small.png" alt="" width="65%"></a></span>
             </li>
         </ul>
         <ul class="nav  nav-stacked admin" id="myNav">
@@ -68,7 +68,7 @@
         </ul>
         <ul class="nav  nav-stacked QR_code">
             <li class="navbar-brand qr_item">
-                <span><img src="../../img/qr_code/qr_code.png" alt="" width="60%"></span>
+                <span><img src="${pageContext.request.contextPath}/public/img/qr_code/qr_code.png" alt="" width="60%"></span>
                 <p><span style="font-size: 5px;">扫描二维码下载</span></p>
                 <p><span style="font-size: 5px;">Eplay 一起来玩</span></p>
             </li>
@@ -90,18 +90,17 @@
                 </li>
                 <li class="nav_item icon">
                     <a href="#">
-                        <span class="glyphicon glyphicon-user"></span> UID:2120049</a>
+                        <span class="glyphicon glyphicon-user"></span> NO:${user.getStaffNumber()}</a>
                 </li>
                 <li class="nav_item">
                     <a href="">
-                        <div style="float: left;padding-right: 10px;"><img src="../../img/user/user.JPEG" alt=""
-                                                                           width="60px" style="border-radius:50% ">
+                        <div style="float: left;padding-right: 10px;"><img src="${pageContext.request.contextPath}/public/img/user/${user.getPhotoPath()}" alt="" width="60px" style="border-radius:50% ">
                         </div>
                         <div style="float: right;line-height: 30px">普通用户
-                            <p>Larimar</p></div>
+                            <p>${user.getStaffName()}</p></div>
                     </a>
                 </li>
-                <li class="nav_item"><a href="">
+                <li class="nav_item"><a href="${pageContext.request.contextPath}/exitLogin.user">
                     <span>退出</span>
                 </a>
                 </li>

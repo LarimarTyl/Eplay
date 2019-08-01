@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Larimar
@@ -14,11 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Eplay</title>
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../dist/css/bootstrap.css.map">
-    <script src="../../dist/js/jquery-3.4.1.js"></script>
-    <script src="../../dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../../css/playerinfo.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css.map">
+    <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/playerinfo.css">
     <script>
         $(function () {
             $(".games").mouseenter(function () {
@@ -36,6 +38,23 @@
             interval: 2000,
         });
     </script>
+    <script type="text/javascript">
+        function changeCode(){
+            //得到图片元素
+            var img = document.getElementById("checkCodeImg");
+            img.src = "${pageContext.request.contextPath}/code?time="+new Date().getTime();
+        };
+    </script>
+    <script>
+        $(function () {
+            $("#loginbtn").click( function loginUser(){
+                $("#dologin").click();
+            });
+            $("#registerBtn").click( function loginUser(){
+                $("#doRegister").click();
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -43,7 +62,7 @@
 <div class="top">
     <nav class="navbar navbar-default navbar-static-top top-item" role="navigation">
         <a class="navbar-brand logo" href="#">
-            <div style="float:left"><img src="../../img/Logo/ep-logo-l.png" alt="" width="70px"></div>
+            <div style="float:left"><img src="${pageContext.request.contextPath}/public/img/Logo/ep-logo-l.png" alt="" width="70px"></div>
             <div class="font" style="float: right"><span class="title">Eplay</span>
                 <p style="margin-top: 5px;">一起娱乐一起交友</p>
             </div>
@@ -59,7 +78,7 @@
                 <a href="#">开黑大厅</a>
             </li>
             <li class="nav-item">
-                <a href="../home/userHome.jsp?target=recharge">充值</a>
+                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=recharge">充值</a>
             </li>
             <li class="nav-item">
                 <a href="#">APP下载</a>
@@ -81,7 +100,7 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="../home/userHome.jsp?target=message">
+                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=message">
                         <span class="glyphicon glyphicon-tasks" aria-hidden="true">
                             <p class="font">消息</p>
                         </span>
@@ -89,29 +108,44 @@
             </li>
             <li class="mar">|</li>
             <li class="nav-item top-right">
-                <a href="../home/userHome.jsp?target=protocol">
+                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=protocol">
                         <span class="glyphicon glyphicon-flag" aria-hidden="true">
                             <p class="font">入驻</p>
                         </span>
                 </a>
             </li>
             <!-- 判断是否登录 显示哪个内容 -->
-            <li class="nav_item userinfo" style="display: none">
-                <a href="../home/userHome.jsp?target=orderlist">
-                    <div class="img"><img src="../../img/user/user.JPEG" alt="" width="60px"
-                                          style="border-radius:50% ">
-                    </div>
-                    <div class="info"><span class="leve">普通用户</span>
-                        <p class="name">Larimar</p>
-                    </div>
-                </a>
-            </li>
-            <li class="nav_item login-rigster">
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
-            </li>
-            <li class="nav_item">
-                <a href="">退出</a>
-            </li>
+            <%
+                boolean isLogin=false;
+                Object user = request.getSession().getAttribute("user");
+                if (user!=null){
+                    isLogin = true;
+                }
+                request.getSession().setAttribute("isLogin",isLogin);
+            %>
+            <c:if test="${sessionScope.isLogin}" var="flage" scope="session">
+                <li class="nav_item userinfo"  >
+                    <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=orderlist">
+                        <div class="img"><img src="${pageContext.request.contextPath}/public/img/user/${user.getPhotoPath()}" alt="" width="60px"
+                                              style="border-radius:50% ">
+                        </div>
+                        <div class="info"><span class="leve">${user.getStaffNumber()}</span>
+                            <p class="name">${user.getStaffName()}</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav_item">
+                    <a href="${pageContext.request.contextPath}/exitLogin.user">退出</a>
+                </li>
+            </c:if>
+            <c:if test="${!flage}" var="flage"  scope="session">
+                <li class="nav_item login-rigster">
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
+                </li>
+                <li class="loginMsg">
+                        ${loginMsg}${registerMsg}
+                </li>
+            </c:if>
         </ul>
     </nav>
 </div>
@@ -120,9 +154,9 @@
     <div class="container">
         <!-- 头部信息 -->
         <div class="title">
-            <img class="player-icon" src="../../img/user/ia_10014.jpg">
+            <img class="player-icon" src="${pageContext.request.contextPath}/public/img/user/zly1.jpg">
             <div class="info">
-                <p class="name">康康ღ</p>
+                <p class="name">咕咕乐ღ</p>
                 <p class="mess">
                     <span class="label label-warning">真人认证</span>
                 </p>
@@ -140,7 +174,7 @@
         <!-- 左边头像和资料 -->
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <div class="left-info">
-                <img class="big" src="../../img/user/ia_10012.jpg">
+                <img class="big" src="${pageContext.request.contextPath}/public/img/user/zly1.jpg">
 
                 <div class="pic">
                     <ul class="nav nav-tabs">
@@ -148,20 +182,20 @@
                         <span class="glyphicon glyphicon-triangle-left left"></span>
 
                         <li>
-                            <img class="small" src="../../img/user/ia_10013.jpg">
+                            <img class="small" src="${pageContext.request.contextPath}/public/img/user/zly2.jpg">
                         </li>
                         <li>
-                            <img class="small"  src="../../img/user/ia_10014.jpg">
+                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/zly3.jpg">
                         </li>
                         <li>
-                            <img class="small"  src="../../img/user/ia_10015.jpg">
+                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/zly4.jpg">
                         </li>
                         <li>
-                            <img class="small"  src="../../img/user/ia_10016.jpg">
+                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/zly5.jpg">
                         </li>
                         <span class="glyphicon glyphicon-triangle-right right"></span>
                     </ul>
-                    <h3 style="text-align: center">用户名</h3>
+                    <h3 style="text-align: center">咕咕乐</h3>
                 </div>
             </div>
         </div>
@@ -186,7 +220,7 @@
                             <ul class="nav nav-stacked">
                                 <li class="player-game top">
                                     <div class="gameicon">
-                                        <img src="../../img/gameimg/lol.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/public/img/gameimg/lol.png" alt="">
                                     </div>
                                     <div class="gameinfo">
                                         <h3>
@@ -196,30 +230,30 @@
                                             <span class="label label-default">荣耀黄金三</span>
                                         </p>
                                         <p class="acount">
-                                            <span class="glyphicon glyphicon-bullhorn">&nbsp;接单次数：120次</span>
+                                            <span class="glyphicon glyphicon-bullhorn">&nbsp;接单次数：164次</span>
                                         </p>
                                     </div>
                                     <div class="order">
                                         <p class="price">
-                                            <span>￥40</span>&nbsp;/小时
+                                            <span>￥99.99</span>&nbsp;/小时
                                         </p>
                                         <button type="button" class="btn btn-danger">下单约他</button>
                                     </div>
                                 </li>
                                 <li class="player-game introduce">
                                     <h3>介绍<span>/INTRODUCE</span></h3>
-                                    <p>草从霸主，野区骚猪,输出全靠吼</p>
+                                    <p>可盐可甜？可奶可狼？输出全靠吼</p>
                                     <p>提莫队长正在送命 杀人啦~~~~~</p>
-                                    <p> 还有我是广东人,偶尔可以飚几句粤语</p>
-                                    <p>喜欢听粤语歌也可以唱给你听</p>
-                                    <p>下单两小时起 我在约玩等你哦</p>
+                                    <p>可话痨可沉默 O(∩_∩)O</p>
+                                    <p>可坑不可carry 嘻嘻嘻</p>
+                                    <p> 可口可乐百事可乐加冰双倍快乐</p>
                                 </li>
                                 <li class="player-game comment">
                                     <h3>评论<span>/COMMENT</span></h3>
                                     <h4 class="point">评分：<span>9.9</span></h4>
                                     <div class="usercommint">
                                         <ul class="nav navstack">
-                                            <li class="comments"><span class="username">卿卿：</span> 挺好的 <span
+                                            <li class="comments"><span class="username">卿卿：</span> 甜甜的 <span
                                                     class="time">2019-02-18</span></li>
                                             <li class="comments"><span class="username">秋秋：</span> 人美声甜 <span
                                                     class="time">2019-04-25</span></li>
@@ -234,7 +268,7 @@
                             <ul class="nav nav-stacked">
                                 <li class="player-game top">
                                     <div class="gameicon">
-                                        <img src="../../img/gameimg/pubg.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/public/img/gameimg/pubg.png" alt="">
                                     </div>
                                     <div class="gameinfo">
                                         <h3>
@@ -249,7 +283,7 @@
                                     </div>
                                     <div class="order">
                                         <p class="price">
-                                            <span>￥35</span>/小时
+                                            <span>￥99.99</span>/小时
                                         </p>
                                         <button type="button" class="btn btn-danger">下单约他</button>
                                     </div>
@@ -257,16 +291,23 @@
                                 <li class="player-game introduce">
                                     <h3>介绍<span>/INTRODUCE</span></h3>
                                     <p>救死扶伤,移动药箱,输出全靠吼</p>
-                                    <p> 还有我是广东人,偶尔可以飚几句粤语</p>
-                                    <p>喜欢听粤语歌也可以唱给你听</p>
-                                    <p>下单两小时起 我在约玩等你哦</p>
+                                    <p> 我就是个盒子 你们别打我</p>
+                                    <p> 呜呜呜 再打就傻了 不能打头</p>
+                                    <p>带我在机场飙车好么 喵? 暴力摩托 突突突~~~</p>
+                                    <p>可口可乐百事可乐加冰双倍快乐</p>
                                 </li>
                                 <li class="player-game comment">
                                     <h3>评论<span>/COMMENT</span></h3>
                                     <h4 class="point">评分：<span>9.9</span></h4>
                                     <div class="usercommint">
                                         <ul class="nav navstack">
-                                            <li class="comments"><span class="username">卿卿：</span> 挺好的 <span
+                                            <li class="comments"><span class="username">阿龙：</span> 小姐姐超甜的 <span
+                                                    class="time">2019-02-18</span></li>
+                                            <li class="comments"><span class="username">辛豪：</span> 呜呜呜 wsl 爱了 <span
+                                                    class="time">2019-02-18</span></li>
+                                            <li class="comments"><span class="username">瓜酱：</span> 给我也整一个 <span
+                                                    class="time">2019-02-18</span></li>
+                                            <li class="comments"><span class="username">靓仔：</span> 我也可以 <span
                                                     class="time">2019-02-18</span></li>
                                             <li class="comments"><span class="username">秋秋：</span> 人美声甜 <span
                                                     class="time">2019-04-25</span></li>
@@ -289,7 +330,7 @@
 <!-- 尾部信息 -->
 <div class="foot">
     <div class="help_box mt30">
-        <div class="pic"><img src="../../img/bg/consume_new.jpg"></div>
+        <div class="pic"><img src="${pageContext.request.contextPath}/public/img/bg/consume_new.jpg"></div>
         <div class="font">
             <div class="fl ml35 pr30 border_right"><i class="icon custom mr10"></i>客服电话：<span
                     class="custom_01">010-68608228</span><span class="custom_02">咨询时间：7X24小时
@@ -336,7 +377,7 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div class="modal-body">
-                        <form class="form-horizontal" id="user_form" >
+                        <form class="form-horizontal" id="user_form" method="post" action="${pageContext.request.contextPath}/login.user" >
                             <div class="form-group">
                                 <label for="new_loginName" class="col-sm-2 control-label">账号</label>
                                 <div class="col-sm-8">
@@ -354,18 +395,20 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="login_code" placeholder="验证码" name="code">
                                     <div class="code" style="float: right">
-                                        <img src="../../img/bg/ia_10281.jpg" onclick="changeCode()"/><a href="javascript:changeCode()" >看不清换一张</a><br>
+                                        <img src="${pageContext.request.contextPath}/code" onclick="changeCode()" id="checkCodeImg"/>
+                                        <a href="javascript:changeCode()" >看不清换一张</a><br>
                                     </div>
                                 </div>
                             </div>
+                            <input type="submit" value="" id="dologin" style="display: none">
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" onclick="loginUser()">登录</button>
+                        <button type="button" class="btn btn-primary"  id="loginbtn" >登录</button>
                     </div></div>
                 <div role="tabpanel" class="tab-pane" id="tab"><div class="modal-body">
-                    <form class="form-horizontal" id="register_user_form" >
+                    <form class="form-horizontal" id="register_user_form" method="post" action="register.user" >
                         <div class="form-group">
                             <label for="register_loginName" class="col-sm-2 control-label">账号</label>
                             <div class="col-sm-8">
@@ -402,11 +445,12 @@
                                 <input type="text" class="form-control" id="register_QQ" placeholder="QQ账号" name="QQ">
                             </div>
                         </div>
+                        <input type="submit" value="" id="doRegister" style="display: none">
                     </form>
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" onclick="registerUser()">注册</button>
+                        <button type="button" class="btn btn-primary" id="registerBtn">注册</button>
                     </div>
                 </div>
             </div>

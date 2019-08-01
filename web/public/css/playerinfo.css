@@ -176,10 +176,10 @@ body{
     width: 70px;
 }
 .left-info .pic {
-    padding: 5px;
+    /*padding: 5px;*/
 }
 .left-info .pic ul{
-    padding:0 10px;
+    /*padding:0 10px;*/
 }
 .left-info .pic .left{
     display:block;
