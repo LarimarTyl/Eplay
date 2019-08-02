@@ -255,7 +255,7 @@
                         <h4 class="media-heading">${play.staffName}</h4>
                         <p class="dec">
                         <p class="game"><span>${play.gameName}</span></p>
-                        <h3 class="price">${play.money} 元/小时</h3>
+                        <h4 class="price">${play.money} 元/小时</h4>
                         </p>
                     </div>
                 </div>

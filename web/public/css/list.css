@@ -101,6 +101,7 @@ body{
     margin-right: auto;
     margin-left: auto;
     width: 235px;
+    height: 235px;
 }
 .player-info .thumbnail .media-body{
     padding:0px 10px;

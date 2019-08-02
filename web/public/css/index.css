@@ -210,7 +210,9 @@ body{
     margin-right: auto;
     margin-left: auto;
     width: 272px;
+
 }
+
 .player-info .thumbnail .media-body{
     padding:20px 10px;
 }
@@ -225,8 +227,12 @@ body{
 }
 .player-info .thumbnail .media-body .price{
     float: right;
-    margin: 0px;
+    margin: 0;
+    font-size: 20px;
     color: salmon;
+}
+.player-info .thumbnail .media-body h3{
+    font-size: 20px;
 }
 /* 新秀陪玩 */
 .newPlayer{

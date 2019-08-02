@@ -218,21 +218,19 @@
     <!-- 玩家信息 -->
     <div class="player">
         <c:forEach items="${players}" var="player">
-        </div> <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
+         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 player-info">
             <div class="thumbnail">
                 <a class="pull-top" href="${pageContext.request.contextPath}/showPlayerInfo.player?playerID=${player.playerID}&&playerName=${player.staffName}">
-                    <img class="img" src="${pageContext.request.contextPath}/showPlayerInfo.player/${player.photoPath}" alt="Image">
+                    <img class="img" src="${pageContext.request.contextPath}/public/img/user/${player.photoPath}" alt="Image">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">${player.staffName}</h4>
                     <p class="dec">
                     <p class="game"><span>
                     <c:if test="${player.gender=='女'}" var="flage" scope="session"><span class="label age label-pink">♀ <%=(int)Math.random()*20+10%></span></c:if>
-                        ${player.gameName}</span></p>
-
                         <c:if test="${!flage}" var="flage" scope="session"><span class="label age label-primary">♂ <%=(int)Math.random()*20+10%></span></c:if>
                         ${player.gameName}</span></p>
-                    <h3 class="price">${player.money}元/小时</h3>
+                    <h4 class="price">${player.money}元/小时</h4>
                     </p>
                 </div>
             </div>
