@@ -92,10 +92,10 @@
         </a>
         <ul class="nav navbar-nav">
             <li class="nav-item actived">
-                <a href="${pageContext.request.contextPath}/public/html/index/index.jsp">主页</a>
+                <a href="index.jsp">主页</a>
             </li>
             <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/listByGame.player?gameName=全部玩家">约陪玩</a>
+                <a href="list.jsp">约陪玩</a>
             </li>
             <li class="nav-item">
                 <a href="#">开黑大厅</a>
@@ -170,7 +170,7 @@
                 </li>
             </c:if>
         </ul>
-    </nav>
+    </nav>/==-
 </div>
 <!-- 玩家详细信息 -->
 <div class="playerinfo">
@@ -308,7 +308,7 @@
                                     </div>
                                     <div class="order">
                                         <p class="price">
-                                            <span>￥88.88</span>/小时
+                                            <span>￥99.99</span>/小时
                                         </p>
                                         <button type="button" class="btn btn-danger makeF" data-toggle="modal"
                                                 data-target="#myModal">下单约他

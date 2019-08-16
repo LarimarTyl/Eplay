@@ -244,7 +244,7 @@
             var args = {
                 "date": new Date(),
                 "id": $(this).attr("name")
-            }
+            };
             //前端删除
             $(this).closest("tr").remove();
             //发送请求

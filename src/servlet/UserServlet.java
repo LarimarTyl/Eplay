@@ -52,7 +52,7 @@ public class UserServlet extends HttpServlet {
         }else if(servletPath.contains("active")){
             System.out.println("执行激活操作");
             doActive(request,response);
-        }else if(servletPath.contains("order")){
+        }else if(servletPath.contains("orderDisplay")){
             System.out.println("执行订单操作");
             doOrder(request,response);
         }else if(servletPath.contains("comment")){
@@ -198,9 +198,9 @@ public class UserServlet extends HttpServlet {
      * */
     private void doOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //模拟注册一个用户
-        UserBean user = new UserBean(1, "宋远桥", "syq", null, "宋远桥", "1963-06-27 13:23:09", "男", "234593591@qq.com", "14592380123", "ia_10027.jpg", 0, 0, "234593591", "2013-06-27 12:00:00");
+//        UserBean user = new UserBean(1, "宋远桥", "syq", null, "宋远桥", "1963-06-27 13:23:09", "男", "234593591@qq.com", "14592380123", "ia_10027.jpg", 0, 0, "234593591", "2013-06-27 12:00:00");
 
-
+        UserBean user = (UserBean) request.getSession().getAttribute("user");
 //        UserBean user = (UserBean) request.getAttribute("user");
         //根据用户名查找自己的所有的订单
         List<OrderBean> userOrders = userService.selectOrders(user.getStaffName());
@@ -394,7 +394,7 @@ public class UserServlet extends HttpServlet {
 //        UserBean user = (UserBean) request.getAttribute("user");
 
         //模拟注册一个用户
-        UserBean user = new UserBean(1, "宋远桥", "syq", null, "宋远桥", "1963-06-27 13:23:09", "男", "234593591@qq.com", "14592380123", "ia_10027.jpg", 0, 0, "234593591", "2013-06-27 12:00:00");
+        UserBean user = (UserBean) request.getSession().getAttribute("user");
         //放回该用户的全部消息
         List<MessageBean> messages = userService.queryMessageListByUserName(user.getStaffName());
         //未读消息

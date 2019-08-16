@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/dist/css/bootstrap.css.map">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/base.css">
     <script src="${pageContext.request.contextPath}/public/dist/js/jquery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/public/dist/js/bootstrap.js"></script>
     <script>
@@ -60,7 +61,7 @@
 <!-- 头部导航 -->
 <div class="top">
     <nav class="navbar navbar-default navbar-static-top top-item" role="navigation">
-        <a class="navbar-brand logo" href="#">
+        <a class="navbar-brand logo" href="${pageContext.request.contextPath}/public/html/index/index.jsp">
             <div style="float:left"><img src="${pageContext.request.contextPath}/public/img/Logo/ep-logo-l.png" alt="" width="70px"></div>
             <div class="font" style="float: right"><span class="title">Eplay</span>
                 <p style="margin-top: 5px;">一起娱乐一起交友</p>
@@ -123,27 +124,27 @@
                 request.getSession().setAttribute("isLogin",isLogin);
             %>
             <c:if test="${sessionScope.isLogin}" var="flage" scope="session">
-            <li class="nav_item userinfo"  >
-                <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=orderlist">
-                    <div class="img"><img src="${pageContext.request.contextPath}/public/img/user/${user.getPhotoPath()}" alt="" width="60px"
-                                          style="border-radius:50% ">
-                    </div>
-                    <div class="info"><span class="leve">${user.getStaffNumber()}</span>
-                        <p class="name">${user.getStaffName()}</p>
-                    </div>
-                </a>
-            </li>
-            <li class="nav_item">
+                <li class="nav_item userinfo"  >
+                    <a href="${pageContext.request.contextPath}/public/html/home/userHome.jsp?target=orderlist">
+                        <div class="img"><img src="${pageContext.request.contextPath}/public/img/user/${user.getPhotoPath()}" alt="" width="60px"
+                                              style="border-radius:50% ">
+                        </div>
+                        <div class="info"><span class="leve">${user.getStaffNumber()}</span>
+                            <p class="name">${user.getStaffName()}</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav_item">
                     <a href="${pageContext.request.contextPath}/exitLogin.user">退出</a>
-            </li>
+                </li>
             </c:if>
             <c:if test="${!flage}" var="flage"  scope="session">
-            <li class="nav_item login-rigster">
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
-            </li>
-            <li class="loginMsg">
-                ${loginMsg}${registerMsg}
-            </li>
+                <li class="nav_item login-rigster">
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">注册/登录</button>
+                </li>
+                <li class="loginMsg">
+                        ${loginMsg}${registerMsg}
+                </li>
             </c:if>
         </ul>
     </nav>
@@ -255,7 +256,7 @@
                         <h4 class="media-heading">${play.staffName}</h4>
                         <p class="dec">
                         <p class="game"><span>${play.gameName}</span></p>
-                        <h4 class="price">${play.money} 元/小时</h4>
+                        <h3 class="price">${play.money} 元/小时</h3>
                         </p>
                     </div>
                 </div>

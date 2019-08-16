@@ -76,7 +76,7 @@ public class GameListDaoImpl implements GameListDao {
     @Override
     public List<GameListBean> selectAllGames() {
         List<GameListBean> list;
-        String sql="select gamelist.gamename from gamelist";
+        String sql="select id, gamelist.gamename,gameLogo from gamelist";
         try {
             list=qr.query(sql, new BeanListHandler<>(GameListBean.class));
             if (list!=null){

@@ -181,6 +181,9 @@ body{
 .left-info .pic ul{
     /*padding:0 10px;*/
 }
+.active{
+    display: block;
+}
 .left-info .pic .left{
     display:block;
     position: relative;

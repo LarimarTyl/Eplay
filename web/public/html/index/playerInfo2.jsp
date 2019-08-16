@@ -1,3 +1,10 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="bean.PlayerBean" %>
+<%@ page import="bean.OrderBean" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -31,29 +38,6 @@
                     $(".big").attr("src",$(this).children("img").attr("src"));
                 })
             });
-        });
-
-        function up() {
-            var price = $("#oneprice").val();
-            var money = price.substring(1);
-            var hours = $("#new_hours").val();
-            var totalMoney = Number(money) * Number(hours);
-            var str = "￥" + totalMoney;
-            $("#new_price").val(str);
-        }
-
-
-
-        $(function () {
-            $(".makeF").click(function () {
-                var username = $("#Username").text();
-                <%--var recharge =${user.money};--%>
-                var price = $(this).prevAll(".price").find("span").text();
-                $("#playerName").val(username);
-                $("#new_price").val(price);
-                $("#oneprice").val(price);
-                $("#new_money").val(${user.id});
-            })
         })
     </script>
     <script>
@@ -177,9 +161,9 @@
     <div class="container">
         <!-- 头部信息 -->
         <div class="title">
-            <img class="player-icon" src="${pageContext.request.contextPath}/public/img/user/zly1.jpg">
+            <img class="player-icon" src="${pageContext.request.contextPath}/public/img/user/${playerInfo.photoPath}">
             <div class="info">
-                <p class="name">咕咕乐ღ</p>
+                <p class="name">${playerInfo.staffName}</p>
                 <p class="mess">
                     <span class="label label-warning">真人认证</span>
                 </p>
@@ -197,44 +181,76 @@
         <!-- 左边头像和资料 -->
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <div class="left-info">
-                <img class="big" src="${pageContext.request.contextPath}/public/img/user/zly1.jpg">
+                <%!
+                    List<String> picPaths =  new ArrayList<String>();
+                    List<String > introduce = new ArrayList<String>();
+                    List<PlayerBean> playerBeans = new ArrayList<PlayerBean>();
+                    Map<String,String> games = new HashMap<>();
+                    Map<String,List<String>>gameIntroduce = new HashMap<>();
+                %>
+                <%
+                    PlayerBean playerInfo = (PlayerBean) request.getSession().getAttribute("playerInfo");
+                    String picPath = playerInfo.getPicPath();
+                    String[] split = picPath.split("=");
+                    for (int i = 0; i < split.length; i++) {
+                        List<String> picPaths =  new ArrayList<String>();
+                        picPaths.add(split[i]);
+                        System.out.println(picPaths);
+                    }
+                    /*获取玩家信息*/
+                    games = (HashMap<String, String>) application.getAttribute("gameList");
+                    /*获取玩家详细介绍*/
+                    playerBeans = (List<PlayerBean>) request.getSession().getAttribute("playerGameInfo");
+                    for (PlayerBean player:playerBeans) {
+                        String split1 = player.getIntroduce();
+                        introduce.add(split1);
+                        gameIntroduce = new HashMap<>();
+                        gameIntroduce.put(player.getGameName(),introduce);
+                        System.out.println(gameIntroduce);
+                    }
+
+                %>
+                <img class="big" src="${pageContext.request.contextPath}/public/img/user/<%=picPaths.get(0)%>">
 
                 <div class="pic">
                     <ul class="nav nav-tabs">
-
                         <span class="glyphicon glyphicon-triangle-left left"></span>
 
                         <li>
-                            <img class="small" src="${pageContext.request.contextPath}/public/img/user/zly2.jpg">
+                            <img class="small" src="${pageContext.request.contextPath}/public/img/user/<%=picPaths.get(0)%>">
                         </li>
                         <li>
-                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/zly3.jpg">
+                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/<%=picPaths.get(1)%>">
                         </li>
                         <li>
-                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/zly4.jpg">
+                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/<%=picPaths.get(2)%>">
                         </li>
                         <li>
-                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/zly5.jpg">
+                            <img class="small"  src="${pageContext.request.contextPath}/public/img/user/<%=picPaths.get(3)%>">
                         </li>
                         <span class="glyphicon glyphicon-triangle-right right"></span>
                     </ul>
-                    <h3 style="text-align: center">咕咕乐</h3>
+                    <h3 style="text-align: center">${playerInfo.staffName}</h3>
                 </div>
             </div>
         </div>
         <!-- 右边下单和详情 -->
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
             <div class="right-info">
-
                 <div role="tabpanel">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
+                        <%
+                            playerBeans = (List<PlayerBean>)request.getSession().getAttribute("playerGameInfo");
+                        %>
                         <li role="presentation" class="active">
-                            <a href="#game1" aria-controls="game1" role="tab" data-toggle="tab">LOL</a>
+                            <a href="#game1" aria-controls="game1" role="tab" data-toggle="tab"><%=playerBeans.get(0).getGameName()%></a>
                         </li>
-                        <li role="presentation">
-                            <a href="#game2" aria-controls="game2" role="tab" data-toggle="tab">绝地求生</a>
-                        </li>
+                        <c:forEach items="${playerGameInfo}" var="playerGame" begin="1" varStatus="status">
+                            <li role="presentation">
+                                <a href="#game${status.index+1}" aria-controls="game${status.index+1}" role="tab" data-toggle="tab">${playerGame.gameName}</a>
+                            </li>
+                        </c:forEach>
                     </ul>
 
                     <!-- Tab panes -->
@@ -243,103 +259,110 @@
                             <ul class="nav nav-stacked">
                                 <li class="player-game top">
                                     <div class="gameicon">
-                                        <img src="${pageContext.request.contextPath}/public/img/gameimg/lol.png" alt="">
+
+                                        <img src="${pageContext.request.contextPath}/public/img/gameimg/<%=games.get(playerBeans.get(0).getGameName())%>" alt="">
                                     </div>
                                     <div class="gameinfo">
                                         <h3>
-                                            线上LOL
+                                            <%=playerBeans.get(0).getGameName()%>
                                         </h3>
                                         <p class="level">
-                                            <span class="label label-default">荣耀黄金三</span>
+                                            <span class="label label-default"> <%=playerBeans.get(0).getGameLeve()%></span>
                                         </p>
                                         <p class="acount">
-                                            <span class="glyphicon glyphicon-bullhorn">&nbsp;接单次数：164次</span>
+                                            <span class="glyphicon glyphicon-bullhorn">&nbsp;<%=playerBeans.get(0).getOrderNum()%></span>
                                         </p>
                                     </div>
                                     <div class="order">
                                         <p class="price">
-                                            <span>￥99.99</span>&nbsp;/小时
+                                            <span><%=playerBeans.get(0).getMoney()%></span>&nbsp;/小时
                                         </p>
-                                        <button type="button" class="btn btn-danger makeF" data-toggle="modal"
-                                                data-target="#myModal">下单约他
-                                        </button>
+                                        <button type="button" class="btn btn-danger">下单约他</button>
                                     </div>
                                 </li>
                                 <li class="player-game introduce">
                                     <h3>介绍<span>/INTRODUCE</span></h3>
-                                    <p>可盐可甜？可奶可狼？输出全靠吼</p>
+                                    <%
+                                        List<String> strings = gameIntroduce.get(playerBeans.get(0).getGameName());
+                                    %>
+                                    <% for (int i = 0; i < strings.size(); i++) {
+
+                                    %>
+                                    <p><%=strings.get(i)%></p>
+                                    <%
+                                        }
+                                    %>
+                                    <%--<p>可盐可甜？可奶可狼？输出全靠吼</p>
                                     <p>提莫队长正在送命 杀人啦~~~~~</p>
                                     <p>可话痨可沉默 O(∩_∩)O</p>
                                     <p>可坑不可carry 嘻嘻嘻</p>
-                                    <p> 可口可乐百事可乐加冰双倍快乐</p>
+                                    <p> 可口可乐百事可乐加冰双倍快乐</p>--%>
                                 </li>
                                 <li class="player-game comment">
                                     <h3>评论<span>/COMMENT</span></h3>
                                     <h4 class="point">评分：<span>9.9</span></h4>
                                     <div class="usercommint">
                                         <ul class="nav navstack">
-                                            <li class="comments"><span class="username">卿卿：</span> 甜甜的 <span
-                                                    class="time">2019-02-18</span></li>
-                                            <li class="comments"><span class="username">秋秋：</span> 人美声甜 <span
-                                                    class="time">2019-04-25</span></li>
-                                            <li class="comments"><span class="username">阿飞：</span>技术流 <span
-                                                    class="time">2019-04-23</span></li>
+                                            <c:forEach items="${playerOrders}" var="order">
+                                                <li class="comments"><span class="username">${order.staffName}：</span> ${order.appraise} <span
+                                                        class="time">${order.endtime}</span></li>
+                                            </c:forEach>
+                                            <%--<li class="comments"><span class="username">阿飞：</span>技术流 <span
+                                                    class="time">2019-04-23</span></li>--%>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
+                        <%--                        <c:forEach items=""--%>
                         <div role="tabpanel" class="tab-pane" id="game2">
                             <ul class="nav nav-stacked">
                                 <li class="player-game top">
                                     <div class="gameicon">
-                                        <img src="${pageContext.request.contextPath}/public/img/gameimg/pubg.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/public/img/gameimg/<%=games.get(playerBeans.get(1).getGameName())%>" alt="">
                                     </div>
                                     <div class="gameinfo">
                                         <h3>
-                                            线上LOL
+                                            <%=playerBeans.get(1).getGameName()%>
                                         </h3>
                                         <p class="level">
-                                            <span class="label label-default">1800分</span>
+                                            <span class="label label-default"> <%=playerBeans.get(1).getGameLeve()%></span>
                                         </p>
                                         <p class="acount">
-                                            <span class="glyphicon glyphicon-bullhorn">&nbsp;接单次数：110次</span>
+                                            <span class="glyphicon glyphicon-bullhorn">&nbsp;<%=playerBeans.get(1).getOrderNum()%></span>
                                         </p>
                                     </div>
                                     <div class="order">
                                         <p class="price">
-                                            <span>￥88.88</span>/小时
+                                            <span><%=playerBeans.get(1).getMoney()%></span>&nbsp;/小时
                                         </p>
-                                        <button type="button" class="btn btn-danger makeF" data-toggle="modal"
-                                                data-target="#myModal">下单约他
-                                        </button>
+                                        <button type="button" class="btn btn-danger">下单约他</button>
                                     </div>
                                 </li>
                                 <li class="player-game introduce">
                                     <h3>介绍<span>/INTRODUCE</span></h3>
-                                    <p>救死扶伤,移动药箱,输出全靠吼</p>
-                                    <p> 我就是个盒子 你们别打我</p>
-                                    <p> 呜呜呜 再打就傻了 不能打头</p>
-                                    <p>带我在机场飙车好么 喵? 暴力摩托 突突突~~~</p>
-                                    <p>可口可乐百事可乐加冰双倍快乐</p>
+                                    <%
+                                        List<String> strings2 = gameIntroduce.get(playerBeans.get(1).getGameName());
+                                    %>
+                                    <% for (int i = 0; i < strings2.size(); i++) {
+
+                                    %>
+                                    <p><%=strings2.get(i)%></p>
+                                    <%
+                                        }
+                                    %>
                                 </li>
                                 <li class="player-game comment">
                                     <h3>评论<span>/COMMENT</span></h3>
                                     <h4 class="point">评分：<span>9.9</span></h4>
                                     <div class="usercommint">
                                         <ul class="nav navstack">
-                                            <li class="comments"><span class="username">阿龙：</span> 小姐姐超甜的 <span
-                                                    class="time">2019-02-18</span></li>
-                                            <li class="comments"><span class="username">辛豪：</span> 呜呜呜 wsl 爱了 <span
-                                                    class="time">2019-02-18</span></li>
-                                            <li class="comments"><span class="username">瓜酱：</span> 给我也整一个 <span
-                                                    class="time">2019-02-18</span></li>
-                                            <li class="comments"><span class="username">靓仔：</span> 我也可以 <span
-                                                    class="time">2019-02-18</span></li>
-                                            <li class="comments"><span class="username">秋秋：</span> 人美声甜 <span
-                                                    class="time">2019-04-25</span></li>
-                                            <li class="comments"><span class="username">阿飞：</span>技术流 <span
-                                                    class="time">2019-04-23</span></li>
+                                            <%--                                            <li class="comments"><span class="username">阿龙：</span> 小姐姐超甜的 <span--%>
+                                            <%--                                                    class="time">2019-02-18</span></li>--%>
+                                            <c:forEach items="${playerOrders}" var="order">
+                                                <li class="comments"><span class="username">${order.staffName}：</span> ${order.appraise} <span
+                                                        class="time">${order.endtime}</span></li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </li>
@@ -381,92 +404,6 @@
             Reserved</div>
     </div>
 </div>
-
-<!-- 下单约她的模态框 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabe2">下单信息</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" id="edit_user_Email">
-                    <input type="hidden" d="edit_id" name="id">
-                    <div class="form-group">
-                        <label for="playerName" class="col-sm-2 control-label">导师</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="playerName" placeholder="导师" name="loginName"
-                                   readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_begindate" class="col-sm-2 control-label">开始日期</label>
-                        <div class="col-sm-4">
-                            <input type="date" class="form-control" id="new_begindate" placeholder="开始日期"
-                                   name="begindate">
-                        </div>
-                        <label for="new_begintime" class="col-sm-2 control-label">开始时间</label>
-                        <div class="col-sm-3">
-                            <input type="time" class="form-control" id="new_begintime" placeholder="开始时间"
-                                   name="begintime">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_hours" class="col-sm-2 control-label">小时</label>
-                        <div class="col-sm-8">
-                            <input type="number" class="form-control" name="quantity" min="1" id="new_hours"
-                                   placeholder="小时" name="hours" oninput="up()">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_telephone" class="col-sm-2 control-label">联系方式</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="new_telephone" placeholder="联系方式"
-                                   name="telephone">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_remark" class="col-sm-2 control-label">留言</label>
-                        <div class="col-sm-8">
-                            <textarea rows="4" cols="2" class="form-control" id="new_remark" placeholder="留言"
-                                      name="remark"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_money" class="col-sm-2 control-label">账户余额</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="new_money" placeholder="账户余额" name="money"
-                                   readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="oneprice" class="col-sm-2 control-label">时价</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="oneprice" placeholder="" name="price"
-                                   readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_price" class="col-sm-2 control-label">实付</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="new_price" placeholder="实付" name="price"
-                                   readonly>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">支付宝支付</button>
-                <button type="button" class="btn btn-primary">微信支付</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
 <!-- 注册登录模块框 -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
