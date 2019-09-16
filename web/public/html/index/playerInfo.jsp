@@ -31,29 +31,6 @@
                     $(".big").attr("src",$(this).children("img").attr("src"));
                 })
             });
-        });
-
-        function up() {
-            var price = $("#oneprice").val();
-            var money = price.substring(1);
-            var hours = $("#new_hours").val();
-            var totalMoney = Number(money) * Number(hours);
-            var str = "￥" + totalMoney;
-            $("#new_price").val(str);
-        }
-
-
-
-        $(function () {
-            $(".makeF").click(function () {
-                var username = $("#Username").text();
-                <%--var recharge =${user.money};--%>
-                var price = $(this).prevAll(".price").find("span").text();
-                $("#playerName").val(username);
-                $("#new_price").val(price);
-                $("#oneprice").val(price);
-                $("#new_money").val(${user.id});
-            })
         })
     </script>
     <script>
@@ -92,10 +69,10 @@
         </a>
         <ul class="nav navbar-nav">
             <li class="nav-item actived">
-                <a href="${pageContext.request.contextPath}/public/html/index/index.jsp">主页</a>
+                <a href="index.jsp">主页</a>
             </li>
             <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/listByGame.player?gameName=全部玩家">约陪玩</a>
+                <a href="list.jsp">约陪玩</a>
             </li>
             <li class="nav-item">
                 <a href="#">开黑大厅</a>
@@ -260,9 +237,7 @@
                                         <p class="price">
                                             <span>￥99.99</span>&nbsp;/小时
                                         </p>
-                                        <button type="button" class="btn btn-danger makeF" data-toggle="modal"
-                                                data-target="#myModal">下单约他
-                                        </button>
+                                        <button type="button" class="btn btn-danger">下单约他</button>
                                     </div>
                                 </li>
                                 <li class="player-game introduce">
@@ -308,11 +283,9 @@
                                     </div>
                                     <div class="order">
                                         <p class="price">
-                                            <span>￥88.88</span>/小时
+                                            <span>￥99.99</span>/小时
                                         </p>
-                                        <button type="button" class="btn btn-danger makeF" data-toggle="modal"
-                                                data-target="#myModal">下单约他
-                                        </button>
+                                        <button type="button" class="btn btn-danger">下单约他</button>
                                     </div>
                                 </li>
                                 <li class="player-game introduce">
@@ -381,92 +354,6 @@
             Reserved</div>
     </div>
 </div>
-
-<!-- 下单约她的模态框 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabe2">下单信息</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" id="edit_user_Email">
-                    <input type="hidden" d="edit_id" name="id">
-                    <div class="form-group">
-                        <label for="playerName" class="col-sm-2 control-label">导师</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="playerName" placeholder="导师" name="loginName"
-                                   readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_begindate" class="col-sm-2 control-label">开始日期</label>
-                        <div class="col-sm-4">
-                            <input type="date" class="form-control" id="new_begindate" placeholder="开始日期"
-                                   name="begindate">
-                        </div>
-                        <label for="new_begintime" class="col-sm-2 control-label">开始时间</label>
-                        <div class="col-sm-3">
-                            <input type="time" class="form-control" id="new_begintime" placeholder="开始时间"
-                                   name="begintime">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_hours" class="col-sm-2 control-label">小时</label>
-                        <div class="col-sm-8">
-                            <input type="number" class="form-control" name="quantity" min="1" id="new_hours"
-                                   placeholder="小时" name="hours" oninput="up()">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_telephone" class="col-sm-2 control-label">联系方式</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="new_telephone" placeholder="联系方式"
-                                   name="telephone">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_remark" class="col-sm-2 control-label">留言</label>
-                        <div class="col-sm-8">
-                            <textarea rows="4" cols="2" class="form-control" id="new_remark" placeholder="留言"
-                                      name="remark"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_money" class="col-sm-2 control-label">账户余额</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="new_money" placeholder="账户余额" name="money"
-                                   readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="oneprice" class="col-sm-2 control-label">时价</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="oneprice" placeholder="" name="price"
-                                   readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_price" class="col-sm-2 control-label">实付</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="new_price" placeholder="实付" name="price"
-                                   readonly>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">支付宝支付</button>
-                <button type="button" class="btn btn-primary">微信支付</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
 <!-- 注册登录模块框 -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
