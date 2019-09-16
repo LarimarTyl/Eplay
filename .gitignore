@@ -5,8 +5,4 @@ config
 /src/dao/impl/Test.java
 /src/test/testservice/
 /config/
-/web/public/html/home/test.html
-/web/public/html/home/test2.html
-/web/public/html/home/test3.html
-/web/public/html/home/test4.html
-/web/public/html/home/test7.html
+

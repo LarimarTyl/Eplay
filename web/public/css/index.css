@@ -209,7 +209,7 @@ body{
 .thumbnail > img, .thumbnail a > img {
     margin-right: auto;
     margin-left: auto;
-    width: 272px;
+    height: 245px;
 
 }
 

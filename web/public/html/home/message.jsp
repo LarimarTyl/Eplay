@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,7 +60,7 @@
                 [系统消息]
             </c:if>
         </span></td>
-            <td width="50%">${message.getMessage()}</td>
+            <td width="50%">${fn:substring(message.getMessage(),0 ,10)}</td>
             <td width="20%">${message.getTime()}</td>
         </tr>
     </c:forEach>

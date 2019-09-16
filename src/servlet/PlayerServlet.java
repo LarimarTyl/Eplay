@@ -1,6 +1,8 @@
 package servlet;
 
+import bean.OrderBean;
 import bean.PlayerBean;
+import dao.OrderDao;
 import dao.PlayerDao;
 import service.PlayerService;
 import util.Factory;
@@ -21,10 +23,12 @@ import java.util.List;
 public class PlayerServlet extends HttpServlet {
     PlayerService playerService;
     PlayerDao playerDao;
+    OrderDao orderDao;
 
     public PlayerServlet() {
         playerService = Factory.getInstance("playerService",PlayerService.class);
         playerDao = Factory.getInstance("playerDao",PlayerDao.class);
+        orderDao = Factory.getInstance("orderDao",OrderDao.class);
     }
 
     @Override
@@ -55,14 +59,23 @@ public class PlayerServlet extends HttpServlet {
         String playerName = request.getParameter("playerName");
         PlayerBean playerInfo = playerDao.selectPlayByName(playerName);
         List<PlayerBean> playerGameInfo = playerDao.selectPlayersByPlayerId(playerId);
+        List<OrderBean> playerOrders = orderDao.selectOrdersByPlayer(playerName);
+
         if (playerInfo!=null){
             System.out.println("输出玩家信息");
             System.out.println(playerInfo);
+            request.getSession().removeAttribute("playerInfo");
             request.getSession().setAttribute("playerInfo",playerInfo);
         }if (playerGameInfo!=null){
             System.out.println("输出玩家游戏信息");
             System.out.println(playerGameInfo);
+            request.getSession().removeAttribute("playerGameInfo");
             request.getSession().setAttribute("playerGameInfo",playerGameInfo);
+        }if (playerOrders!=null){
+            System.out.println("输出玩家订单信息");
+            System.out.println(playerOrders);
+            request.getSession().removeAttribute("playerOrders");
+            request.getSession().setAttribute("playerOrders",playerOrders);
         }
         request.getRequestDispatcher("/public/html/index/playerInfo.jsp").forward(request,response);
     }

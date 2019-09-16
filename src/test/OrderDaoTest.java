@@ -224,4 +224,9 @@ public class OrderDaoTest {
             System.out.println("测试分页评价大于指定参数的订单失败");
         }
     }
+    @Test
+    public void order(){
+        List<OrderBean> list = orderDao.selectOrdersByPlayer("咕咕乐ღ");
+        System.out.println(list);
+    }
 }

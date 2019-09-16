@@ -44,7 +44,7 @@
     <!-- 左侧导航 -->
     <div class="left_navbar" id="myScrollspy">
         <ul class="nav nav-tabs nav-stacked top_logo">
-            <li class="navbar-brand"><span><a href="${pageContext.request.contextPath}/public/html/index/index2.jsp"><img src="${pageContext.request.contextPath}/public/img/Logo/Logo_small.png" alt="" width="65%"></a></span>
+            <li class="navbar-brand"><span><a href="${pageContext.request.contextPath}/public/html/index/index.jsp"><img src="${pageContext.request.contextPath}/public/img/Logo/Logo_small.png" alt="" width="65%"></a></span>
             </li>
         </ul>
         <ul class="nav  nav-stacked admin" id="myNav">
@@ -52,9 +52,9 @@
             <li class="navbar-brand  nav_title">
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp; 管理
             </li>
-            <li class="nav_item active" role="presentation"><a href="orderlist.jsp" target="item_main">我的订单</a></li>
+            <li class="nav_item active" role="presentation"><a href="${pageContext.request.contextPath}/orderDisplay.user" target="item_main">我的订单</a></li>
             <li class="nav_item" role="presentation"><a href="games.jsp" target="item_main">我的游戏</a></li>
-            <li class="nav_item" role="presentation"><a href="message.jsp" target="item_main">我的消息</a></li>
+            <li class="nav_item" role="presentation"><a href="${pageContext.request.contextPath}/disPlaymessage.user" target="item_main">我的消息</a></li>
             <li class="nav_item" role="presentation"><a href="facous.jsp" target="item_main">我的关注</a></li>
             <li class="nav_item" role="presentation"><a href="blacklist.jsp" target="item_main">我的黑名单</a></li>
             <li class="nav_item" role="presentation"><a href="recharge.jsp" target="item_main">余额充值</a></li>

@@ -69,6 +69,20 @@
             $("#registerBtn").click( function loginUser(){
                 $("#doRegister").click();
             });
+            $(".games li").click(function () {
+
+
+                var args = {
+                    "Date": new Date(),
+                    "gameName": $(this).find(".gamename").text(),
+                };
+
+                //设置url
+                var url = "${pageContext.request.contextPath}/listByGame.player";
+
+                //post方法
+                $.post(url, args);
+            })
         });
     </script>
 </head>
@@ -89,7 +103,7 @@
                 <a href="${pageContext.request.contextPath}/public/html/index/index.jsp">主页</a>
             </li>
             <li class="nav-item">
-                <a href="list.jsp">约陪玩</a>
+                <a href="${pageContext.request.contextPath}/listByGame.player?gameName=全部玩家">约陪玩</a>
             </li>
             <li class="nav-item">
                 <a href="#">开黑大厅</a>
@@ -175,15 +189,15 @@
             <tr class="games">
                 <td class="title">游戏服务</td>
                 <td>
-                    <ul class="nav nav-pills">
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/glory.png"><span>王者荣耀</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/pubg.png"><span>绝地求生</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/csgo.jpg"><span>CS：Go</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/zhanchang.png"><span>和平精英</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/apex.png"><span>Apex英雄</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/dotazzq.png"><span>Dota自走棋</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/lol.png"><span>英雄联盟</span></a> </li>
-                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/yunding.png"><span>云顶之役</span></a> </li>
+                    <ul class="nav nav-pills games">
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/glory.png"><span class="gamename">王者荣耀</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/pubg.png"><span class="gamename">绝地求生</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/csgo.jpg"><span class="gamename">CS：Go</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/zhanchang.png"><span class="gamename">和平精英</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/apex.png"><span class="gamename">Apex英雄</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/dotazzq.png"><span class="gamename">Dota自走棋</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/lol.png"><span class="gamename">英雄联盟</span></a> </li>
+                        <li class="game"><a href=""><img src="${pageContext.request.contextPath}/public/img/gameimg/yunding.png"><span class="gamename">云顶之役</span></a> </li>
                     </ul>
                 </td>
             </tr>
